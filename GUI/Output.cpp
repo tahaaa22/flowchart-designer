@@ -146,6 +146,7 @@ void Output::DrawAssign(Point Left, int width, int height, string Text, bool Sel
 
 	//Draw the statement block rectangle
 	pWind->DrawRectangle(Left.x, Left.y, Left.x + width, Left.y + height);
+	
 		
 	//Write statement text
 	pWind->SetPen(BLACK, 2);
