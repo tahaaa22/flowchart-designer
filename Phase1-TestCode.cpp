@@ -3,16 +3,13 @@
 #include "GUI\Input.h"
 #include "GUI\Output.h"
 
-
+//Ahmed
+// 
 //This is a test code to test the Input and Output classes
 
 int main()
 {
 	  
-
-
-
-
 	Point P;
 
 	//Create Input and Output objects to test
