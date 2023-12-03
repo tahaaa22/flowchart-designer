@@ -8,6 +8,10 @@
 
 int main()
 {
+	  
+
+
+
 
 	Point P;
 
