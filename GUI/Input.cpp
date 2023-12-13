@@ -1,7 +1,7 @@
 
 #include "Input.h"
 #include "Output.h"
-
+/*bhsbh*/
 Input::Input(window* pW)
 {
 	pWind = pW; //point to the passed window
