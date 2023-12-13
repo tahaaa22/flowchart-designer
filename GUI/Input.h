@@ -23,11 +23,14 @@ public:
 	//TODO: Add the function Input::GetVariable 
 	// to read a “variable name” from the user (from the keyboard). 
 	// It does not return before taking a valid variable name.
-
+	string GetVariable(Output* pO) const;
+	
 	//TODO: Add the function Input::GetArithOperator 
 	// to read an arithmetic operator (+, -, * or /) from the user. 
 	// It does not return before taking a valid arithmetic operator.
-
+	char GetArithOperator(Output* pO) const;
+	
+	char GetCompOperator(Output* pO) const;
 	//TODO: Add the function Input::GetCompOperator
 	// similar to the previous function but for comparison operators (==, !=, <, <=, > or >=).
 

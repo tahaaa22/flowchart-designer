@@ -1,7 +1,8 @@
 
 #include "Input.h"
 #include "Output.h"
-/*bhsbh*/
+
+
 Input::Input(window* pW)
 {
 	pWind = pW; //point to the passed window
@@ -29,6 +30,79 @@ string Input::GetString(Output *pO) const
 			Label += Key;
 		if (pO)
 			pO->PrintMessage(Label);
+	}
+}
+
+string Input::GetVariable(Output* pO) const
+{
+	/*variable name*/
+	string varname;
+	char key;
+	while (1)
+	{
+		pWind->WaitKeyPress(key);
+		bool vali=IsVariable(varname);
+		if (key == 27)	//ESCAPE key is pressed
+		{
+			return "";	//returns nothing as user has cancelled variable name
+		}
+			
+		else if (key == 13 && (varname.size() >= 1) && vali)	//ENTER key is pressed
+		{
+			return varname;
+		}
+		else if ((key == 8) && (varname.size() >= 1))
+		{ 
+			varname.resize(varname.size() - 1); // Remove the last character
+		}
+
+		else if (vali) 
+		{
+			varname += key; 
+		}
+
+		if (pO) 
+		{
+			pO->PrintMessage(varname); // Display the current variable name
+		}
+
+	}
+	
+}
+
+char Input::GetArithOperator(Output* pO) const
+{
+	/*operator*/
+	char Op;
+	while (1)
+	{
+		pWind->WaitKeyPress(Op);
+		if (Op == '+' || Op == '-' || Op == '*' || Op == '/')
+		{
+			return Op; 
+		}
+	}
+}
+
+char Input::GetCompOperator(Output* pO) const
+{
+	/*comparison operator*/
+	char compOp;
+	while (1)
+	{
+		pWind->WaitKeyPress(compOp);
+		if (compOp == '=' || compOp == '!' || compOp == '<' || compOp == '>')
+		{
+			char nextkey;
+			pWind->WaitKeyPress(nextkey);
+			if (nextkey == 13)	//ENTER key is pressed
+				return compOp;
+			else if ((compOp == '=' && nextkey == '=') || (compOp == '<' && nextkey == '=') || (compOp == '>' && nextkey == '=') || (compOp == '!' && nextkey == '='))
+			{
+				return compOp,nextkey; // Return valid comparison operator
+			}
+		}
+
 	}
 }
 
