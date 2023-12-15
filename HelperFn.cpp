@@ -41,7 +41,7 @@ bool IsVariable(string input)
 	int sl = 0;
 	int size = input.size();
 
-	
+
 	if (IsAlpha(input[sl]) || input[sl] == '_')
 	{
 		sl++;
@@ -49,7 +49,7 @@ bool IsVariable(string input)
 	else
 		return false;
 	bool variable = false;
-	for (sl; sl<size; sl++) {
+	for (sl; sl < size; sl++) {
 		if (IsAlpha(input[sl]) || input[sl] == '_' || isdigit(input[sl])) {
 			variable = true;
 		}
