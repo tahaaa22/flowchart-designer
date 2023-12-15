@@ -70,10 +70,23 @@ void Output::CreateDesignToolBar() //Draws the Design Menu
 	//To control the order of these images in the menu, 
 	//reoder them in Defs.h ==> enum DrawMenuItem
 	string MenuItemImages[DSN_ITM_CNT];
+	MenuItemImages[ITM_START] = "images\\start.jpg";
+	MenuItemImages[ITM_END] = "images\\ovalE.jpg";
 	MenuItemImages[ITM_VALUE_ASSIGN] = "images\\Assign.jpg";
+	//MenuItemImages[ITM_VAR_ASSIGN] = "images\\assignvar.jpg";
+	//MenuItemImages[ITM_OPER_ASSIGN] = "images\\assignoper.jpg";
 	MenuItemImages[ITM_COND] = "images\\Condition.jpg";
-	MenuItemImages[ITM_READ] = "images\\paralellogram.jpg";
-	MenuItemImages[ITM_WRITE] = "images\\paralellogram.jpg";
+	MenuItemImages[ITM_READ] = "images\\parallelogram.jpg";
+	//MenuItemImages[ITM_WRITE] = "images\\para.jpg";
+	MenuItemImages[ITM_CONNECTOR] = "images\\arrow.jpg"; 
+	MenuItemImages[ITM_SELECT] = "images\\select.jpg";
+	MenuItemImages[ITM_DEL] = "images\\delete.jpg";
+	MenuItemImages[ITM_COPY] = "images\\copy.jpg";
+	MenuItemImages[ITM_CUT] = "images\\cut.jpg";
+	MenuItemImages[ITM_PASTE] = "images\\paste.jpg";
+	MenuItemImages[ITM_SAVE]="images\\save.jpg";
+	MenuItemImages[ITM_LOAD] = "images\\load.jpg";
+	MenuItemImages[ITM_SWITCH_SIM_MODE] = "images\\switch.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\Exit.jpg";
 	//TODO: Prepare images for each menu item and add it to the list
 
@@ -92,6 +105,10 @@ void Output::CreateDesignToolBar() //Draws the Design Menu
 void Output::CreateSimulationToolBar() //Draws the Simulation Menu
 {
 	UI.AppMode = SIMULATION;	//Simulation Mode
+	string MenuItemImages[SIM_ITM_CNT];
+	MenuItemImages[ITM_VALIDATE] = "images\\validate.jpg";
+	MenuItemImages[ITM_RUN] = "images\\run.jpg";
+	MenuItemImages[ITM_SWITCH_DSN_MODE] = "images\\switch.jpg"; 
 	///TODO: add code to create the simulation tool bar
 }
 //////////////////////////////////////////////////////////////////////////////////////////

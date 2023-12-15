@@ -54,11 +54,24 @@ enum DesignMenuItem //The items of the design menu --> THE ORDER MATTERS
 {
 	//Note: Items are ordered here as they appear in menu
 	//If you change the menu items order, change the order here too
+	ITM_START,
+	ITM_END,
 	ITM_VALUE_ASSIGN,//simple assignment statement
+	//ITM_VAR_ASSIGN,
+	//ITM_OPER_ASSIGN,
 	ITM_COND,		//conditional statement
 	ITM_READ,
-	ITM_WRITE,
+	//ITM_WRITE,
 	ITM_CONNECTOR,
+	ITM_SELECT,
+	ITM_DEL,
+	ITM_COPY,
+	ITM_CUT,
+	ITM_PASTE,
+	ITM_SAVE,
+	ITM_LOAD,
+	ITM_SWITCH_SIM_MODE,
+
 	ITM_EXIT,		//Exit
 	
 	//TODO: Add more items names here
@@ -72,7 +85,8 @@ enum SimMenuItem //The items of the simulation menu
 {
 	//Note: Items are ordered here as they appear in menu
 	ITM_VALIDATE,	//Validate
-	ITM_RUN,	    //Run
+	ITM_RUN,//Run
+	ITM_SWITCH_DSN_MODE,
 		
 	//TODO:Add more items names here
 	
