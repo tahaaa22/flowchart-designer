@@ -57,14 +57,15 @@ enum DesignMenuItem //The items of the design menu --> THE ORDER MATTERS
 	ITM_START,
 	ITM_END,
 	ITM_VALUE_ASSIGN,//simple assignment statement
-	//ITM_VAR_ASSIGN,
-	//ITM_OPER_ASSIGN,
+	ITM_VAR_ASSIGN,
+	ITM_OPER_ASSIGN,
 	ITM_COND,		//conditional statement
 	ITM_READ,
-	//ITM_WRITE,
+	ITM_WRITE,
 	ITM_CONNECTOR,
 	ITM_SELECT,
 	ITM_DEL,
+	ITM_EDIT,
 	ITM_COPY,
 	ITM_CUT,
 	ITM_PASTE,

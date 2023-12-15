@@ -13,7 +13,7 @@ Output::Output()
 
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 50;
-	UI.MenuItemWidth = 80;
+	UI.MenuItemWidth = 60;
 	UI.DrawingAreaWidth = 0.75 * UI.width;
 
 	UI.DrawColor = BLUE;
@@ -70,17 +70,18 @@ void Output::CreateDesignToolBar() //Draws the Design Menu
 	//To control the order of these images in the menu, 
 	//reoder them in Defs.h ==> enum DrawMenuItem
 	string MenuItemImages[DSN_ITM_CNT];
-	MenuItemImages[ITM_START] = "images\\start.jpg";
+	MenuItemImages[ITM_START] = "images\\oval.jpg";
 	MenuItemImages[ITM_END] = "images\\ovalE.jpg";
 	MenuItemImages[ITM_VALUE_ASSIGN] = "images\\Assign.jpg";
-	//MenuItemImages[ITM_VAR_ASSIGN] = "images\\assignvar.jpg";
-	//MenuItemImages[ITM_OPER_ASSIGN] = "images\\assignoper.jpg";
+	MenuItemImages[ITM_VAR_ASSIGN] = "images\\assignvar.jpg";
+	MenuItemImages[ITM_OPER_ASSIGN] = "images\\assignoper.jpg";
 	MenuItemImages[ITM_COND] = "images\\Condition.jpg";
-	MenuItemImages[ITM_READ] = "images\\parallelogram.jpg";
-	//MenuItemImages[ITM_WRITE] = "images\\para.jpg";
+	MenuItemImages[ITM_READ] = "images\\Read.jpg";
+	MenuItemImages[ITM_WRITE] = "images\\write.jpg";
 	MenuItemImages[ITM_CONNECTOR] = "images\\arrow.jpg"; 
 	MenuItemImages[ITM_SELECT] = "images\\select.jpg";
 	MenuItemImages[ITM_DEL] = "images\\delete.jpg";
+	MenuItemImages[ITM_EDIT] = "images\\edit.jpg";
 	MenuItemImages[ITM_COPY] = "images\\copy.jpg";
 	MenuItemImages[ITM_CUT] = "images\\cut.jpg";
 	MenuItemImages[ITM_PASTE] = "images\\paste.jpg";
@@ -149,6 +150,10 @@ void Output::DrawString(const int iX, const int iY, const string Text)
 	pWind->SetPen(BLACK, 2);
 	pWind->DrawString(iX, iY, Text);
 }
+void Output::DrawDouble(const int iX, const int iY, const double dNumber) {
+	pWind->SetPen(BLACK, 2);
+	pWind->DrawDouble(iX, iY, dNumber);
+}
 //////////////////////////////////////////////////////////////////////////////////////////
 
 //======================================================================================//
@@ -171,12 +176,81 @@ void Output::DrawAssign(Point Left, int width, int height, string Text, bool Sel
 	pWind->SetPen(BLACK, 2);
 	pWind->DrawString(Left.x+width/4, Left.y + height/4, Text);
 }
+void Output::DrawStart(Point left, int width, int height, string Text, bool selected)
+{
+	if (selected)
+		pWind->SetPen(UI.HighlightColor, 3);
+	else
+		pWind->SetPen(UI.DrawColor, 3);
+
+	pWind->DrawEllipse(left.x, left.y, left.x + width, left.y + height);
+
+	pWind->SetPen(BLACK, 2);
+	pWind->DrawString(left.x + width / 2.5, left.y + height / 4, Text);
+}
+void Output::DrawEnd(Point left, int width, int height, string Text, bool selected)
+{
+	if (selected)
+		pWind->SetPen(UI.HighlightColor, 3);
+	else
+		pWind->SetPen(UI.DrawColor, 3);
+
+	pWind->DrawEllipse(left.x, left.y, left.x + width, left.y + height);
+
+	pWind->SetPen(BLACK, 2);
+	pWind->DrawString(left.x + width / 2.5, left.y + height / 4, Text);
+}
+void Output::DrawRoh(Point left, int width, int height, string text, bool selected) {
+	if (selected)
+		pWind->SetPen(UI.HighlightColor, 3);
+	else
+		pWind->SetPen(UI.DrawColor, 3);
+	const int iVertices = 4;
+	const int aX[4] = { left.x,left.x + (width / 2),left.x + width ,left.x + (width / 2) };
+	const int aY[4] = { left.y , left.y + (height / 2), left.y, left.y - (height / 2) };
+	pWind->DrawPolygon(aX, aY, 4);
+	pWind->SetPen(BLACK, 2);
+	pWind->DrawString(left.x + width / 2.5, left.y - (height / 4), text);
+}
+void Output::DrawPol(Point left, int width, int height, string text, bool selected)
+{
+	if (selected)
+		pWind->SetPen(UI.HighlightColor, 3);
+	else
+		pWind->SetPen(UI.DrawColor, 3);
+	const int iVertices = 4;
+	const int aX[4] = { left.x,left.x + width ,left.x + width - (0.2 * width), left.x - (0.2 * width) };
+	const int aY[4] = { left.y , left.y, left.y + (height),left.y + (height) };
+	pWind->DrawPolygon(aX, aY, 4);
+	pWind->SetPen(BLACK, 2);
+	pWind->DrawString(left.x + width / 4, left.y + height / 4, text);
+}
 
 //TODO: Add similar functions for drawing all other statements.
 //		e.g. DrawCondtionalStat(......), DrawStart(......), DrawEnd(.......), ...etc
 //		Decide the parameters that should be passed to each of them
-	
+
 //TODO: Add DrawConnector function
+void Output::Drawconnectors(Point start, Point end, bool selected) {
+
+	if (selected)
+		pWind->SetPen(UI.HighlightColor, 3);
+	else
+		pWind->SetPen(UI.DrawColor, 3); 
+	if (start.x == end.x) {
+		pWind->DrawLine(start.x, start.y, end.x, end.y);
+		pWind->DrawTriangle(end.x - 4, end.y, end.x + 4, end.y, end.x, end.y + 4);
+	}
+	else  if(start.x<end.x){
+		pWind->DrawLine(start.x, start.y, end.x, end.y);
+		pWind->DrawTriangle(end.x, end.y-4, end.x, end.y+4, end.x+4, end.y);
+	}
+	else if(start.x>end.x){
+		pWind->DrawLine(start.x, start.y,end.x, end.y);
+		pWind->DrawTriangle(end.x, end.y - 4, end.x, end.y + 4, end.x - 4, end.y);
+	}
+	pWind->SetPen(BLACK, 2);
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////
 Output::~Output()
