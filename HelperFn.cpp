@@ -26,7 +26,7 @@ bool IsValue(string input)
 		count++;
 		digit = true;
 	}
-	return (digit && count == size && dot == 1);
+	return (digit && (count == size) && (dot == 1));
 
 	// checks if the input string is a double value
 	// return true if it's double value, false otherwise
