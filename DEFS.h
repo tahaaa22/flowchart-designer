@@ -39,7 +39,8 @@ enum ActionType // The actions supported
 
 	EXIT,		//Exit the application
 
-
+	VALIDATE,
+	RUN,
 	//TODO: ADD THE ACTIONS OF SIMULATION MODE
 
 

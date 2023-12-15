@@ -16,9 +16,9 @@ int main()
 	Output* pOut = new Output();
 	Input* pIn = pOut->CreateInput();
 
-	///////////////////////////////////////////////////////////////////////////////////
-	// TEST 0:	Testing the helper functions
-	///////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////
+	//// TEST 0:	Testing the helper functions
+	/////////////////////////////////////////////////////////////////////////////////////
 
 	pOut->PrintMessage("TEST0: Testing the helper functions");
 	pIn->GetPointClicked(P);	//Wait for any click
@@ -110,6 +110,26 @@ int main()
 
 	///2.2- Variable assignment & single operator assignment
 	pOut->PrintMessage("Drawing other Assignment statements in ALL STATES, Click to continue");
+
+	//Drawing (normal) (empty) assignment statement --> STATE 1
+	P.x = 100;	P.y = 100;
+	pOut->DrawAssign(P, UI.ASSGN_WDTH, UI.ASSGN_HI, " = ");
+
+	//Drawing (highlighted) (empty) assignment statement --> STATE 2
+	P.x = 300;	P.y = 100;
+	pOut->DrawAssign(P, UI.ASSGN_WDTH, UI.ASSGN_HI, " = ", true);
+
+	//Drawing a resized empty assignment statement
+	P.x = 100;	P.y = 200;
+	pOut->DrawAssign(P, 80, UI.ASSGN_HI, " = ");
+
+	//Drawing edited (normal) (non-empty) assignment statement --> STATE 3
+	P.x = 100;	P.y = 300;
+	pOut->DrawAssign(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "S = y");
+
+	//Drawing (highlighted) (non-empty) assignment statement --> STATE 4
+	P.x = 300;	P.y = 300;
+	pOut->DrawAssign(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "S = y ", true);
 
 	//Note: for other type of assignment, you can use the same draw assignment function but passing a different text
 
@@ -295,7 +315,7 @@ int main()
 
 	pOut->PrintMessage("Testing Input ability to read strings, values, variables and operators");
 
-	////////////
+	//////////
 	//TODO: Add code here to 
 	// 1- Read a (double value) from the user and print it
 	double m = pIn->GetValue(pOut);
@@ -305,6 +325,28 @@ int main()
 	// 3- Read an (arithmatic operator) from the user and print it
 	// 4- Read a (comparison operator) from the user and print it
 	////////////
+
+	/*1)*/  pOut->PrintMessage("enter a double value");
+	pIn->GetValue(pOut);
+
+
+	/*2)*/ 	pOut->PrintMessage("enter a variable name");
+	pIn->GetVariable(pOut);
+
+
+	/*3)*/ pOut->PrintMessage("enter an arithmatic operator");
+	pIn->GetArithOperator(pOut);
+
+	
+
+	/*4)*/ pOut->PrintMessage("enter a comparison operator ");
+	pIn->GetCompOperator(pOut);
+
+	
+	
+
+
+
 
 	pIn->GetPointClicked(P);	//Wait for any click
 	pOut->ClearDrawArea();
