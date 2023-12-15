@@ -58,6 +58,7 @@ enum DesignMenuItem //The items of the design menu --> THE ORDER MATTERS
 	ITM_COND,		//conditional statement
 	ITM_READ,
 	ITM_WRITE,
+	ITM_CONNECTOR,
 	ITM_EXIT,		//Exit
 	
 	//TODO: Add more items names here
