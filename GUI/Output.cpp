@@ -72,6 +72,8 @@ void Output::CreateDesignToolBar() //Draws the Design Menu
 	string MenuItemImages[DSN_ITM_CNT];
 	MenuItemImages[ITM_VALUE_ASSIGN] = "images\\Assign.jpg";
 	MenuItemImages[ITM_COND] = "images\\Condition.jpg";
+	MenuItemImages[ITM_READ] = "images\\paralellogram.jpg";
+	MenuItemImages[ITM_WRITE] = "images\\paralellogram.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\Exit.jpg";
 	//TODO: Prepare images for each menu item and add it to the list
 

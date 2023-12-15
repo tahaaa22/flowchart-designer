@@ -56,8 +56,8 @@ enum DesignMenuItem //The items of the design menu --> THE ORDER MATTERS
 	//If you change the menu items order, change the order here too
 	ITM_VALUE_ASSIGN,//simple assignment statement
 	ITM_COND,		//conditional statement
-
-
+	ITM_READ,
+	ITM_WRITE,
 	ITM_EXIT,		//Exit
 	
 	//TODO: Add more items names here
