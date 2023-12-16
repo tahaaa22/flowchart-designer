@@ -39,7 +39,7 @@ int main()
 	if (y == true)
 		pOut->PrintMessage("String is a value");
 	else
-		pOut->PrintMessage("String isnot a value");
+		pOut->PrintMessage("String is not a value");
 
 	pIn->GetPointClicked(P);	//Wait for any click
 	
@@ -51,11 +51,11 @@ int main()
 	if (B == true)
 		pOut->PrintMessage("String is a variable");
 	else
-		pOut->PrintMessage("String isnot a variable");
+		pOut->PrintMessage("String is not a variable");
 
 	pIn->GetPointClicked(P);	//Wait for any click
 	
-	pOut->PrintMessage("taesting ValueOrVariable");
+	pOut->PrintMessage("testing ValueOrVariable");
 	string c;
 	c = pIn->GetString(pOut);
 	OpType d;

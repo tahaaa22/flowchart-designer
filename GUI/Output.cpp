@@ -111,6 +111,22 @@ void Output::CreateSimulationToolBar() //Draws the Simulation Menu
 	Images[ITM_VALIDATE] = "images\\validate.jpg";
 	Images[ITM_RUN] = "images\\run.jpg";
 	Images[ITM_SWITCH_DSN_MODE] = "images\\switch.jpg";
+	Images[ITM_WHITE1] = "images\\WHITE2.jpg";
+	Images[ITM_WHITE2] = "images\\WHITE2.jpg";
+	Images[ITM_WHITE3] = "images\\WHITE2.jpg";
+	Images[ITM_WHITE4] = "images\\WHITE2.jpg";
+	Images[ITM_WHITE5] = "images\\WHITE2.jpg";
+	Images[ITM_WHITE6] = "images\\WHITE2.jpg";
+	Images[ITM_WHITE7] = "images\\WHITE2.jpg"; 
+	Images[ITM_WHITE8] = "images\\WHITE2.jpg";
+	Images[ITM_WHITE9] = "images\\WHITE2.jpg";
+	Images[ITM_WHITE10] = "images\\WHITE2.jpg";
+	Images[ITM_WHITE11] = "images\\WHITE2.jpg";
+	Images[ITM_WHITE12] = "images\\WHITE2.jpg";
+	Images[ITM_WHITE13] = "images\\WHITE2.jpg";
+	Images[ITM_WHITE14] = "images\\WHITE2.jpg";
+	Images[ITM_WHITE15] = "images\\WHITE2.jpg";
+	Images[ITM_EXIT1] = "images\\EXIT.jpg";
 	///TODO: add code to create the simulation tool bar
 	//Draw menu item one image at a time
 	for (int i = 0; i < SIM_ITM_CNT; i++)
