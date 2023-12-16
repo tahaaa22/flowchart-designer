@@ -347,6 +347,7 @@ ActionType Input::GetUserAction() const
 
 			case ITM_SWITCH_DSN_MODE: return SWITCH_DSN_MODE;
 			case ITM_EXIT1: return EXIT;
+				
 
 			}
 

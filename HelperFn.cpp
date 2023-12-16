@@ -72,9 +72,9 @@ bool IsVariable(string input)
 
 OpType ValueOrVariable(string input)
 {
-	if (IsValue)
+	if (IsValue(input))
 		return VALUE_OP;
-	if (IsVariable)
+	if (IsVariable(input))
 		return VARIABLE_OP;
 	// checks if the input string is a double value or a variable name
 	// chand returns enum "OpType" (the enum is declared in the .h)

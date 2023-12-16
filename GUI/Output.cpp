@@ -211,7 +211,7 @@ void Output::DrawStart(Point left, int width, int height, string Text, bool sele
 	pWind->DrawEllipse(left.x, left.y, left.x + width, left.y + height);
 
 	pWind->SetPen(BLACK, 2);
-	pWind->DrawString(left.x + width / 2.5, left.y + height / 4, Text);
+	pWind->DrawString(left.x + width / 2.5, left.y + height / 4, "Start");
 }
 void Output::DrawEnd(Point left, int width, int height, string Text, bool selected)
 {
@@ -223,7 +223,7 @@ void Output::DrawEnd(Point left, int width, int height, string Text, bool select
 	pWind->DrawEllipse(left.x, left.y, left.x + width, left.y + height);
 
 	pWind->SetPen(BLACK, 2);
-	pWind->DrawString(left.x + width / 2.5, left.y + height / 4, Text);
+	pWind->DrawString(left.x + width / 2.5, left.y + height / 4, "End");
 }
 void Output::DrawRoh(Point left, int width, int height, string text, bool selected) {
 	if (selected)
@@ -256,6 +256,16 @@ void Output::DrawPol(Point left, int width, int height, string text, bool select
 //		Decide the parameters that should be passed to each of them
 
 //TODO: Add DrawConnector function
+void Output::Drawconnector(Point start, Point Mid, Point end, bool selected) {
+
+	if (selected)
+		pWind->SetPen(UI.HighlightColor, 3);
+	else
+		pWind->SetPen(UI.DrawColor, 3);
+	pWind->DrawLine(start.x, start.y, Mid.x, Mid.y);
+	pWind->DrawLine(Mid.x, Mid .y, end.x, end.y);
+	pWind->DrawTriangle(end.x - 4, end.y, end.x + 4, end.y, end.x, end.y + 4);
+}
 void Output::Drawconnectors(Point start, Point end, bool selected) {
 
 	if (selected)
@@ -266,14 +276,19 @@ void Output::Drawconnectors(Point start, Point end, bool selected) {
 		pWind->DrawLine(start.x, start.y, end.x, end.y);
 		pWind->DrawTriangle(end.x - 4, end.y, end.x + 4, end.y, end.x, end.y + 4);
 	}
-	else  if(start.x<end.x){
+	else  if (start.x < end.x) {
 		pWind->DrawLine(start.x, start.y, end.x, end.y);
-		pWind->DrawTriangle(end.x, end.y-4, end.x, end.y+4, end.x+4, end.y);
+		pWind->DrawTriangle(end.x, end.y - 4, end.x, end.y + 4, end.x + 4, end.y);
 	}
-	else if(start.x>end.x){
-		pWind->DrawLine(start.x, start.y,end.x, end.y);
+	else if (start.x > end.x) {
+		pWind->DrawLine(start.x, start.y, end.x, end.y);
 		pWind->DrawTriangle(end.x, end.y - 4, end.x, end.y + 4, end.x - 4, end.y);
 	}
+	else if (start.x != end.x && start.y != end.y) {
+
+	}
+	
+	
 	pWind->SetPen(BLACK, 2);
 }
 

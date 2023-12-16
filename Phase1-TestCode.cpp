@@ -11,6 +11,7 @@ int main()
 
 	Point P;
 	Point P1;
+	Point P2;
 
 	//Create Input and Output objects to test
 	Output* pOut = new Output();
@@ -31,41 +32,42 @@ int main()
 	// 4- -- REPEAT the same previous 3 steps to test: IsVariable(...) helper function
 	// 5- -- REPEAT the same first 3 steps to test: ValueORVariable(...) helper function
 	////////////
-	pOut->PrintMessage("enter a value");
+	pOut->PrintMessage("Enter a Double Value");
 	string x;
 	x = pIn->GetString(pOut);
 	bool y;
 	y = IsValue(x);
 	if (y == true)
-		pOut->PrintMessage("String is a value");
+		pOut->PrintMessage("Input is a value");
 	else
-		pOut->PrintMessage("String is not a value");
+		pOut->PrintMessage("Input is an Invalid value");
 
 	pIn->GetPointClicked(P);	//Wait for any click
 	
-	pOut->PrintMessage("enter a variable name");
+	pOut->PrintMessage("Enter a variable name");
 	string A;
 	A = pIn->GetString(pOut);
 	bool B;
 	B = IsVariable(A);
 	if (B == true)
-		pOut->PrintMessage("String is a variable");
+		pOut->PrintMessage("Input is a variable");
 	else
-		pOut->PrintMessage("String is not a variable");
+		pOut->PrintMessage("Input is an Invalid variable");
 
 	pIn->GetPointClicked(P);	//Wait for any click
 	
-	pOut->PrintMessage("testing ValueOrVariable");
+	pOut->PrintMessage("Testing ValueOrVariable");
+	pOut->PrintMessage("Enter a Value or Variable");
 	string c;
 	c = pIn->GetString(pOut);
 	OpType d;
 	d = ValueOrVariable(c);
 	if (d == VALUE_OP)
-		pOut->PrintMessage("String is a value");
+		pOut->PrintMessage("Input is a value");
 	else if (d == VARIABLE_OP)
-		pOut->PrintMessage("String is a variable");
+		pOut->PrintMessage("Input is a variable");
 	else
-		pOut->PrintMessage("String is invalid");
+		pOut->PrintMessage("Input is invalid");
 	pIn->GetPointClicked(P);	//Wait for any click
 	//Starting the input and output classes test
 	pOut->PrintMessage("This demo is to test input and output classes, Click anywhere to start the test");
@@ -134,7 +136,7 @@ int main()
 
 	//Drawing edited (normal) (non-empty) assignment statement --> STATE 3
 	P.x = 100;	P.y = 300;
-	pOut->DrawAssign(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "S = y");
+	pOut->DrawAssign(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "S = S + y");
 
 	//Drawing (highlighted) (non-empty) assignment statement --> STATE 4
 	P.x = 300;	P.y = 300;
@@ -153,7 +155,7 @@ int main()
 	//Drawing Conditional statements in all posible states
 	pOut->PrintMessage("Drawing Conditional Statement in ALL STATES, Click to continue");
 	P.x = 100;	P.y = 100;
-	pOut->DrawRoh(P, UI.ASSGN_WDTH, UI.ASSGN_HI, ">");
+	pOut->DrawRoh(P, UI.ASSGN_WDTH, UI.ASSGN_HI, " ");
 
 	////////////
 	//TODO: Add code to draw different (Conditional) statements here in ALL STATES
@@ -161,10 +163,10 @@ int main()
 	// 
 	//Drawing (highlighted) (empty) assignment statement --> STATE 2
 	P.x = 300;	P.y = 100;
-	pOut->DrawRoh(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "< ", true);
+	pOut->DrawRoh(P, UI.ASSGN_WDTH, UI.ASSGN_HI, " ", true);
 
 	P.x = 100;	P.y = 200;
-	pOut->DrawRoh(P, 80, UI.ASSGN_HI, "> "); //Drawing a resized empty assignment statement
+	pOut->DrawRoh(P, 80, UI.ASSGN_HI, " "); //Drawing a resized empty assignment statement
 
 	P.x = 100;	P.y = 300;
 	pOut->DrawRoh(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "S>2");
@@ -185,13 +187,13 @@ int main()
 	//TODO: Add code to draw different (Read) statements here in ALL STATES
 	////////////
 	P.x = 100;	P.y = 100;
-	pOut->DrawPol(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "s");
+	pOut->DrawPol(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "");
 
 	P.x = 300;	P.y = 100;
-	pOut->DrawPol(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "s", true);
+	pOut->DrawPol(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "", true);
 
 	P.x = 100;	P.y = 200;
-	pOut->DrawPol(P, 80, UI.ASSGN_HI, "s");
+	pOut->DrawPol(P, 80, UI.ASSGN_HI, "");
 
 	P.x = 100;	P.y = 300;
 	pOut->DrawPol(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "read s");
@@ -210,13 +212,13 @@ int main()
 	//TODO: Add code to draw different (Write) statements here in ALL STATES
 	////////////
 	P.x = 100;	P.y = 100;
-	pOut->DrawPol(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "s");
+	pOut->DrawPol(P, UI.ASSGN_WDTH, UI.ASSGN_HI, " ");
 
 	P.x = 300;	P.y = 100;
-	pOut->DrawPol(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "s", true);
+	pOut->DrawPol(P, UI.ASSGN_WDTH, UI.ASSGN_HI, " ", true);
 
 	P.x = 100;	P.y = 200;
-	pOut->DrawPol(P, 80, UI.ASSGN_HI, "s");
+	pOut->DrawPol(P, 80, UI.ASSGN_HI, " ");
 
 	P.x = 100;	P.y = 300;
 	pOut->DrawPol(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "write s");
@@ -236,32 +238,32 @@ int main()
 	//TODO: Add code to draw different (Start & End) statements here  in ALL STATES
 	////////////
 	P.x = 100;	P.y = 100;
-	pOut->DrawStart(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "Start");
+	pOut->DrawStart(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "");
 
 	P.x = 300;	P.y = 100;
-	pOut->DrawStart(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "Start", true);
+	pOut->DrawStart(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "", true);
 
 	P.x = 100;	P.y = 200;
-	pOut->DrawStart(P, 80, UI.ASSGN_HI, "Start");
+	pOut->DrawStart(P, 80, UI.ASSGN_HI, "");
 
 	P.x = 100;	P.y = 300;
-	pOut->DrawStart(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "Start");
+	pOut->DrawStart(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "");
 	P.x = 300;	P.y = 300;
-	pOut->DrawStart(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "Start", true);
+	pOut->DrawStart(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "", true);
 
 	P.x = 500;	P.y = 100;
-	pOut->DrawEnd(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "End");
+	pOut->DrawEnd(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "");
 
 	P.x = 700;	P.y = 100;
-	pOut->DrawEnd(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "End", true);
+	pOut->DrawEnd(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "", true);
 
 	P.x = 200;	P.y = 200;
-	pOut->DrawEnd(P, 80, UI.ASSGN_HI, "End");
+	pOut->DrawEnd(P, 80, UI.ASSGN_HI, "");
 
 	P.x = 500;	P.y = 300;
-	pOut->DrawEnd(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "End");
+	pOut->DrawEnd(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "");
 	P.x = 700;	P.y = 300;
-	pOut->DrawEnd(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "End", true);
+	pOut->DrawEnd(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "", true);
 
 
 
@@ -294,8 +296,15 @@ int main()
 	P.x = 200;	P.y = 450; P1.x = 100; P1.y = 450;
 	pOut->Drawconnectors(P, P1,true);
 
+	P.x = 250;	P.y = 100; P1.x = 300; P1.y = 100;
+	P2.x = 300;	P2.y = 200;
+	pOut->Drawconnector(P, P1, P2, true);
+
+
 	pIn->GetPointClicked(P);	//Wait for any click
 	pOut->ClearDrawArea();
+
+
 
 	/// 2.8- Draw String TEST
 	//Drawing a String in a specific location
@@ -425,10 +434,10 @@ int main()
 			pOut->PrintMessage("Action: add operator assignment statement , Click anywhere");
 			break;
 		case ADD_READ:
-			pOut->PrintMessage("Action: add read, Click anywhere");
+			pOut->PrintMessage("Action: read statment, Click anywhere");
 			break;
 		case ADD_WRITE:
-			pOut->PrintMessage("Action: add write, Click anywhere");
+			pOut->PrintMessage("Action:  write statment, Click anywhere");
 			break;
 		case EDIT_STAT:
 			pOut->PrintMessage("Action: edit statment, Click anywhere");
@@ -457,6 +466,13 @@ int main()
 		case OUTPUT_AREA:
 			pOut->PrintMessage("Action: a click on the output area, Click anywhere");
 			break;
+		case VALIDATE:
+			pOut->PrintMessage("Action: Validate action, Click anywhere");
+			break;
+		case RUN:
+			pOut->PrintMessage("Action: Run action, Click anywhere");
+			break;
+
 
 		case EXIT:
 			break;
