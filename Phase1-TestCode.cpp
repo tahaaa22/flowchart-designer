@@ -29,6 +29,32 @@ int main()
 	// 4- -- REPEAT the same previous 3 steps to test: IsVariable(...) helper function
 	// 5- -- REPEAT the same first 3 steps to test: ValueORVariable(...) helper function
 	////////////
+	string x;
+	x = pIn->GetString(pOut);
+	bool y;
+	y = IsValue(x);
+	if (y == true)
+		pOut->PrintMessage("String is a value");
+	else
+		pOut->PrintMessage("String isnot a value");
+	string A;
+	A = pIn->GetString(pOut);
+	bool B;
+	B = IsVariable(A);
+	if (B == true)
+		pOut->PrintMessage("String is a variable");
+	else
+		pOut->PrintMessage("String isnot a variable");
+	string c;
+	c = pIn->GetString(pOut);
+	OpType d;
+	d = ValueOrVariable(c);
+	if (d == VALUE_OP)
+		pOut->PrintMessage("String is a value");
+	else if (d == VARIABLE_OP)
+		pOut->PrintMessage("String is a variable");
+	else
+		pOut->PrintMessage("String is invalid");
 
 	//Starting the input and output classes test
 	pOut->PrintMessage("This demo is to test input and output classes, Click anywhere to start the test");
