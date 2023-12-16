@@ -205,13 +205,16 @@ double Input::GetValue(Output* pO) const	// Reads a double value from the user
 
 
 	pO->PrintMessage("Please enter a value");
+	string b = GetString(pO);
+	if (IsValue(b))
+	{
+		D=std::stod(b);
 
+	}
 
-
-	//Read a double value from the user 
-
-
-
+	
+	//Read a double value from the user
+	
 	return D;
 
 }
