@@ -128,7 +128,7 @@ string Input::GetArithOperator(Output* pO) const
 			
 			stOp += Op;
 		}
-		if (pO)
+		if (pO && (stOp.size() >= 1))
 		{
 			pO->PrintMessage(stOp); // Display the current variable name 
 		}
@@ -170,16 +170,17 @@ string Input::GetCompOperator(Output* pO) const
 				wholeop += nextkey;
 				// Return valid comparison operator 
 			}
+			
 		}
-		if (pO)
+		
+		if (pO && (wholeop.size() >= 1))
 		{
 			pO->PrintMessage(wholeop); // Display the current variable name 
 			return wholeop;
 		}
-
-
+			
+		
 	}
-
 }
 
 
