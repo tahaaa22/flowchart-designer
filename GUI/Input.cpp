@@ -264,30 +264,15 @@ ActionType Input::GetUserAction() const
 			case ITM_READ: return ADD_READ;
 
 			case ITM_WRITE: return ADD_WRITE;
-
-
-
 			case ITM_CONNECTOR: return ADD_CONNECTOR;
-
-
-
 			case ITM_SELECT: return SELECT;
-
-			case ITM_EDIT_STAT: return EDIT_STAT;
-
-
-
-			case ITM_DEL: return DEL;
-
-			case ITM_COPY: return COPY;
-
-			case ITM_CUT: return CUT;
-
-			case ITM_PASTE: return PASTE;
-
-
-
 			case ITM_SAVE: return SAVE;
+			case ITM_CUT: return CUT;
+			case ITM_COPY: return COPY;
+			case ITM_PASTE: return PASTE;
+			case ITM_DEL: return DEL;
+			case ITM_EDIT: return EDIT_STAT;
+
 
 			case ITM_LOAD: return LOAD;
 

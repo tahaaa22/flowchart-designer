@@ -119,6 +119,26 @@ int main()
 	///2.2- Variable assignment & single operator assignment
 	pOut->PrintMessage("Drawing other Assignment statements in ALL STATES, Click to continue");
 
+	//Drawing (normal) (empty) assignment statement --> STATE 1
+	P.x = 100;	P.y = 100;
+	pOut->DrawAssign(P, UI.ASSGN_WDTH, UI.ASSGN_HI, " = ");
+
+	//Drawing (highlighted) (empty) assignment statement --> STATE 2
+	P.x = 300;	P.y = 100;
+	pOut->DrawAssign(P, UI.ASSGN_WDTH, UI.ASSGN_HI, " = ", true);
+
+	//Drawing a resized empty assignment statement
+	P.x = 100;	P.y = 200;
+	pOut->DrawAssign(P, 80, UI.ASSGN_HI, " = ");
+
+	//Drawing edited (normal) (non-empty) assignment statement --> STATE 3
+	P.x = 100;	P.y = 300;
+	pOut->DrawAssign(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "S = y");
+
+	//Drawing (highlighted) (non-empty) assignment statement --> STATE 4
+	P.x = 300;	P.y = 300;
+	pOut->DrawAssign(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "S = y ", true);
+
 	//Note: for other type of assignment, you can use the same draw assignment function but passing a different text
 
 	////////////
@@ -332,9 +352,6 @@ int main()
 	string cop= pIn->GetCompOperator(pOut);
 	pOut->DrawString(100, 100, cop);
 	
-
-
-
 
 
 
