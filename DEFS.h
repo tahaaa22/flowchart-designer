@@ -89,7 +89,23 @@ enum SimMenuItem //The items of the simulation menu
 	ITM_VALIDATE,	//Validate
 	ITM_RUN,//Run
 	ITM_SWITCH_DSN_MODE,
-		
+	ITM_WHITE1,
+	ITM_WHITE2,
+	ITM_WHITE3,
+	ITM_WHITE4,
+	ITM_WHITE5,
+	ITM_WHITE6,
+	ITM_WHITE7,
+	ITM_WHITE8,
+	ITM_WHITE9,
+	ITM_WHITE10,
+	ITM_WHITE11,
+	ITM_WHITE12,
+	ITM_WHITE13,
+	ITM_WHITE14,
+	ITM_WHITE15,
+	ITM_EXIT1,
+	
 	//TODO:Add more items names here
 	
 	SIM_ITM_CNT		//no. of simulation menu items ==> This should be the last line in this enum
