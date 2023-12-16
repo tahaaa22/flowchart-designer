@@ -14,9 +14,9 @@ int main()
 	Output *pOut = new Output();
 	Input *pIn = pOut->CreateInput();
 
-	///////////////////////////////////////////////////////////////////////////////////
-	// TEST 0:	Testing the helper functions
-	///////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////
+	//// TEST 0:	Testing the helper functions
+	/////////////////////////////////////////////////////////////////////////////////////
 
 	pOut->PrintMessage("TEST0: Testing the helper functions");
 	pIn->GetPointClicked(P);	//Wait for any click
@@ -172,13 +172,38 @@ int main()
 	
 	pOut->PrintMessage("Testing Input ability to read strings, values, variables and operators");
 
-	////////////
+	//////////
 	//TODO: Add code here to 
 	// 1- Read a (double value) from the user and print it
 	// 2- Read a (variable name) from the user and print it
 	// 3- Read an (arithmatic operator) from the user and print it
 	// 4- Read a (comparison operator) from the user and print it
 	////////////
+
+	/*1)*/  pOut->PrintMessage("enter a double value");
+	pIn->GetValue(pOut);
+
+
+	/*2)*/ 	pOut->PrintMessage("enter a variable name");
+	pIn->GetVariable(pOut);
+
+
+	/*3)*/ pOut->PrintMessage("enter an arithmatic operator");
+	pIn->GetArithOperator(pOut);
+
+	
+
+	/*4)*/ pOut->PrintMessage("enter a comparison operator ");
+	pIn->GetCompOperator(pOut);
+
+	
+	
+
+
+
+
+
+
 
 	pIn->GetPointClicked(P);	//Wait for any click
 	pOut->ClearDrawArea();
@@ -213,9 +238,9 @@ int main()
 				pOut->PrintMessage("Action: add a connector , Click anywhere");
 				break;
 
-			case SELECT:
+			/*case SELECT:
 				pOut->PrintMessage("Action: select action, Click anywhere");
-				break;
+				break;*/
 
 			
 			case STATUS:

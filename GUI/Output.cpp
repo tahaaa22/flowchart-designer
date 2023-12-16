@@ -13,7 +13,7 @@ Output::Output()
 
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 50;
-	UI.MenuItemWidth = 80;
+	UI.MenuItemWidth = 50;
 	UI.DrawingAreaWidth = 0.75 * UI.width;
 
 	UI.DrawColor = BLUE;
@@ -73,11 +73,11 @@ void Output::CreateDesignToolBar() //Draws the Design Menu
 	MenuItemImages[ITM_START] = "images\\start.jpg";
 	MenuItemImages[ITM_END] = "images\\ovalE.jpg";
 	MenuItemImages[ITM_VALUE_ASSIGN] = "images\\Assign.jpg";
-	//MenuItemImages[ITM_VAR_ASSIGN] = "images\\assignvar.jpg";
-	//MenuItemImages[ITM_OPER_ASSIGN] = "images\\assignoper.jpg";
+	MenuItemImages[ITM_VAR_ASSIGN] = "images\\assignvar.jpg";
+	MenuItemImages[ITM_OPER_ASSIGN] = "images\\assignoper.jpg";
 	MenuItemImages[ITM_COND] = "images\\Condition.jpg";
 	MenuItemImages[ITM_READ] = "images\\parallelogram.jpg";
-	//MenuItemImages[ITM_WRITE] = "images\\para.jpg";
+	MenuItemImages[ITM_WRITE] = "images\\para.jpg";
 	MenuItemImages[ITM_CONNECTOR] = "images\\arrow.jpg"; 
 	MenuItemImages[ITM_SELECT] = "images\\select.jpg";
 	MenuItemImages[ITM_DEL] = "images\\delete.jpg";

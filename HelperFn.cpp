@@ -40,15 +40,16 @@ bool IsVariable(string input)
 {
 	int sl = 0;
 	int size = input.size();
-
+	bool variable = false;
 
 	if (IsAlpha(input[sl]) || input[sl] == '_')
 	{
 		sl++;
+		variable = true;
 	}
 	else
 		return false;
-	bool variable = false;
+	
 	for (sl; sl < size; sl++) {
 		if (IsAlpha(input[sl]) || input[sl] == '_' || isdigit(input[sl])) {
 			variable = true;

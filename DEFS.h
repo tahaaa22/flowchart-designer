@@ -24,7 +24,7 @@ enum ActionType // The actions supported
 	ADD_CONNECTOR, //Add a connector between two statements
 	
 	SELECT,		//Select a statement, a connector
-	EDIT_STAT,	//Edit a statement
+	//EDIT_STAT,	//Edit a statement
 
 	DEL,   //Delete a figure
 	COPY,  //Copy a figure
@@ -39,7 +39,8 @@ enum ActionType // The actions supported
 
 	EXIT,		//Exit the application
 
-
+	VALIDATE,
+	RUN,
 	//TODO: ADD THE ACTIONS OF SIMULATION MODE
 
 
@@ -57,13 +58,14 @@ enum DesignMenuItem //The items of the design menu --> THE ORDER MATTERS
 	ITM_START,
 	ITM_END,
 	ITM_VALUE_ASSIGN,//simple assignment statement
-	//ITM_VAR_ASSIGN,
-	//ITM_OPER_ASSIGN,
+	ITM_VAR_ASSIGN,
+	ITM_OPER_ASSIGN,
 	ITM_COND,		//conditional statement
 	ITM_READ,
-	//ITM_WRITE,
+	ITM_WRITE,
 	ITM_CONNECTOR,
 	ITM_SELECT,
+	//ITM_EDIT_STAT,
 	ITM_DEL,
 	ITM_COPY,
 	ITM_CUT,
