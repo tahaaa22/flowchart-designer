@@ -285,6 +285,9 @@ int main()
 	pOut->Drawconnectors(P, P1);
 	P.x = 200;	P.y = 400; P1.x = 100; P1.y = 400;
 	pOut->Drawconnectors(P, P1);
+	P.x = 350;	P.y = 100; P1.x = 400; P1.y = 100;
+	P2.x = 400;	P2.y = 200;
+	pOut->Drawconnector(P, P1, P2);
 
 	//Drawing (highlighted) (empty) assignment statement --> STATE 2
 	P.x = 200;	P.y = 100; P1.x = 200; P1.y = 200;
