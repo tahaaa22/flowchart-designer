@@ -24,7 +24,7 @@ enum ActionType // The actions supported
 	ADD_CONNECTOR, //Add a connector between two statements
 	
 	SELECT,		//Select a statement, a connector
-	//EDIT_STAT,	//Edit a statement
+	EDIT_STAT,	//Edit a statement
 
 	DEL,   //Delete a figure
 	COPY,  //Copy a figure
@@ -65,7 +65,7 @@ enum DesignMenuItem //The items of the design menu --> THE ORDER MATTERS
 	ITM_WRITE,
 	ITM_CONNECTOR,
 	ITM_SELECT,
-	//ITM_EDIT_STAT,
+	ITM_EDIT_STAT,
 	ITM_DEL,
 	ITM_EDIT,
 	ITM_COPY,

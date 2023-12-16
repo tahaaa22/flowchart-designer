@@ -187,23 +187,11 @@ string Input::GetCompOperator(Output* pO) const
 
 
 double Input::GetValue(Output* pO) const	// Reads a double value from the user  
-
 {
-
 	///TODO: add code to read a double value from the user and assign it to D 
-
-
-
 	double D = 0;
-
-
-
 	//This function should make any needed validations on the entered text  
-
 	// to make sure it is a double value (e.g. 12.5, -12.5, -23, -23., -23.0 …etc.). 
-
-
-
 	pO->PrintMessage("Please enter a value");
 	string b = GetString(pO);
 	if (IsValue(b))
@@ -285,7 +273,7 @@ ActionType Input::GetUserAction() const
 
 			case ITM_SELECT: return SELECT;
 
-			//case ITM_EDIT_STAT: return EDIT_STAT;
+			case ITM_EDIT_STAT: return EDIT_STAT;
 
 
 

@@ -31,6 +31,7 @@ int main()
 	// 4- -- REPEAT the same previous 3 steps to test: IsVariable(...) helper function
 	// 5- -- REPEAT the same first 3 steps to test: ValueORVariable(...) helper function
 	////////////
+	pOut->PrintMessage("enter a value");
 	string x;
 	x = pIn->GetString(pOut);
 	bool y;
@@ -39,7 +40,11 @@ int main()
 		pOut->PrintMessage("String is a value");
 	else
 		pOut->PrintMessage("String isnot a value");
+
+	pIn->GetPointClicked(P);	//Wait for any click
+
 	string A;
+	pOut->PrintMessage("enter a variable name");
 	A = pIn->GetString(pOut);
 	bool B;
 	B = IsVariable(A);
@@ -47,6 +52,9 @@ int main()
 		pOut->PrintMessage("String is a variable");
 	else
 		pOut->PrintMessage("String isnot a variable");
+
+	pIn->GetPointClicked(P);	//Wait for any click
+	pOut->PrintMessage("taesting ValueOrVariable");
 	string c;
 	c = pIn->GetString(pOut);
 	OpType d;
@@ -57,7 +65,7 @@ int main()
 		pOut->PrintMessage("String is a variable");
 	else
 		pOut->PrintMessage("String is invalid");
-
+	pIn->GetPointClicked(P);	//Wait for any click
 	//Starting the input and output classes test
 	pOut->PrintMessage("This demo is to test input and output classes, Click anywhere to start the test");
 	pIn->GetPointClicked(P);	//Wait for any click
@@ -300,29 +308,29 @@ int main()
 	// 1- Read a (double value) from the user and print it
 	double m = pIn->GetValue(pOut);
 	pOut->DrawDouble(100,100,m);
-
+	pIn->GetPointClicked(P);	//Wait for any click
+	pOut->ClearDrawArea();
 	// 2- Read a (variable name) from the user and print it
 	// 3- Read an (arithmatic operator) from the user and print it
 	// 4- Read a (comparison operator) from the user and print it
 	////////////
 
-	/*1)*/  pOut->PrintMessage("enter a double value");
-	pIn->GetValue(pOut);
-
-
 	/*2)*/ 	pOut->PrintMessage("enter a variable name");
-	pIn->GetVariable(pOut);
+	string var= pIn->GetVariable(pOut);
+	pOut->DrawString(100, 100, var);
+	pIn->GetPointClicked(P);	//Wait for any click
+	pOut->ClearDrawArea();
 
 
 	/*3)*/ pOut->PrintMessage("enter an arithmatic operator");
-	pIn->GetArithOperator(pOut);
-
-	
+	string op= pIn->GetArithOperator(pOut);
+	pOut->DrawString(100, 100, op);
+	pIn->GetPointClicked(P);	//Wait for any click
+	pOut->ClearDrawArea();
 
 	/*4)*/ pOut->PrintMessage("enter a comparison operator ");
-	pIn->GetCompOperator(pOut);
-
-	
+	string cop= pIn->GetCompOperator(pOut);
+	pOut->DrawString(100, 100, cop);
 	
 
 
