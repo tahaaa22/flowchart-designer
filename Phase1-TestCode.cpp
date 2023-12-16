@@ -185,7 +185,7 @@ int main()
 
 	////////////
 	//TODO: Add code to draw different (Read) statements here in ALL STATES
-	////////////
+	/////////////
 	P.x = 100;	P.y = 100;
 	pOut->DrawPol(P, UI.ASSGN_WDTH, UI.ASSGN_HI, "");
 
