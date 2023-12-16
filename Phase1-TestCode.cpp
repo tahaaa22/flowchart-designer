@@ -458,8 +458,6 @@ int main()
 			pOut->PrintMessage("Action: a click on the output area, Click anywhere");
 			break;
 
-
-
 		case EXIT:
 			break;
 		}
