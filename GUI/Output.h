@@ -22,7 +22,6 @@ public:
 	void ClearStatusBar();	//Clears the status bar
 	void ClearDrawArea();	//Clears the drawing area
 	void ClearOutputBar(); //Clears the Output bar
-	
 	void PrintMessage(string msg);	//Prints a message on Status bar
 	void DrawString(const int, const int, const string);  //Writes a string in the specified location
 	void DrawDouble(const int iX, const int iY, const double dNumber);

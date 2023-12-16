@@ -105,12 +105,21 @@ void Output::CreateDesignToolBar() //Draws the Design Menu
 //TODO: Complete this function
 void Output::CreateSimulationToolBar() //Draws the Simulation Menu
 {
+	
 	UI.AppMode = SIMULATION;	//Simulation Mode
-	string MenuItemImages[SIM_ITM_CNT];
-	MenuItemImages[ITM_VALIDATE] = "images\\validate.jpg";
-	MenuItemImages[ITM_RUN] = "images\\run.jpg";
-	MenuItemImages[ITM_SWITCH_DSN_MODE] = "images\\switch.jpg"; 
+	string Images[SIM_ITM_CNT];
+	Images[ITM_VALIDATE] = "images\\validate.jpg";
+	Images[ITM_RUN] = "images\\run.jpg";
+	Images[ITM_SWITCH_DSN_MODE] = "images\\switch.jpg";
 	///TODO: add code to create the simulation tool bar
+	//Draw menu item one image at a time
+	for (int i = 0; i < SIM_ITM_CNT; i++)
+		pWind->DrawImage(Images[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+
+	//Draw a line under the toolbar
+	pWind->SetPen(RED, 2);
+	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
+
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 void Output::ClearStatusBar()

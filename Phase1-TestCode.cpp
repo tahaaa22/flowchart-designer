@@ -42,9 +42,9 @@ int main()
 		pOut->PrintMessage("String isnot a value");
 
 	pIn->GetPointClicked(P);	//Wait for any click
-
-	string A;
+	
 	pOut->PrintMessage("enter a variable name");
+	string A;
 	A = pIn->GetString(pOut);
 	bool B;
 	B = IsVariable(A);
@@ -54,6 +54,7 @@ int main()
 		pOut->PrintMessage("String isnot a variable");
 
 	pIn->GetPointClicked(P);	//Wait for any click
+	
 	pOut->PrintMessage("taesting ValueOrVariable");
 	string c;
 	c = pIn->GetString(pOut);
@@ -398,9 +399,9 @@ int main()
 			pOut->PrintMessage("Action: a click on the Status Bar, Click anywhere");
 			break;
 
-		//case DSN_TOOL:
-			//pOut->PrintMessage("Action: a click on the Design Tool Bar, Click anywhere");
-			//break;
+		case DSN_TOOL:
+			pOut->PrintMessage("Action: a click on the Design Tool Bar, Click anywhere");
+			break;
 
 		case SWITCH_SIM_MODE:
 			pOut->PrintMessage("Action: Switch to Simulation Mode, creating simualtion tool bar");
