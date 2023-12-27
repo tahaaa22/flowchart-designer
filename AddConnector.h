@@ -1,19 +1,15 @@
-
+#pragma once
 #include "Actions\Action.h"
-#include "Connector.h"
 
-class AddConnector : public Action
+class AddnewConnector : public Action
 {
 private:
-	
-
 	Point Position1;	//Position where the user clicks to add the stat.
 	Point Position2;	//Position where the user clicks to add the stat.
 
-	
 
 public:
-	AddConnector(ApplicationManager* pAppManager);
+	AddnewConnector(ApplicationManager* pAppManager);
 
 	//Read Assignemt statements position
 	virtual void ReadActionParameters();

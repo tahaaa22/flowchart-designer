@@ -2,8 +2,6 @@
 #define SELECT_H
 
 #include "Actions\Action.h"
-
-
 class Select : public Action
 {
 private:

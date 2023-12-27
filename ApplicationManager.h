@@ -13,10 +13,10 @@ class Output;
 //Main class that manages everything in the application.
 class ApplicationManager
 {
+      
 	enum { MaxCount = 200 };	//Max no of statements/connectors in a single flowchart
 
 private:
-	AddConnector(this);
 	int StatCount;		//Actual number of statements
 	int ConnCount;		//Actual number of connectors
 	Statement* StatList[MaxCount];	//List of all statements (Array of pointers)

@@ -286,7 +286,6 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="Switch.cpp" />
-    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddConnector.h" />
@@ -326,7 +325,6 @@
     <ClInclude Include="Statements\ValueAssign.h" />
     <ClInclude Include="Statements\Statement.h" />
     <ClInclude Include="Switch.h" />
-    <ClInclude Include="test.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

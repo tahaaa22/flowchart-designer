@@ -28,12 +28,22 @@ void ValueAssign::setLHS(const string &L)
 	LHS = L;
 	UpdateStatementText();
 }
+Point ValueAssign::getInlet()
+{
+	return Inlet;
+}
+
+Point ValueAssign::getOutlet()
+{
+	return Outlet;
+}
 
 void ValueAssign::setRHS(double R)
 {
 	RHS = R;
 	UpdateStatementText();
 }
+
 
 bool ValueAssign::isClicked(Point p)
 {

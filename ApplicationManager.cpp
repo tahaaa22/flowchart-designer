@@ -3,6 +3,8 @@
 #include "GUI\Input.h"
 #include "GUI\Output.h"
 
+
+
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -53,9 +55,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 			break;
 
-
 		case ADD_CONNECTOR:
-			pAct = new AddConnector(this);
+			pAct = new AddnewConnector(this);
 			break;
 
 		case SELECT:
