@@ -318,6 +318,7 @@
     <ClInclude Include="HelperFn.h" />
     <ClInclude Include="Load.h" />
     <ClInclude Include="Save.h" />
+    <ClInclude Include="Select.h" />
     <ClInclude Include="Statements\ValueAssign.h" />
     <ClInclude Include="Statements\Statement.h" />
     <ClInclude Include="Switch.h" />
