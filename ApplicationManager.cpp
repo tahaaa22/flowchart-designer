@@ -1,4 +1,11 @@
 #include "ApplicationManager.h"
+#include "AddWritee.h"
+#include "AddRead.h"
+#include "AddStart.h"
+#include "AddConditional.h"
+#include "AddEnd.h"
+#include "AddVariableAssign.h"
+#include "Actions\AddValueAssign.h"
 #include "Actions\AddValueAssign.h"
 #include "GUI\Input.h"
 #include "GUI\Output.h"
@@ -47,9 +54,29 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new AddValueAssign(this);
 			break;
 
-		case ADD_CONDITION:
-			///create AddCondition Action here
+		case ADD_WRITE:
+			pAct = new AddWritee(this);
+			break;
 
+		case ADD_READ:
+			pAct = new AddRead(this);
+			break;
+
+		case ADD_START:
+			pAct = new AddStart(this);
+			break; 
+
+		case ADD_END:
+			pAct = new AddEnd(this);
+			break;
+
+		case ADD_VAR_ASSIGN:
+			pAct = new AddVariableAssign(this);
+			break;
+
+
+		case ADD_CONDITION:
+			pAct = new AddConditional(this);
 			break;
 
 		case SELECT:

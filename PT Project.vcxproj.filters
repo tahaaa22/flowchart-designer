@@ -165,6 +165,18 @@
       <Filter>Action Classes</Filter>
     </ClCompile>
     <ClCompile Include="Switch.cpp" />
+    <ClCompile Include="AddRead.cpp" />
+    <ClCompile Include="AddWritee.cpp" />
+    <ClCompile Include="Conditional.cpp" />
+    <ClCompile Include="End.cpp" />
+    <ClCompile Include="Read.cpp" />
+    <ClCompile Include="Start.cpp" />
+    <ClCompile Include="VariableAssign.cpp" />
+    <ClCompile Include="Writee.cpp" />
+    <ClCompile Include="AddVariableAssign.cpp" />
+    <ClCompile Include="AddStart.cpp" />
+    <ClCompile Include="AddEnd.cpp" />
+    <ClCompile Include="AddConditional.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -266,6 +278,19 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Switch.h" />
+    <ClInclude Include="AddRead.h" />
+    <ClInclude Include="AddWritee.h" />
+    <ClInclude Include="Conditional.h" />
+    <ClInclude Include="End.h" />
+    <ClInclude Include="Read.h" />
+    <ClInclude Include="Select.h" />
+    <ClInclude Include="Start.h" />
+    <ClInclude Include="VariableAssign.h" />
+    <ClInclude Include="Writee.h" />
+    <ClInclude Include="AddVariableAssign.h" />
+    <ClInclude Include="AddStart.h" />
+    <ClInclude Include="AddEnd.h" />
+    <ClInclude Include="AddConditional.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

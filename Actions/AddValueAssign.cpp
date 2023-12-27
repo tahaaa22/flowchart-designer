@@ -1,9 +1,6 @@
 #include "AddValueAssign.h"
-
-
-
+#include "..\Statements\ValueAssign.h"
 #include "..\ApplicationManager.h"
-
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
@@ -23,30 +20,32 @@ void AddValueAssign::ReadActionParameters()
 	pOut->PrintMessage("Value Assignment Statement: Click to add the statement");
 
 	pIn->GetPointClicked(Position);
-	pOut->ClearStatusBar();		
+	pOut->ClearStatusBar();
 
-	//TODO: Ask the user in the status bar to enter the LHS and set the data member
+	pOut->PrintMessage("enter a value for left hand side ");
+	LHS = pIn->GetValue(pOut);
+	pOut->ClearStatusBar();
 
-	//TODO: Ask the user in the status bar to enter the RHS and set the data member
+	pOut->PrintMessage("enter a value for right hand side");
+	RHS = pIn->GetValue(pOut);
+	pOut->ClearStatusBar();
 
-	//Note: You should validate the LHS to be variable name and RHS to be a value
-	//      Call the appropriate functions for this.
 }
 
 void AddValueAssign::Execute()
 {
 	ReadActionParameters();
-		
-	
-	//Calculating left corner of assignement statement block
-	Point Corner;
-	Corner.x = Position.x - UI.ASSGN_WDTH/2;
-	Corner.y = Position.y ;
-	
-	ValueAssign *pAssign = new ValueAssign(Corner, "", 0);
-	//TODO: should set the LHS and RHS of pAssign statement
-	//      with the data members set and validated before in ReadActionParameters()
 
-	pManager->AddStatement(pAssign); // Adds the created statement to application manger's statement list
+
+
+	Point Corner;
+	Corner.x = Position.x - UI.ASSGN_WDTH / 2;
+	Corner.y = Position.y;
+
+	ValueAssign* pAssign = new ValueAssign(Corner, "", 0);
+
+
+	pManager->AddStatement(pAssign);
+
 }
 

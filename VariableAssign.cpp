@@ -1,10 +1,13 @@
-#include "Conditional.h"
+#include "VariableAssign.h"
+
 #include <sstream>
 
 using namespace std;
 
-Conditional::Conditional(Point Lcorner, string LeftHS, double RightHS)
+VariableAssign::VariableAssign(Point Lcorner, string LeftHS, double RightHS)
 {
+	// Note: The LeftHS and RightHS should be validated inside (AddValueAssign) action
+	//       before passing it to the constructor of ValueAssign
 	LHS = LeftHS;
 	RHS = RightHS;
 
@@ -21,28 +24,29 @@ Conditional::Conditional(Point Lcorner, string LeftHS, double RightHS)
 	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
 }
 
-void Conditional::setLHS(const string& L)
+void VariableAssign::setLHS(const string& L)
 {
 	LHS = L;
 	UpdateStatementText();
 }
 
-void Conditional::setRHS(double R)
+void VariableAssign::setRHS(double R)
 {
 	RHS = R;
 	UpdateStatementText();
 }
 
-void Conditional::Draw(Output* pOut) const
+
+void VariableAssign::Draw(Output* pOut) const
 {
 	//Call Output::DrawAssign function to draw assignment statement 	
-	pOut->DrawRoh(LeftCorner, UI.ASSGN_WDTH, UI.ASSGN_HI, Text, Selected);
+	pOut->DrawAssign(LeftCorner, UI.ASSGN_WDTH, UI.ASSGN_HI, Text, Selected);
 
 }
 
 
 //This function should be called when LHS or RHS changes
-void Conditional::UpdateStatementText()
+void VariableAssign::UpdateStatementText()
 {
 	//Build the statement text: Left handside then equals then right handside
 	ostringstream T;
