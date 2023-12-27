@@ -34,7 +34,7 @@ public:
 	
 	void setLHS(const string &L);
 	void setRHS(double R);
-
+	virtual bool isClicked(Point p);
 	virtual void Draw(Output* pOut) const;
 
 };

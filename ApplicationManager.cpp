@@ -1,5 +1,5 @@
 #include "ApplicationManager.h"
-#include "Actions\AddValueAssign.h"
+#include "Actions/AddValueAssign.h"
 #include "GUI\Input.h"
 #include "GUI\Output.h"
 
@@ -53,7 +53,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case SELECT:
-			///create Select Action here
+			pAct = new Select(this);
 
 			break;
 
@@ -92,6 +92,15 @@ void ApplicationManager::AddStatement(Statement *pStat)
 ////////////////////////////////////////////////////////////////////////////////////
 Statement *ApplicationManager::GetStatement(Point P) const
 {
+	for (int i = 0; i < MaxCount; i++)
+	{
+		if (StatList[i]->isClicked(P))
+		{
+			StatList[i]->SetSelected(true);
+			StatList[i]->Draw(pOut);
+			return (StatList[i]);
+		}
+	}
 	//If this point P(x,y) belongs to a statement return a pointer to it.
 	//otherwise, return NULL
 

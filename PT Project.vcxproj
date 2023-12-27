@@ -277,6 +277,7 @@
     <ClCompile Include="HelperFn.cpp" />
     <ClCompile Include="Load.cpp" />
     <ClCompile Include="Save.cpp" />
+    <ClCompile Include="Select.cpp" />
     <ClCompile Include="Statements\ValueAssign.cpp" />
     <ClCompile Include="Statements\Statement.cpp" />
     <ClCompile Include="main.cpp">
@@ -284,6 +285,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="Switch.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
@@ -322,6 +324,7 @@
     <ClInclude Include="Statements\ValueAssign.h" />
     <ClInclude Include="Statements\Statement.h" />
     <ClInclude Include="Switch.h" />
+    <ClInclude Include="test.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
