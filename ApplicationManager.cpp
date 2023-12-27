@@ -10,6 +10,8 @@
 #include "GUI\Input.h"
 #include "GUI\Output.h"
 
+
+
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -20,6 +22,7 @@ ApplicationManager::ApplicationManager()
 	StatCount = 0;
 	ConnCount = 0; 
 	pSelectedStat = NULL;	//no Statement is selected yet
+	pSelectedCon = NULL;	//no Statement is selected yet
 	pClipboard = NULL;
 	
 	//Create an array of Statement pointers and set them to NULL		
@@ -76,11 +79,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 
 		case ADD_CONDITION:
-			pAct = new AddConditional(this);
+			///create AddCondition Action here
+
 			break;
 
 		case SELECT:
-			///create Select Action here
+			pAct = new Select(this);
 
 			break;
 
@@ -119,6 +123,14 @@ void ApplicationManager::AddStatement(Statement *pStat)
 ////////////////////////////////////////////////////////////////////////////////////
 Statement *ApplicationManager::GetStatement(Point P) const
 {
+	for (int i = 0; i < StatCount; i++)
+	{
+		if (StatList[i]->isClicked(P))
+		{
+			return (StatList[i]);
+		}
+
+	}
 	//If this point P(x,y) belongs to a statement return a pointer to it.
 	//otherwise, return NULL
 
@@ -127,6 +139,24 @@ Statement *ApplicationManager::GetStatement(Point P) const
 	///WITHOUT breaking class responsibilities
 
 	return NULL;
+}
+
+void ApplicationManager::AddConnector(Connector* pConn)
+{
+	if (ConnCount < MaxCount)
+		ConnList[ConnCount++] = pConn;
+}
+
+Connector* ApplicationManager::GetConnector(Point P) const
+{
+	for (int i = 0; i < ConnCount; i++)
+	{
+		if (ConnList[i]->isClicked(P))
+		{
+			return (ConnList[i]);
+		}
+	}
+	return nullptr;
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Returns the selected statement
@@ -137,6 +167,17 @@ Statement *ApplicationManager::GetSelectedStatement() const
 //Set the statement selected by the user
 void ApplicationManager::SetSelectedStatement(Statement *pStat)
 {	pSelectedStat = pStat;	}
+
+Connector* ApplicationManager::GetSelectedConnector() const
+{
+	return pSelectedCon;
+}
+
+void ApplicationManager::SetSelectedConnector(Connector* pConn)
+{
+	pSelectedCon = pConn;
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////
 //Returns the Clipboard

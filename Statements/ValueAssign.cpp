@@ -28,6 +28,15 @@ void ValueAssign::setLHS(const string &L)
 	LHS = L;
 	UpdateStatementText();
 }
+Point ValueAssign::getInlet()
+{
+	return Inlet;
+}
+
+Point ValueAssign::getOutlet()
+{
+	return Outlet;
+}
 
 void ValueAssign::setRHS(double R)
 {
@@ -35,6 +44,16 @@ void ValueAssign::setRHS(double R)
 	UpdateStatementText();
 }
 
+
+bool ValueAssign::isClicked(Point p)
+{
+	if (p.y <= LeftCorner.y +UI.ASSGN_HI && p.y >= LeftCorner.y && p.x <= LeftCorner.x + UI.ASSGN_WDTH && p.x >= LeftCorner.x)
+	{
+		return true;
+	}
+	
+	return false;
+}
 
 void ValueAssign::Draw(Output* pOut) const
 {

@@ -30,11 +30,12 @@ private:
 	virtual void UpdateStatementText();
 	
 public:
+	Point getInlet();
+	Point getOutlet();
 	ValueAssign(Point Lcorner, string LeftHS="", double RightHS=0);
-	
 	void setLHS(const string &L);
 	void setRHS(double R);
-
+	virtual bool isClicked(Point p);
 	virtual void Draw(Output* pOut) const;
 
 };

@@ -2,8 +2,10 @@
 #define APPLICATION_MANAGER_H
 
 #include "DEFS.h"
-
+#include "Select.h"
 #include "Statements\Statement.h"
+#include "AddConnector.h"
+
 class Input;
 class Output;
 
@@ -11,6 +13,7 @@ class Output;
 //Main class that manages everything in the application.
 class ApplicationManager
 {
+      
 	enum { MaxCount = 200 };	//Max no of statements/connectors in a single flowchart
 
 private:
@@ -18,7 +21,7 @@ private:
 	int ConnCount;		//Actual number of connectors
 	Statement* StatList[MaxCount];	//List of all statements (Array of pointers)
 	Connector* ConnList[MaxCount];	//List of all connectors (Array of pointers)
-
+	Connector* pSelectedCon;
 	Statement *pSelectedStat; //a pointer to the last selected statement
 	                          //you can set and get this pointer
 	Statement *pClipboard;    //a pointer to the last copied/cut statement
@@ -50,6 +53,9 @@ public:
 	//       in order not to break class responsibilities (especially in copy, cut and paste)
 	Statement *GetSelectedStatement() const;	 //Returns the selected Statement
 	void SetSelectedStatement(Statement *pStat); //Set the Statement selected by the user
+	Connector* GetSelectedConnector() const;	 //Returns the selected Statement
+	void SetSelectedConnector(Connector* pConn); //Set the Statement selected by the user
+
 	Statement *GetClipboard() const;	         //Returns the Clipboard
 	void SetClipboard(Statement *pStat);         //Set the Clipboard
 

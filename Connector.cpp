@@ -1,12 +1,23 @@
 #include "Connector.h"
+#include "Statements\ValueAssign.h"
+
 
 Connector::Connector(Statement* Src, Statement* Dst)	
 //When a connector is created, it must have a source statement and a destination statement
 //There are NO FREE connectors in the flowchart
 {
-	
 	SrcStat = Src;
 	DstStat = Dst;
+	 ValueAssign* source = dynamic_cast< ValueAssign*>(Src);
+	 ValueAssign* destination = dynamic_cast< ValueAssign*>(Dst);
+	 Start = source->getOutlet();
+	 End = destination->getInlet();
+	Selected = false;
+}
+
+void Connector::SetSelected(bool s)
+{
+		Selected = s;
 }
 
 void Connector::setSrcStat(Statement *Src)
@@ -36,6 +47,23 @@ Point Connector::getEndPoint()
 
 void Connector::Draw(Output* pOut) const
 {
+	pOut->Drawconnectors(Start, End, Selected);
+
 	///TODO: Call Output to draw a connector from SrcStat to DstStat on the output window
+}
+
+void Connector::Drawcondconn(Output* pOut)
+{
+	pOut->Drawconnector(Start, End, Selected);
+
+}
+
+bool Connector::isClicked(Point p)
+{
+	if (p.y >=Start.y && p.y >= End.y && p.x <= Start.x && p.x >= End.x)
+	{
+		return true;
+	}
+	return false;
 }
 

@@ -23,9 +23,8 @@ public:
 	Statement();
 	void SetSelected(bool s);
 	bool IsSelected() const;
-
 	virtual void Draw(Output* pOut) const  = 0 ;	//Draw the statement
-	
+	virtual bool isClicked(Point p) = 0;
 	
 
 	///TODO:The following functions should be supported by the Statement class

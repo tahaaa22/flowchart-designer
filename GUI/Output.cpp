@@ -256,14 +256,14 @@ void Output::DrawPol(Point left, int width, int height, string text, bool select
 //		Decide the parameters that should be passed to each of them
 
 //TODO: Add DrawConnector function
-void Output::Drawconnector(Point start, Point Mid, Point end, bool selected) {
+void Output::Drawconnector(Point start, Point end, bool selected) {
 
 	if (selected)
 		pWind->SetPen(UI.HighlightColor, 3);
 	else
 		pWind->SetPen(UI.DrawColor, 3);
-	pWind->DrawLine(start.x, start.y, Mid.x, Mid.y);
-	pWind->DrawLine(Mid.x, Mid.y, end.x, end.y);
+	pWind->DrawLine(start.x, start.y, (start.x+50), start.y);
+	pWind->DrawLine((start.x + 50), start.y, end.x, end.y);
 	pWind->DrawTriangle(end.x - 4, end.y, end.x + 4, end.y, end.x, end.y + 4);
 }
 void Output::Drawconnectors(Point start, Point end, bool selected) {
