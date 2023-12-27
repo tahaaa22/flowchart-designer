@@ -155,6 +155,16 @@
     <ClCompile Include="GUI\Output.cpp">
       <Filter>GUI Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Save.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Load.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Exit.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Switch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -246,6 +256,16 @@
     <ClInclude Include="GUI\UI_Info.h">
       <Filter>GUI Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Save.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Load.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Exit.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Switch.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

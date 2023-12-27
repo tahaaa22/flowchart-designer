@@ -11,7 +11,7 @@ ApplicationManager::ApplicationManager()
 	pIn = pOut->CreateInput();
 	
 	StatCount = 0;
-	ConnCount = 0;
+	ConnCount = 0; 
 	pSelectedStat = NULL;	//no Statement is selected yet
 	pClipboard = NULL;
 	
