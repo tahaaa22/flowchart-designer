@@ -12,8 +12,12 @@ private:
 	Statement *DstStat;	//The destination statement of the connector
 	Point Start;	//Start point of the connector
 	Point End;		//End point of the connector
+	bool Selected;	//true if the Connector is selected on the folwchart
+
 public:
 	Connector(Statement* Src, Statement* Dst);
+
+	void SetSelected(bool s);
 
 	void		setSrcStat(Statement *Src);
 	Statement*	getSrcStat();	
@@ -27,7 +31,8 @@ public:
 	Point getEndPoint();
 
 	void Draw(Output* pOut) const;
-	
+	void Drawcondconn(Output* pOut);
+	virtual bool isClicked(Point p);
 
 };
 

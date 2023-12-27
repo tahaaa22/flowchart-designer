@@ -9,6 +9,11 @@ Connector::Connector(Statement* Src, Statement* Dst)
 	DstStat = Dst;
 }
 
+void Connector::SetSelected(bool s)
+{
+		Selected = s;
+}
+
 void Connector::setSrcStat(Statement *Src)
 {	SrcStat = Src;	}
 
@@ -36,6 +41,23 @@ Point Connector::getEndPoint()
 
 void Connector::Draw(Output* pOut) const
 {
+	pOut->Drawconnectors(Start, End, Selected);
+
 	///TODO: Call Output to draw a connector from SrcStat to DstStat on the output window
+}
+
+void Connector::Drawcondconn(Output* pOut)
+{
+	pOut->Drawconnector(Start, End, Selected);
+
+}
+
+bool Connector::isClicked(Point p)
+{
+	if (p.y <= Start.y && p.y >= End.y && p.x <= Start.x && p.x >= End.x)
+	{
+		return true;
+	}
+	return false;
 }
 
