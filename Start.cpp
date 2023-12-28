@@ -1,5 +1,6 @@
 #include "Start.h"
 #include <sstream>
+#include <fstream>
 Start::Start(Point Lcorner, string TEXT)
 {
 	text = TEXT;
@@ -56,4 +57,8 @@ void Start::UpdateStatementText()
 Point Start::getOutlet()
 {
 	return Outlet;
+}
+
+void Start::Save(ofstream& OutFile) {
+	OutFile << "STRT " << ID << " " << (LeftCorner.x + UI.ASSGN_WDTH) / 2 << " " << (LeftCorner.y + UI.ASSGN_HI) / 2;
 }

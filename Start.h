@@ -17,5 +17,6 @@ class Start : public Statement
 		virtual void Draw(Output * pOut) const;
 		void SetID(int ID);
 		Point getOutlet();
+		void Save(ofstream& OutFile);
 };
 

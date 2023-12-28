@@ -69,3 +69,6 @@ Point Conditional::getOutlet()
 {
 	return Outlet;
 }
+void Conditional::Save(ofstream& OutFile) {
+
+}

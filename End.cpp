@@ -62,6 +62,6 @@ Point End::getInlet()
 
 
 void End::Save(ofstream& OutFile) {
-	OutFile << "END " << ID << " " << centerX << " " << LeftCorner.y;
+	OutFile << "END " << ID << " " << (LeftCorner.x +UI.ASSGN_WDTH)/2 << " " << (LeftCorner.y + UI.ASSGN_HI) / 2;
 }
 

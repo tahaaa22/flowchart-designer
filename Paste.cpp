@@ -21,14 +21,10 @@ void Paste::ReadActionParameters() {
 
 }
 
-void Paste::Execute() {
-	Output* pOut = pManager->GetOutput();
 void Paste::Execute()
 {
 	Output* pOut = pManager->GetOutput();
 	ReadActionParameters();
-	Statement.Draw(pOut);
-	pManager->GetClipboard();
 	Statement* state = pManager->GetClipboard();
 	if (ValueAssign* s = dynamic_cast<ValueAssign*>(state))
 	{
@@ -41,7 +37,7 @@ void Paste::Execute()
 		End* vs = new End(P, "Start");
 		pManager->AddStatement(vs);
 	}
-	
+
 
 	if (Conditional* source = dynamic_cast<Conditional*>(state))
 	{

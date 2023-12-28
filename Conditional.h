@@ -22,6 +22,7 @@ class Conditional : public Statement
 		virtual void Draw(Output* pOut) const;
 		Point getInlet();
 		Point getOutlet();
+		void Save(ofstream& OutFile);
 	};
 
 

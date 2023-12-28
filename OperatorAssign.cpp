@@ -1,5 +1,6 @@
 #include "OperatorAssign.h"
 #include <sstream>
+#include <fstream>
 
 using namespace std;
 
@@ -68,5 +69,9 @@ Point OperatorAssign::getInlet()
 Point OperatorAssign::getOutlet()
 {
 	return Outlet;
+}
+
+void OperatorAssign::Save(ofstream& OutFile) {
+	OutFile << "OP_ASSIGN " << ID << " " << LeftCorner.x << " " << LeftCorner.y << " " << LHS << " " << RHS<<" ";
 }
 

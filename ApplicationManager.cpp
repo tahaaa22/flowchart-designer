@@ -327,12 +327,12 @@ ApplicationManager::~ApplicationManager()
 	
 }
 
-void ApplicationManager::SaveAll(ofstream& out) {
-	out << StatCount;
-	for (int i = 0; i < StatCount; i++) {
-		StatList[i]->Save(out);
-		cout << endl;
-	}
-
-}
+//void ApplicationManager::SaveAll(ofstream& out) {
+//	out << StatCount;
+//	for (int i = 0; i < StatCount; i++) {
+//		StatList[i]->Save(out);
+//		cout << endl;
+//	}
+//
+//}
 

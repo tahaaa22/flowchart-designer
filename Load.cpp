@@ -8,7 +8,6 @@
 #include <fstream>
 Load::Load(ApplicationManager* pAppManager) :Action(pAppManager)
 {}
-
 void Load::ReadActionParameters()
 {
 
