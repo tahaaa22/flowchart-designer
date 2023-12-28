@@ -44,7 +44,9 @@ void ValueAssign::setRHS(double R)
 	UpdateStatementText();
 }
 
-
+void ValueAssign::SetID(int Id) {
+	ID = Id++;
+}
 bool ValueAssign::isClicked(Point p)
 {
 	if (p.y <= LeftCorner.y +UI.ASSGN_HI && p.y >= LeftCorner.y && p.x <= LeftCorner.x + UI.ASSGN_WDTH && p.x >= LeftCorner.x)

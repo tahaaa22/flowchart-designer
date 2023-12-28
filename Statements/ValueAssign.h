@@ -35,6 +35,7 @@ public:
 	ValueAssign(Point Lcorner, string LeftHS="", double RightHS=0);
 	void setLHS(const string &L);
 	void setRHS(double R);
+	void SetID(int ID);
 	virtual bool isClicked(Point p);
 	virtual void Draw(Output* pOut) const;
 

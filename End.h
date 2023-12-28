@@ -7,12 +7,12 @@
 		Connector* pOutConn;
 		Point Inlet;
 		Point LeftCorner;
-
 		virtual void UpdateStatementText();
 
 	public:
 		End(Point Lcorner, string TEXT = "START");
 		void SetText(const string& L);
+		void SetID(int ID);
 		virtual void Draw(Output* pOut) const;
 	};
 

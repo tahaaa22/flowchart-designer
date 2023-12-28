@@ -5,6 +5,7 @@
 #include "AddConditional.h"
 #include "AddEnd.h"
 #include "AddVariableAssign.h"
+#include "AddOperatorAssign.h"
 #include "Actions\AddValueAssign.h"
 #include "Actions\AddValueAssign.h"
 #include "GUI\Input.h"
@@ -76,7 +77,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case ADD_VAR_ASSIGN:
 			pAct = new AddVariableAssign(this);
 			break;
-
+		case ADD_OPER_ASSIGN:
+			pAct = new AddOperatorAssign(this);
+			break;
 
 		case ADD_CONDITION:
 			///create AddCondition Action here

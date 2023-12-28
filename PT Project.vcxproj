@@ -126,6 +126,7 @@
   <ItemGroup>
     <ClCompile Include="AddConditional.cpp" />
     <ClCompile Include="AddEnd.cpp" />
+    <ClCompile Include="AddOperatorAssign.cpp" />
     <ClCompile Include="AddRead.cpp" />
     <ClCompile Include="AddStart.cpp" />
     <ClCompile Include="AddVariableAssign.cpp" />
@@ -287,6 +288,7 @@
     <ClCompile Include="GUI\Output.cpp" />
     <ClCompile Include="HelperFn.cpp" />
     <ClCompile Include="Load.cpp" />
+    <ClCompile Include="OperatorAssign.cpp" />
     <ClCompile Include="Read.cpp" />
     <ClCompile Include="Save.cpp" />
     <ClCompile Include="Select.cpp" />
@@ -305,6 +307,7 @@
     <ClInclude Include="AddConditional.h" />
     <ClInclude Include="AddConnector.h" />
     <ClInclude Include="AddEnd.h" />
+    <ClInclude Include="AddOperatorAssign.h" />
     <ClInclude Include="AddRead.h" />
     <ClInclude Include="AddStart.h" />
     <ClInclude Include="AddVariableAssign.h" />
@@ -344,6 +347,7 @@
     <ClInclude Include="GUI\UI_Info.h" />
     <ClInclude Include="HelperFn.h" />
     <ClInclude Include="Load.h" />
+    <ClInclude Include="OperatorAssign.h" />
     <ClInclude Include="Read.h" />
     <ClInclude Include="Save.h" />
     <ClInclude Include="Select.h" />

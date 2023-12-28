@@ -14,5 +14,7 @@ class Start : public Statement
 		Start(Point Lcorner, string TEXT = "START");
 		void SetText(const string & L);
 		virtual void Draw(Output * pOut) const;
+		void SetID(int ID);
+		bool isClicked(Point p);
 };
 

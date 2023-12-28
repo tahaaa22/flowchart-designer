@@ -1,12 +1,13 @@
-#include "Conditional.h"
+#include "OperatorAssign.h"
 #include <sstream>
 
 using namespace std;
 
-Conditional::Conditional(Point Lcorner, string LeftHS, double RightHS)
+OperatorAssign::OperatorAssign(Point Lcorner, string LeftHS, double RightHS)
 {
 	LHS = LeftHS;
 	RHS = RightHS;
+
 	UpdateStatementText();
 
 	LeftCorner = Lcorner;
@@ -20,30 +21,29 @@ Conditional::Conditional(Point Lcorner, string LeftHS, double RightHS)
 	Outlet.y = LeftCorner.y + UI.ASSGN_HI;
 }
 
-void Conditional::setLHS(const string& L)
+void OperatorAssign::setLHS(const string& L)
 {
 	LHS = L;
 	UpdateStatementText();
 }
 
-void Conditional::setRHS(double R)
+void OperatorAssign::setRHS(double R)
 {
 	RHS = R;
 	UpdateStatementText();
 }
 
-void Conditional::Draw(Output* pOut) const
+
+void OperatorAssign::Draw(Output* pOut) const
 {
 	//Call Output::DrawAssign function to draw assignment statement 	
-	pOut->DrawRoh(LeftCorner, UI.ASSGN_WDTH, UI.ASSGN_HI, Text, Selected);
+	pOut->DrawAssign(LeftCorner, UI.ASSGN_WDTH, UI.ASSGN_HI, Text, Selected);
 
 }
-void Conditional::SetID(int Id) {
-	ID = Id++;
-}
+
 
 //This function should be called when LHS or RHS changes
-void Conditional::UpdateStatementText()
+void OperatorAssign::UpdateStatementText()
 {
 	//Build the statement text: Left handside then equals then right handside
 	ostringstream T;

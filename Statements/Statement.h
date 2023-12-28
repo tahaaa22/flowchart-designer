@@ -10,7 +10,7 @@
 class Statement
 {
 protected:
-	int ID;			//Each Statement has an ID --> must be unique
+	int ID = 0;			//Each Statement has an ID --> must be unique
 	string Text;	//Statement text (e.g.  "X = 5" OR "salary > 3000" and so on)
 	bool Selected;	//true if the statement is selected on the folwchart
 

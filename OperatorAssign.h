@@ -1,25 +1,27 @@
 #pragma once
 #include "Statements/Statement.h"
-class Conditional : public Statement
-{
+	class OperatorAssign : public Statement
+	{
 	private:
-		string LHS;	
-		double RHS;	
-		Connector* pOutConn;	
+		string LHS;
+		string RHS;
+
+		Connector* pOutConn;
+	
 		Point Inlet;	
 		Point Outlet;	
-		
-		Point LeftCorner;
+
+		Point LeftCorner;	//left corenr of the statement block.
 
 		virtual void UpdateStatementText();
 
 	public:
-		Conditional(Point Lcorner, string LeftHS = "", double RightHS=0);
+		OperatorAssign(Point Lcorner, string LeftHS = "", double RightHS = 0);
 
 		void setLHS(const string& L);
 		void setRHS(double R);
-		void SetID(int ID);
 		virtual void Draw(Output* pOut) const;
+
 
 	};
 

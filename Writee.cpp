@@ -19,6 +19,9 @@ void Writee::SetText(const string& L) {
 void Writee::Draw(Output* pOut) const {
 	pOut->DrawPol(LeftCorner, UI.ASSGN_WDTH, UI.ASSGN_HI, Text, Selected);
 }
+void Writee::SetID(int Id) {
+	ID = Id++;
+}
 void Writee::UpdateStatementText()
 {
 	ostringstream T;
