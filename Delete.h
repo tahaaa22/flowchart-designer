@@ -1,12 +1,13 @@
 #pragma once
 #include "Actions\Action.h"
 #include "ApplicationManager.h"
-
-class Delete
+#include "Statements/Statement.h"
+#include "Connector.h"
+class Delete:public Action
 {
-
-
-
+private:
+	Statement* pstate;
+	Connector* pconn;
 public:
 	Delete(ApplicationManager* pAppManager);
 

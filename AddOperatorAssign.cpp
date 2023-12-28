@@ -17,7 +17,7 @@ void AddOperatorAssign::ReadActionParameters()
 	Output* pOut = pManager->GetOutput();
 
 	//Read the (Position) parameter
-	pOut->PrintMessage("Value Assignment Statement: Click to add the statement");
+	pOut->PrintMessage("operator Assignment Statement: Click to add the statement");
 
 	pIn->GetPointClicked(Position);
 	pOut->ClearStatusBar();

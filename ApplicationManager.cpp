@@ -82,9 +82,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case ADD_CONDITION:
-			///create AddCondition Action here
-
-			break;
+		
 
 		case SELECT:
 			pAct = new Select(this);
@@ -220,8 +218,33 @@ Input *ApplicationManager::GetInput() const
 Output *ApplicationManager::GetOutput() const
 {	return pOut; }
 ////////////////////////////////////////////////////////////////////////////////////
+void ApplicationManager::deletestate(Statement* state)
+{
+	for (int i = 0; i < StatCount; i++)
+	{
+		if (StatList[i] == state) {
+			delete StatList[i];
+			StatList[i] = StatList[StatCount - 1];
 
+	      }
 
+    }
+}
+void ApplicationManager::deletecon(Connector* con)
+{
+	for (int i = 0; i < ConnCount; i++)
+	{
+		if (ConnList[i] == con) {
+			delete ConnList[i];
+			ConnList[i] = ConnList[ConnCount - 1];
+		}
+
+	}
+}
+void ApplicationManager::deletecon(Connector* con)
+{
+
+}
 //Destructor
 ApplicationManager::~ApplicationManager()
 {
