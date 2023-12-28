@@ -35,16 +35,13 @@ void AddConditional::ReadActionParameters()
 void AddConditional::Execute()
 {
 	ReadActionParameters();
-
-
-
 	Point Corner;
 	Corner.x = Position.x - UI.ASSGN_WDTH / 2;
 	Corner.y = Position.y;
 
 	Conditional* pCon = new Conditional(Corner, "", 0);
-
-
+	pCon->setLHS(LHS);
+	pCon->setRHS(RHS);
 	pManager->AddStatement(pCon);
 
 }

@@ -42,7 +42,8 @@ void AddOperatorAssign::Execute()
 	Corner.y = Position.y;
 
 	OperatorAssign* pAssign = new OperatorAssign(Corner, "", 0);
-
+	pAssign->setLHS(LHS);
+	pAssign->setRHS(RHS);
 
 	pManager->AddStatement(pAssign);
 

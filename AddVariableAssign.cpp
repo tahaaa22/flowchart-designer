@@ -41,6 +41,8 @@ void AddVariableAssign::Execute()
 	Corner.y = Position.y;
 
 	VariableAssign* pVariable = new VariableAssign(Corner, "", 0);
+	pVariable->setLHS(LHS);
+	pVariable->setRHS(RHS);
 	
 	pManager->AddStatement(pVariable);
 		

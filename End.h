@@ -10,7 +10,7 @@
 		virtual void UpdateStatementText();
 
 	public:
-		End(Point Lcorner, string TEXT = "Start");
+		End(Point Lcorner, string TEXT = "End");
 		void SetText(const string& L);
 		void SetID(int ID);
 		virtual void Draw(Output* pOut) const;
