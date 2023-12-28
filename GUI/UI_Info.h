@@ -15,7 +15,7 @@ struct UI_Info	//User Interface Info.
 	MODE AppMode;		//Application Mode (design or simulation)
 
 	int width, height;	//Window width and height
-	int wx, wy;			//Window starting coordinates
+	int wx, wy;			//Window Starting coordinates
 
 	int StatusBarHeight;	//Status Bar Width
 	int ToolBarHeight;		//Tool Bar Width

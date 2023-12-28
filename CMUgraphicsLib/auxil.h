@@ -11,7 +11,7 @@ This file was last modified on 05.16.1999
 // Pause for iTime milliseconds
 void Pause(const unsigned long ulTime);
 
-// Return the number of milliseconds since Windows was started
+// Return the number of milliseconds since Windows was Started
 unsigned long CurrentTime();
 
 // Return true if iInterval milliseconds have elapsed since

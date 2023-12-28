@@ -50,3 +50,22 @@ void OperatorAssign::UpdateStatementText()
 	T << LHS << " = " << RHS;
 	Text = T.str();
 }
+
+bool OperatorAssign::isClicked(Point p)
+{
+	if (p.y <= LeftCorner.y + UI.ASSGN_HI && p.y >= LeftCorner.y && p.x <= LeftCorner.x + UI.ASSGN_WDTH && p.x >= LeftCorner.x)
+	{
+		return true;
+	}
+
+	return false;
+}
+Point OperatorAssign::getInlet()
+{
+	return Inlet;
+}
+
+Point OperatorAssign::getOutlet()
+{
+	return Outlet;
+}

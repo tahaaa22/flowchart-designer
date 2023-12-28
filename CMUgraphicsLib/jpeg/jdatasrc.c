@@ -26,8 +26,8 @@ typedef struct {
   struct jpeg_source_mgr pub;	/* public fields */
 
   FILE * infile;		/* source stream */
-  JOCTET * buffer;		/* start of buffer */
-  boolean start_of_file;	/* have we gotten any data yet? */
+  JOCTET * buffer;		/* Start of buffer */
+  boolean Start_of_file;	/* have we gotten any data yet? */
 } my_source_mgr;
 
 typedef my_source_mgr * my_src_ptr;
@@ -49,7 +49,7 @@ init_source (j_decompress_ptr cinfo)
    * but we don't clear the input buffer.
    * This is correct behavior for reading a series of images from one source.
    */
-  src->start_of_file = TRUE;
+  src->Start_of_file = TRUE;
 }
 
 
@@ -58,7 +58,7 @@ init_source (j_decompress_ptr cinfo)
  *
  * In typical applications, this should read fresh data into the buffer
  * (ignoring the current state of next_input_byte & bytes_in_buffer),
- * reset the pointer & count to the start of the buffer, and return TRUE
+ * reset the pointer & count to the Start of the buffer, and return TRUE
  * indicating that the buffer has been reloaded.  It is not necessary to
  * fill the buffer entirely, only to obtain at least one more byte.
  *
@@ -79,9 +79,9 @@ init_source (j_decompress_ptr cinfo)
  * that there are substantial restrictions on the use of suspension --- see
  * the documentation.
  *
- * When suspending, the decompressor will back up to a convenient restart point
- * (typically the start of the current MCU). next_input_byte & bytes_in_buffer
- * indicate where the restart point will be if the current call returns FALSE.
+ * When suspending, the decompressor will back up to a convenient reStart point
+ * (typically the Start of the current MCU). next_input_byte & bytes_in_buffer
+ * indicate where the reStart point will be if the current call returns FALSE.
  * Data beyond this point must be rescanned after resumption, so move it to
  * the front of the buffer rather than discarding it.
  */
@@ -95,7 +95,7 @@ fill_input_buffer (j_decompress_ptr cinfo)
   nbytes = JFREAD(src->infile, src->buffer, INPUT_BUF_SIZE);
 
   if (nbytes <= 0) {
-    if (src->start_of_file)	/* Treat empty input file as fatal error */
+    if (src->Start_of_file)	/* Treat empty input file as fatal error */
       ERREXIT(cinfo, JERR_INPUT_EMPTY);
     WARNMS(cinfo, JWRN_JPEG_EOF);
     /* Insert a fake EOI marker */
@@ -106,7 +106,7 @@ fill_input_buffer (j_decompress_ptr cinfo)
 
   src->pub.next_input_byte = src->buffer;
   src->pub.bytes_in_buffer = nbytes;
-  src->start_of_file = FALSE;
+  src->Start_of_file = FALSE;
 
   return TRUE;
 }
@@ -149,7 +149,7 @@ skip_input_data (j_decompress_ptr cinfo, long num_bytes)
 
 /*
  * An additional method that can be provided by data source modules is the
- * resync_to_restart method for error recovery in the presence of RST markers.
+ * resync_to_reStart method for error recovery in the presence of RST markers.
  * For the moment, this source module just uses the default resync method
  * provided by the JPEG library.  That method assumes that no backtracking
  * is possible.
@@ -188,7 +188,7 @@ jpeg_stdio_src (j_decompress_ptr cinfo, FILE * infile)
   /* The source object and input buffer are made permanent so that a series
    * of JPEG images can be read from the same file by calling jpeg_stdio_src
    * only before the first one.  (If we discarded the buffer at the end of
-   * one image, we'd likely lose the start of the next one.)
+   * one image, we'd likely lose the Start of the next one.)
    * This makes it unsafe to use this manager and a different source
    * manager serially with the same JPEG object.  Caveat programmer.
    */
@@ -206,7 +206,7 @@ jpeg_stdio_src (j_decompress_ptr cinfo, FILE * infile)
   src->pub.init_source = init_source;
   src->pub.fill_input_buffer = fill_input_buffer;
   src->pub.skip_input_data = skip_input_data;
-  src->pub.resync_to_restart = jpeg_resync_to_restart; /* use default method */
+  src->pub.resync_to_reStart = jpeg_resync_to_reStart; /* use default method */
   src->pub.term_source = term_source;
   src->infile = infile;
   src->pub.bytes_in_buffer = 0; /* forces fill_input_buffer on first read */

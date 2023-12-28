@@ -304,7 +304,7 @@ set_bottom_pointers (j_decompress_ptr cinfo)
  */
 
 METHODDEF(void)
-start_pass_main (j_decompress_ptr cinfo, J_BUF_MODE pass_mode)
+Start_pass_main (j_decompress_ptr cinfo, J_BUF_MODE pass_mode)
 {
   my_main_ptr main = (my_main_ptr) cinfo->main;
 
@@ -399,7 +399,7 @@ process_data_context_main (j_decompress_ptr cinfo,
 
   /* Postprocessor typically will not swallow all the input data it is handed
    * in one call (due to filling the output buffer first).  Must be prepared
-   * to exit and restart.  This switch lets us keep track of how far we got.
+   * to exit and reStart.  This switch lets us keep track of how far we got.
    * Note that each case falls through to the next on successful completion.
    */
   switch (main->context_state) {
@@ -483,7 +483,7 @@ jinit_d_main_controller (j_decompress_ptr cinfo, boolean need_full_buffer)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				SIZEOF(my_main_controller));
   cinfo->main = (struct jpeg_d_main_controller *) main;
-  main->pub.start_pass = start_pass_main;
+  main->pub.Start_pass = Start_pass_main;
 
   if (need_full_buffer)		/* shouldn't happen */
     ERREXIT(cinfo, JERR_BAD_BUFFER_MODE);

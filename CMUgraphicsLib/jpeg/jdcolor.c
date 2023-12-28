@@ -111,7 +111,7 @@ build_ycc_rgb_table (j_decompress_ptr cinfo)
  * Note that we change from noninterleaved, one-plane-per-component format
  * to interleaved-pixel format.  The output buffer is therefore three times
  * as wide as the input buffer.
- * A starting row offset is provided only for the input buffer.  The caller
+ * A Starting row offset is provided only for the input buffer.  The caller
  * can easily adjust the passed output_buf value to accommodate any row
  * offset required on that side.
  */
@@ -259,12 +259,12 @@ ycck_cmyk_convert (j_decompress_ptr cinfo,
 
 
 /*
- * Empty method for start_pass.
+ * Empty method for Start_pass.
  */
 
 
 METHODDEF(void)
-start_pass_dcolor (j_decompress_ptr cinfo)
+Start_pass_dcolor (j_decompress_ptr cinfo)
 {
   /* no work needed */
   
@@ -287,7 +287,7 @@ jinit_color_deconverter (j_decompress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				SIZEOF(my_color_deconverter));
   cinfo->cconvert = (struct jpeg_color_deconverter *) cconvert;
-  cconvert->pub.start_pass = start_pass_dcolor;
+  cconvert->pub.Start_pass = Start_pass_dcolor;
 
   /* Make sure num_components agrees with jpeg_color_space */
   switch (cinfo->jpeg_color_space) {

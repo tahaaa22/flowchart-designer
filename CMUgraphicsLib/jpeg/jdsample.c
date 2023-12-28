@@ -66,7 +66,7 @@ typedef my_upsampler * my_upsample_ptr;
  */
 
 METHODDEF(void)
-start_pass_upsample (j_decompress_ptr cinfo)
+Start_pass_upsample (j_decompress_ptr cinfo)
 {
   my_upsample_ptr upsample = (my_upsample_ptr) cinfo->upsample;
 
@@ -429,7 +429,7 @@ jinit_upsampler (j_decompress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				SIZEOF(my_upsampler));
   cinfo->upsample = (struct jpeg_upsampler *) upsample;
-  upsample->pub.start_pass = start_pass_upsample;
+  upsample->pub.Start_pass = Start_pass_upsample;
   upsample->pub.upsample = sep_upsample;
   upsample->pub.need_context_rows = FALSE; /* until we find out differently */
 

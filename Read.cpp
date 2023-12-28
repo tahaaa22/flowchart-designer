@@ -28,3 +28,21 @@ void Read::UpdateStatementText()
 	T << text;
 	Text = T.str();
 }
+bool Read::isClicked(Point p)
+{
+	if (p.y <= LeftCorner.y + UI.ASSGN_HI && p.y >= LeftCorner.y && p.x <= LeftCorner.x + UI.ASSGN_WDTH && p.x >= LeftCorner.x)
+	{
+		return true;
+	}
+
+	return false;
+}
+Point Read::getInlet()
+{
+	return Inlet;
+}
+
+Point Read::getOutlet()
+{
+	return Outlet;
+}

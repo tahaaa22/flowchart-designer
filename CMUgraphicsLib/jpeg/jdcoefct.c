@@ -76,7 +76,7 @@ METHODDEF(int) decompress_smooth_data
 
 
 LOCAL(void)
-start_iMCU_row (j_decompress_ptr cinfo)
+Start_iMCU_row (j_decompress_ptr cinfo)
 /* Reset within-iMCU-row counters for a new row (input side) */
 {
   my_coef_ptr coef = (my_coef_ptr) cinfo->coef;
@@ -104,10 +104,10 @@ start_iMCU_row (j_decompress_ptr cinfo)
  */
 
 METHODDEF(void)
-start_input_pass (j_decompress_ptr cinfo)
+Start_input_pass (j_decompress_ptr cinfo)
 {
   cinfo->input_iMCU_row = 0;
-  start_iMCU_row(cinfo);
+  Start_iMCU_row(cinfo);
 }
 
 
@@ -116,7 +116,7 @@ start_input_pass (j_decompress_ptr cinfo)
  */
 
 METHODDEF(void)
-start_output_pass (j_decompress_ptr cinfo)
+Start_output_pass (j_decompress_ptr cinfo)
 {
 #ifdef BLOCK_SMOOTHING_SUPPORTED
   my_coef_ptr coef = (my_coef_ptr) cinfo->coef;
@@ -152,7 +152,7 @@ decompress_onepass (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
   JDIMENSION last_iMCU_row = cinfo->total_iMCU_rows - 1;
   int blkn, ci, xindex, yindex, yoffset, useful_width;
   JSAMPARRAY output_ptr;
-  JDIMENSION start_col, output_col;
+  JDIMENSION Start_col, output_col;
   jpeg_component_info *compptr;
   inverse_DCT_method_ptr inverse_DCT;
 
@@ -187,11 +187,11 @@ decompress_onepass (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
 	useful_width = (MCU_col_num < last_MCU_col) ? compptr->MCU_width
 						    : compptr->last_col_width;
 	output_ptr = output_buf[ci] + yoffset * compptr->DCT_scaled_size;
-	start_col = MCU_col_num * compptr->MCU_sample_width;
+	Start_col = MCU_col_num * compptr->MCU_sample_width;
 	for (yindex = 0; yindex < compptr->MCU_height; yindex++) {
 	  if (cinfo->input_iMCU_row < last_iMCU_row ||
 	      yoffset+yindex < compptr->last_row_height) {
-	    output_col = start_col;
+	    output_col = Start_col;
 	    for (xindex = 0; xindex < useful_width; xindex++) {
 	      (*inverse_DCT) (cinfo, compptr,
 			      (JCOEFPTR) coef->MCU_buffer[blkn+xindex],
@@ -210,7 +210,7 @@ decompress_onepass (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
   /* Completed the iMCU row, advance counters for next one */
   cinfo->output_iMCU_row++;
   if (++(cinfo->input_iMCU_row) < cinfo->total_iMCU_rows) {
-    start_iMCU_row(cinfo);
+    Start_iMCU_row(cinfo);
     return JPEG_ROW_COMPLETED;
   }
   /* Completed the scan */
@@ -248,7 +248,7 @@ consume_data (j_decompress_ptr cinfo)
   my_coef_ptr coef = (my_coef_ptr) cinfo->coef;
   JDIMENSION MCU_col_num;	/* index of current MCU within row */
   int blkn, ci, xindex, yindex, yoffset;
-  JDIMENSION start_col;
+  JDIMENSION Start_col;
   JBLOCKARRAY buffer[MAX_COMPS_IN_SCAN];
   JBLOCKROW buffer_ptr;
   jpeg_component_info *compptr;
@@ -275,9 +275,9 @@ consume_data (j_decompress_ptr cinfo)
       blkn = 0;			/* index of current DCT block within MCU */
       for (ci = 0; ci < cinfo->comps_in_scan; ci++) {
 	compptr = cinfo->cur_comp_info[ci];
-	start_col = MCU_col_num * compptr->MCU_width;
+	Start_col = MCU_col_num * compptr->MCU_width;
 	for (yindex = 0; yindex < compptr->MCU_height; yindex++) {
-	  buffer_ptr = buffer[ci][yindex+yoffset] + start_col;
+	  buffer_ptr = buffer[ci][yindex+yoffset] + Start_col;
 	  for (xindex = 0; xindex < compptr->MCU_width; xindex++) {
 	    coef->MCU_buffer[blkn++] = buffer_ptr++;
 	  }
@@ -296,7 +296,7 @@ consume_data (j_decompress_ptr cinfo)
   }
   /* Completed the iMCU row, advance counters for next one */
   if (++(cinfo->input_iMCU_row) < cinfo->total_iMCU_rows) {
-    start_iMCU_row(cinfo);
+    Start_iMCU_row(cinfo);
     return JPEG_ROW_COMPLETED;
   }
   /* Completed the scan */
@@ -683,8 +683,8 @@ jinit_d_coef_controller (j_decompress_ptr cinfo, boolean need_full_buffer)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				SIZEOF(my_coef_controller));
   cinfo->coef = (struct jpeg_d_coef_controller *) coef;
-  coef->pub.start_input_pass = start_input_pass;
-  coef->pub.start_output_pass = start_output_pass;
+  coef->pub.Start_input_pass = Start_input_pass;
+  coef->pub.Start_output_pass = Start_output_pass;
 #ifdef BLOCK_SMOOTHING_SUPPORTED
   coef->coef_bits_latch = NULL;
 #endif

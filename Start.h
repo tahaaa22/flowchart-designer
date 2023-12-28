@@ -11,11 +11,11 @@ class Start : public Statement
 		virtual void UpdateStatementText();
 
 	public:
-		Start(Point Lcorner, string TEXT = "START");
+		Start(Point Lcorner, string TEXT = "Start");
 		virtual bool isClicked(Point p);
 		void SetText(const string & L);
 		virtual void Draw(Output * pOut) const;
 		void SetID(int ID);
-		bool isClicked(Point p);
+		Point getOutlet();
 };
 

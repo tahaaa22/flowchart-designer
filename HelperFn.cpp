@@ -63,7 +63,7 @@ bool IsVariable(string input)
 	// checks if the input string is a variable name
 	// return true if it can be a variable name, false otherwise
 
-	// Variable names must start with an alphabetic letter (small or capital) or an underscore (_). 
+	// Variable names must Start with an alphabetic letter (small or capital) or an underscore (_). 
 	// After the first initial letter, variable names can contain letters, numbers and underscores.  
 	// No spaces or special characters, however, are allowed.
 

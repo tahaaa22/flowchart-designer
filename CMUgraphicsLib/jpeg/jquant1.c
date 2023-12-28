@@ -219,7 +219,7 @@ select_ncolors (j_decompress_ptr cinfo, int Ncolors[])
   /* We may be able to increment the count for one or more components without
    * exceeding max_colors, though we know not all can be incremented.
    * Sometimes, the first component can be incremented more than once!
-   * (Example: for 16 colors, we start at 2*2*2, go to 3*2*2, then 4*2*2.)
+   * (Example: for 16 colors, we Start at 2*2*2, go to 3*2*2, then 4*2*2.)
    * In RGB colorspace, try to increment G first, then R, then B.
    */
   do {
@@ -748,7 +748,7 @@ alloc_fs_workspace (j_decompress_ptr cinfo)
  */
 
 METHODDEF(void)
-start_pass_1_quant (j_decompress_ptr cinfo, boolean is_pre_scan)
+Start_pass_1_quant (j_decompress_ptr cinfo, boolean is_pre_scan)
 {
   my_cquantize_ptr cquantize = (my_cquantize_ptr) cinfo->cquantize;
   size_t arraysize;
@@ -842,7 +842,7 @@ jinit_1pass_quantizer (j_decompress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				SIZEOF(my_cquantizer));
   cinfo->cquantize = (struct jpeg_color_quantizer *) cquantize;
-  cquantize->pub.start_pass = start_pass_1_quant;
+  cquantize->pub.Start_pass = Start_pass_1_quant;
   cquantize->pub.finish_pass = finish_pass_1_quant;
   cquantize->pub.new_color_map = new_color_map_1_quant;
   cquantize->fserrors[0] = NULL; /* Flag FS workspace not allocated */

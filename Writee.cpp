@@ -28,3 +28,21 @@ void Writee::UpdateStatementText()
 	T << text;
 	Text = T.str();
 }
+bool Writee::isClicked(Point p)
+{
+	if (p.y <= LeftCorner.y + UI.ASSGN_HI && p.y >= LeftCorner.y && p.x <= LeftCorner.x + UI.ASSGN_WDTH && p.x >= LeftCorner.x)
+	{
+		return true;
+	}
+
+	return false;
+}
+Point Writee::getInlet()
+{
+	return Inlet;
+}
+
+Point Writee::getOutlet()
+{
+	return Outlet;
+}

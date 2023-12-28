@@ -21,7 +21,9 @@
 		void setLHS(const string& L);
 		void setRHS(double R);
 		virtual void Draw(Output* pOut) const;
-
+		bool isClicked(Point p);
+		Point getInlet();
+		Point getOutlet();
 
 	};
 

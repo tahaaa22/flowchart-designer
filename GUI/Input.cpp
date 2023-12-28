@@ -250,7 +250,7 @@ ActionType Input::GetUserAction() const
 
 			{
 
-			case ITM_START: return ADD_START;
+			case ITM_Start: return ADD_Start;
 
 			case ITM_END: return ADD_END;
 

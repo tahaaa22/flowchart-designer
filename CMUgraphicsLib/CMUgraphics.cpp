@@ -1049,7 +1049,7 @@ void window::DrawArc(const int iX1, const int iY1, const int iX2, const int iY2,
 
 	int iWidth, iHeight; // x-axis, y-axis dimensions
 	int iCenterX,iCenterY; // center pixel
-	int iStartX, iStartY; // start pixel
+	int iStartX, iStartY; // Start pixel
 	int iEndX, iEndY; // end pixel
 
 	ProcessMessage(); // Kludge
