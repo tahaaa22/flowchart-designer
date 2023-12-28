@@ -10,7 +10,7 @@
 #include "Actions\AddValueAssign.h"
 #include "GUI\Input.h"
 #include "GUI\Output.h"
-
+#include "Delete.h"
 #include <iostream>
 using namespace std;
 
@@ -101,6 +101,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case ADD_CONNECTOR:
 			pAct = new AddnewConnector(this);
+			break;
+
+		case DEL:
+			pAct = new Delete(this);
 			break;
 
 		case SELECT:
@@ -221,11 +225,14 @@ void ApplicationManager::UpdateInterface() const
 	pOut->ClearDrawArea();
 
 	//Draw all statements
+	
 	for(int i=0; i<StatCount; i++)
+		if (StatList[i])
 		StatList[i]->Draw(pOut);
 	
 	//Draw all connections
 	for(int i=0; i<ConnCount; i++)
+		if (ConnList[i])
 		ConnList[i]->Draw(pOut);
 
 }
@@ -242,7 +249,8 @@ void ApplicationManager::deletestate(Statement* state)
 	for (int i = 0; i < StatCount; i++)
 	{
 		if (StatList[i] == state) {
-			delete StatList[i];
+			StatList[i] = nullptr;
+			StatCount--;
 			StatList[i] = StatList[StatCount - 1];
 
 	      }
@@ -254,7 +262,8 @@ void ApplicationManager::deletecon(Connector* con)
 	for (int i = 0; i < ConnCount; i++)
 	{
 		if (ConnList[i] == con) {
-			delete ConnList[i];
+			ConnList[i] = nullptr;
+			ConnCount--;
 			ConnList[i] = ConnList[ConnCount - 1];
 		}
 

@@ -29,7 +29,8 @@ void Delete::Execute()
 		pManager->GetOutput()->PrintMessage("Statement Deleted");
 
 	}
-	if (pconn != NULL) {
+	if (pconn != NULL)
+	{
 		pManager->deletecon(pconn);
 		pManager->GetOutput()->PrintMessage("connector Deleted");
 	}
