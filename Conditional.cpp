@@ -50,3 +50,22 @@ void Conditional::UpdateStatementText()
 	T << LHS << " = " << RHS;
 	Text = T.str();
 }
+
+bool Conditional::isClicked(Point p)
+{
+	if (p.y <= LeftCorner.y + UI.ASSGN_HI && p.y >= LeftCorner.y && p.x <= LeftCorner.x + UI.ASSGN_WDTH && p.x >= LeftCorner.x)
+	{
+		return true;
+	}
+
+	return false;
+}
+Point Conditional::getInlet()
+{
+	return Inlet;
+}
+
+Point Conditional::getOutlet()
+{
+	return Outlet;
+}

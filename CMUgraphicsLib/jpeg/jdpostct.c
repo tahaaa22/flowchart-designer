@@ -35,7 +35,7 @@ typedef struct {
   JSAMPARRAY buffer;		/* strip buffer, or current strip of virtual */
   JDIMENSION strip_height;	/* buffer size in rows */
   /* for two-pass mode only: */
-  JDIMENSION starting_row;	/* row # of first row in current strip */
+  JDIMENSION Starting_row;	/* row # of first row in current strip */
   JDIMENSION next_row;		/* index of next row to fill/empty in strip */
 } my_post_controller;
 
@@ -70,7 +70,7 @@ METHODDEF(void) post_process_2pass
  */
 
 METHODDEF(void)
-start_pass_dpost (j_decompress_ptr cinfo, J_BUF_MODE pass_mode)
+Start_pass_dpost (j_decompress_ptr cinfo, J_BUF_MODE pass_mode)
 {
   my_post_ptr post = (my_post_ptr) cinfo->post;
 
@@ -79,7 +79,7 @@ start_pass_dpost (j_decompress_ptr cinfo, J_BUF_MODE pass_mode)
     if (cinfo->quantize_colors) {
       /* Single-pass processing with color quantization. */
       post->pub.post_process_data = post_process_1pass;
-      /* We could be doing buffered-image output before starting a 2-pass
+      /* We could be doing buffered-image output before Starting a 2-pass
        * color quantization; in that case, jinit_d_post_controller did not
        * allocate a strip buffer.  Use the virtual-array buffer as workspace.
        */
@@ -113,7 +113,7 @@ start_pass_dpost (j_decompress_ptr cinfo, J_BUF_MODE pass_mode)
     ERREXIT(cinfo, JERR_BAD_BUFFER_MODE);
     break;
   }
-  post->starting_row = post->next_row = 0;
+  post->Starting_row = post->next_row = 0;
 }
 
 
@@ -168,11 +168,11 @@ post_process_prepass (j_decompress_ptr cinfo,
   output_buf = output_buf;
   out_rows_avail = out_rows_avail;
 
-  /* Reposition virtual buffer if at start of strip. */
+  /* Reposition virtual buffer if at Start of strip. */
   if (post->next_row == 0) {
     post->buffer = (*cinfo->mem->access_virt_sarray)
 	((j_common_ptr) cinfo, post->whole_image,
-	 post->starting_row, post->strip_height, TRUE);
+	 post->Starting_row, post->strip_height, TRUE);
   }
 
   /* Upsample some data (up to a strip height's worth). */
@@ -192,7 +192,7 @@ post_process_prepass (j_decompress_ptr cinfo,
 
   /* Advance if we filled the strip. */
   if (post->next_row >= post->strip_height) {
-    post->starting_row += post->strip_height;
+    post->Starting_row += post->strip_height;
     post->next_row = 0;
   }
 }
@@ -218,11 +218,11 @@ post_process_2pass (j_decompress_ptr cinfo,
   in_row_group_ctr = in_row_group_ctr;
   in_row_groups_avail = in_row_groups_avail;
 
-  /* Reposition virtual buffer if at start of strip. */
+  /* Reposition virtual buffer if at Start of strip. */
   if (post->next_row == 0) {
     post->buffer = (*cinfo->mem->access_virt_sarray)
 	((j_common_ptr) cinfo, post->whole_image,
-	 post->starting_row, post->strip_height, FALSE);
+	 post->Starting_row, post->strip_height, FALSE);
   }
 
   /* Determine number of rows to emit. */
@@ -231,7 +231,7 @@ post_process_2pass (j_decompress_ptr cinfo,
   if (num_rows > max_rows)
     num_rows = max_rows;
   /* We have to check bottom of image here, can't depend on upsampler. */
-  max_rows = cinfo->output_height - post->starting_row;
+  max_rows = cinfo->output_height - post->Starting_row;
   if (num_rows > max_rows)
     num_rows = max_rows;
 
@@ -244,7 +244,7 @@ post_process_2pass (j_decompress_ptr cinfo,
   /* Advance if we filled the strip. */
   post->next_row += num_rows;
   if (post->next_row >= post->strip_height) {
-    post->starting_row += post->strip_height;
+    post->Starting_row += post->strip_height;
     post->next_row = 0;
   }
 }
@@ -265,7 +265,7 @@ jinit_d_post_controller (j_decompress_ptr cinfo, boolean need_full_buffer)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				SIZEOF(my_post_controller));
   cinfo->post = (struct jpeg_d_post_controller *) post;
-  post->pub.start_pass = start_pass_dpost;
+  post->pub.Start_pass = Start_pass_dpost;
   post->whole_image = NULL;	/* flag for no virtual arrays */
   post->buffer = NULL;		/* flag for no strip buffer */
 

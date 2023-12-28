@@ -205,12 +205,12 @@ per_scan_setup (j_decompress_ptr cinfo)
  * currently capable of doing this, but other encoders might.)  Since we want
  * to be able to dequantize all the components at the end of the file, this
  * means that we have to save away the table actually used for each component.
- * We do this by copying the table at the start of the first scan containing
+ * We do this by copying the table at the Start of the first scan containing
  * the component.
  * The JPEG spec prohibits the encoder from changing the contents of a Q-table
  * slot between scans of a component using that slot.  If the encoder does so
  * anyway, this decoder will simply use the Q-table values that were current
- * at the start of the first scan for the component.
+ * at the Start of the first scan for the component.
  *
  * The decompressor output side looks only at the saved quant tables,
  * not at the current Q-table slots.
@@ -246,17 +246,17 @@ latch_quant_tables (j_decompress_ptr cinfo)
 /*
  * Initialize the input modules to read a scan of compressed data.
  * The first call to this is done by jdmaster.c after initializing
- * the entire decompressor (during jpeg_start_decompress).
+ * the entire decompressor (during jpeg_Start_decompress).
  * Subsequent calls come from consume_markers, below.
  */
 
 METHODDEF(void)
-start_input_pass (j_decompress_ptr cinfo)
+Start_input_pass (j_decompress_ptr cinfo)
 {
   per_scan_setup(cinfo);
   latch_quant_tables(cinfo);
-  (*cinfo->entropy->start_pass) (cinfo);
-  (*cinfo->coef->start_input_pass) (cinfo);
+  (*cinfo->entropy->Start_pass) (cinfo);
+  (*cinfo->coef->Start_input_pass) (cinfo);
   cinfo->inputctl->consume_input = cinfo->coef->consume_data;
 }
 
@@ -300,14 +300,14 @@ consume_markers (j_decompress_ptr cinfo)
     if (inputctl->inheaders) {	/* 1st SOS */
       initial_setup(cinfo);
       inputctl->inheaders = FALSE;
-      /* Note: start_input_pass must be called by jdmaster.c
+      /* Note: Start_input_pass must be called by jdmaster.c
        * before any more input can be consumed.  jdapi.c is
        * responsible for enforcing this sequencing.
        */
     } else {			/* 2nd or later SOS marker */
       if (! inputctl->pub.has_multiple_scans)
 	ERREXIT(cinfo, JERR_EOI_EXPECTED); /* Oops, I wasn't expecting this! */
-      start_input_pass(cinfo);
+      Start_input_pass(cinfo);
     }
     break;
   case JPEG_REACHED_EOI:	/* Found EOI */
@@ -370,7 +370,7 @@ jinit_input_controller (j_decompress_ptr cinfo)
   /* Initialize method pointers */
   inputctl->pub.consume_input = consume_markers;
   inputctl->pub.reset_input_controller = reset_input_controller;
-  inputctl->pub.start_input_pass = start_input_pass;
+  inputctl->pub.Start_input_pass = Start_input_pass;
   inputctl->pub.finish_input_pass = finish_input_pass;
   /* Initialize state: can't use reset_input_controller since we don't
    * want to try to reset other modules yet.

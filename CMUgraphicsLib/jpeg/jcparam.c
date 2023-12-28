@@ -33,8 +33,8 @@ jpeg_add_quant_table (j_compress_ptr cinfo, int which_tbl,
   int i;
   long temp;
 
-  /* Safety check to ensure start_compress not called yet. */
-  if (cinfo->global_state != CSTATE_START)
+  /* Safety check to ensure Start_compress not called yet. */
+  if (cinfo->global_state != CSTATE_Start)
     ERREXIT1(cinfo, JERR_BAD_STATE, cinfo->global_state);
 
   if (*qtblptr == NULL)
@@ -250,8 +250,8 @@ jpeg_set_defaults (j_compress_ptr cinfo)
 {
   int i;
 
-  /* Safety check to ensure start_compress not called yet. */
-  if (cinfo->global_state != CSTATE_START)
+  /* Safety check to ensure Start_compress not called yet. */
+  if (cinfo->global_state != CSTATE_Start)
     ERREXIT1(cinfo, JERR_BAD_STATE, cinfo->global_state);
 
   /* Allocate comp_info array large enough for maximum component count.
@@ -307,9 +307,9 @@ jpeg_set_defaults (j_compress_ptr cinfo)
   /* DCT algorithm preference */
   cinfo->dct_method = JDCT_DEFAULT;
 
-  /* No restart markers */
-  cinfo->restart_interval = 0;
-  cinfo->restart_in_rows = 0;
+  /* No reStart markers */
+  cinfo->reStart_interval = 0;
+  cinfo->reStart_in_rows = 0;
 
   /* Fill in default JFIF marker parameters.  Note that whether the marker
    * will actually be written is determined by jpeg_set_colorspace.
@@ -375,8 +375,8 @@ jpeg_set_colorspace (j_compress_ptr cinfo, J_COLOR_SPACE colorspace)
    compptr->dc_tbl_no = (dctbl), \
    compptr->ac_tbl_no = (actbl) )
 
-  /* Safety check to ensure start_compress not called yet. */
-  if (cinfo->global_state != CSTATE_START)
+  /* Safety check to ensure Start_compress not called yet. */
+  if (cinfo->global_state != CSTATE_Start)
     ERREXIT1(cinfo, JERR_BAD_STATE, cinfo->global_state);
 
   /* For all colorspaces, we use Q and Huff tables 0 for luminance components,
@@ -513,8 +513,8 @@ jpeg_simple_progression (j_compress_ptr cinfo)
   int nscans;
   jpeg_scan_info * scanptr;
 
-  /* Safety check to ensure start_compress not called yet. */
-  if (cinfo->global_state != CSTATE_START)
+  /* Safety check to ensure Start_compress not called yet. */
+  if (cinfo->global_state != CSTATE_Start)
     ERREXIT1(cinfo, JERR_BAD_STATE, cinfo->global_state);
 
   /* Figure space needed for script.  Calculation must match code below! */

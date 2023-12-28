@@ -38,7 +38,7 @@ jpeg_abort (j_common_ptr cinfo)
   }
 
   /* Reset overall state for possible reuse of object */
-  cinfo->global_state = (cinfo->is_decompressor ? DSTATE_START : CSTATE_START);
+  cinfo->global_state = (cinfo->is_decompressor ? DSTATE_Start : CSTATE_Start);
 }
 
 

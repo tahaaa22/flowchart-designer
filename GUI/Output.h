@@ -34,8 +34,8 @@ public:
 	//TODO: Add similar functions for drawing all other statements.
 	//		e.g. DrawCondtionalStat(......), DrawStart(......), DrawEnd(.......), ...etc
 	//		Decide the parameters that should be passed to each of them
-	void Drawconnectors(Point start, Point end, bool selected = false);
-	void Drawconnector(Point start, Point end, bool selected = false);
+	void Drawconnectors(Point Start, Point end, bool selected = false);
+	void Drawconnector(Point Start, Point end, bool selected = false);
 
 	//TODO: Add DrawConnector function
 

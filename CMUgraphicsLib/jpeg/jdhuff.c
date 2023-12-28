@@ -9,7 +9,7 @@
  *
  * Much of the complexity here has to do with supporting input suspension.
  * If the data source module demands suspension, we want to be able to back
- * up to the start of the current MCU.  To do this, we copy state variables
+ * up to the Start of the current MCU.  To do this, we copy state variables
  * into local working storage, and update them back to the permanent
  * storage only upon successful completion of an MCU.
  */
@@ -52,14 +52,14 @@ typedef struct {
 typedef struct {
   struct jpeg_entropy_decoder pub; /* public fields */
 
-  /* These fields are loaded into local variables at start of each MCU.
+  /* These fields are loaded into local variables at Start of each MCU.
    * In case of suspension, we exit WITHOUT updating them.
    */
-  bitread_perm_state bitstate;	/* Bit buffer at start of MCU */
-  savable_state saved;		/* Other state at start of MCU */
+  bitread_perm_state bitstate;	/* Bit buffer at Start of MCU */
+  savable_state saved;		/* Other state at Start of MCU */
 
   /* These fields are NOT loaded into local working state. */
-  unsigned int restarts_to_go;	/* MCUs left in this restart interval */
+  unsigned int reStarts_to_go;	/* MCUs left in this reStart interval */
 
   /* Pointers to derived tables (these workspaces have image lifespan) */
   d_derived_tbl * dc_derived_tbls[NUM_HUFF_TBLS];
@@ -74,7 +74,7 @@ typedef huff_entropy_decoder * huff_entropy_ptr;
  */
 
 METHODDEF(void)
-start_pass_huff_decoder (j_decompress_ptr cinfo)
+Start_pass_huff_decoder (j_decompress_ptr cinfo)
 {
   huff_entropy_ptr entropy = (huff_entropy_ptr) cinfo->entropy;
   int ci, dctbl, actbl;
@@ -114,8 +114,8 @@ start_pass_huff_decoder (j_decompress_ptr cinfo)
   entropy->bitstate.get_buffer = 0; /* unnecessary, but keeps Purify quiet */
   entropy->bitstate.printed_eod = FALSE;
 
-  /* Initialize restart counter */
-  entropy->restarts_to_go = cinfo->restart_interval;
+  /* Initialize reStart counter */
+  entropy->reStarts_to_go = cinfo->reStart_interval;
 }
 
 
@@ -186,7 +186,7 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, JHUFF_TBL * htbl,
   /* Compute lookahead tables to speed up decoding.
    * First we set all the table entries to 0, indicating "too long";
    * then we iterate through the Huffman codes that are short enough and
-   * fill in all the entries that correspond to bit sequences starting
+   * fill in all the entries that correspond to bit sequences Starting
    * with that code.
    */
 
@@ -385,12 +385,12 @@ static const int extend_offset[16] = /* entry n is (-1 << n) + 1 */
 
 
 /*
- * Check for a restart marker & resynchronize decoder.
+ * Check for a reStart marker & resynchronize decoder.
  * Returns FALSE if must suspend.
  */
 
 LOCAL(boolean)
-process_restart (j_decompress_ptr cinfo)
+process_reStart (j_decompress_ptr cinfo)
 {
   huff_entropy_ptr entropy = (huff_entropy_ptr) cinfo->entropy;
   int ci;
@@ -401,15 +401,15 @@ process_restart (j_decompress_ptr cinfo)
   entropy->bitstate.bits_left = 0;
 
   /* Advance past the RSTn marker */
-  if (! (*cinfo->marker->read_restart_marker) (cinfo))
+  if (! (*cinfo->marker->read_reStart_marker) (cinfo))
     return FALSE;
 
   /* Re-initialize DC predictions to 0 */
   for (ci = 0; ci < cinfo->comps_in_scan; ci++)
     entropy->saved.last_dc_val[ci] = 0;
 
-  /* Reset restart counter */
-  entropy->restarts_to_go = cinfo->restart_interval;
+  /* Reset reStart counter */
+  entropy->reStarts_to_go = cinfo->reStart_interval;
 
   /* Next segment can get another out-of-data warning */
   entropy->bitstate.printed_eod = FALSE;
@@ -446,10 +446,10 @@ decode_mcu (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
   d_derived_tbl * actbl;
   jpeg_component_info * compptr;
 
-  /* Process restart marker if needed; may have to suspend */
-  if (cinfo->restart_interval) {
-    if (entropy->restarts_to_go == 0)
-      if (! process_restart(cinfo))
+  /* Process reStart marker if needed; may have to suspend */
+  if (cinfo->reStart_interval) {
+    if (entropy->reStarts_to_go == 0)
+      if (! process_reStart(cinfo))
 	return FALSE;
   }
 
@@ -543,8 +543,8 @@ skip_ACs:
   BITREAD_SAVE_STATE(cinfo,entropy->bitstate);
   ASSIGN_STATE(entropy->saved, state);
 
-  /* Account for restart interval (no-op if not using restarts) */
-  entropy->restarts_to_go--;
+  /* Account for reStart interval (no-op if not using reStarts) */
+  entropy->reStarts_to_go--;
 
   return TRUE;
 }
@@ -564,7 +564,7 @@ jinit_huff_decoder (j_decompress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				SIZEOF(huff_entropy_decoder));
   cinfo->entropy = (struct jpeg_entropy_decoder *) entropy;
-  entropy->pub.start_pass = start_pass_huff_decoder;
+  entropy->pub.Start_pass = Start_pass_huff_decoder;
   entropy->pub.decode_mcu = decode_mcu;
 
   /* Mark tables unallocated */

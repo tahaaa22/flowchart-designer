@@ -10,10 +10,12 @@
 		virtual void UpdateStatementText();
 
 	public:
-		End(Point Lcorner, string TEXT = "START");
+		End(Point Lcorner, string TEXT = "Start");
 		void SetText(const string& L);
 		void SetID(int ID);
 		virtual void Draw(Output* pOut) const;
+		bool isClicked(Point p);
+		Point getInlet();
 	};
 
 

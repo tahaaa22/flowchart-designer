@@ -23,7 +23,7 @@
 
 /*
  * The decompressor input side (jdinput.c) saves away the appropriate
- * quantization table for each component at the start of the first scan
+ * quantization table for each component at the Start of the first scan
  * involving that component.  (This is necessary in order to correctly
  * decode files that reuse Q-table slots.)
  * When we are ready to make an output pass, the saved Q-table is converted
@@ -86,7 +86,7 @@ typedef union {
  */
 
 METHODDEF(void)
-start_pass (j_decompress_ptr cinfo)
+Start_pass (j_decompress_ptr cinfo)
 {
   my_idct_ptr idct = (my_idct_ptr) cinfo->idct;
   int ci, i;
@@ -254,7 +254,7 @@ jinit_inverse_dct (j_decompress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				SIZEOF(my_idct_controller));
   cinfo->idct = (struct jpeg_inverse_dct *) idct;
-  idct->pub.start_pass = start_pass;
+  idct->pub.Start_pass = Start_pass;
 
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {

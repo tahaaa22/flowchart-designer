@@ -16,6 +16,9 @@ class Writee : public Statement
 		void SetText(const string& L);
 		virtual void Draw(Output* pOut) const;
 		void SetID(int ID);
+		virtual bool isClicked(Point p);
+		Point getInlet();
+		Point getOutlet();
 	};
 
 

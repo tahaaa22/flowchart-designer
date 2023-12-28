@@ -70,7 +70,7 @@ void Output::CreateDesignToolBar() //Draws the Design Menu
 	//To control the order of these images in the menu, 
 	//reoder them in Defs.h ==> enum DrawMenuItem
 	string MenuItemImages[DSN_ITM_CNT];
-	MenuItemImages[ITM_START] = "images\\oval.jpg";
+	MenuItemImages[ITM_Start] = "images\\oval.jpg";
 	MenuItemImages[ITM_END] = "images\\ovalE.jpg";
 	MenuItemImages[ITM_VALUE_ASSIGN] = "images\\Assign.jpg";
 	MenuItemImages[ITM_VAR_ASSIGN] = "images\\variable.jpg";
@@ -256,35 +256,35 @@ void Output::DrawPol(Point left, int width, int height, string text, bool select
 //		Decide the parameters that should be passed to each of them
 
 //TODO: Add DrawConnector function
-void Output::Drawconnector(Point start, Point end, bool selected) {
+void Output::Drawconnector(Point Start, Point end, bool selected) {
 
 	if (selected)
 		pWind->SetPen(UI.HighlightColor, 3);
 	else
 		pWind->SetPen(UI.DrawColor, 3);
-	pWind->DrawLine(start.x, start.y, (start.x+50), start.y);
-	pWind->DrawLine((start.x + 50), start.y, end.x, end.y);
+	pWind->DrawLine(Start.x, Start.y, (Start.x+50), Start.y);
+	pWind->DrawLine((Start.x + 50), Start.y, end.x, end.y);
 	pWind->DrawTriangle(end.x - 4, end.y, end.x + 4, end.y, end.x, end.y + 4);
 }
-void Output::Drawconnectors(Point start, Point end, bool selected) {
+void Output::Drawconnectors(Point Start, Point end, bool selected) {
 
 	if (selected)
 		pWind->SetPen(UI.HighlightColor, 3);
 	else
 		pWind->SetPen(UI.DrawColor, 3);
-	if (start.x == end.x) {
-		pWind->DrawLine(start.x, start.y, end.x, end.y);
+	if (Start.x == end.x) {
+		pWind->DrawLine(Start.x, Start.y, end.x, end.y);
 		pWind->DrawTriangle(end.x - 4, end.y, end.x + 4, end.y, end.x, end.y + 4);
 	}
-	else  if (start.x < end.x) {
-		pWind->DrawLine(start.x, start.y, end.x, end.y);
+	else  if (Start.x < end.x) {
+		pWind->DrawLine(Start.x, Start.y, end.x, end.y);
 		pWind->DrawTriangle(end.x, end.y - 4, end.x, end.y + 4, end.x + 4, end.y);
 	}
-	else if (start.x > end.x) {
-		pWind->DrawLine(start.x, start.y, end.x, end.y);
+	else if (Start.x > end.x) {
+		pWind->DrawLine(Start.x, Start.y, end.x, end.y);
 		pWind->DrawTriangle(end.x, end.y - 4, end.x, end.y + 4, end.x - 4, end.y);
 	}
-	else if (start.x != end.x && start.y != end.y) {
+	else if (Start.x != end.x && Start.y != end.y) {
 
 	}
 

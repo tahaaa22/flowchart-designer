@@ -12,7 +12,7 @@ enum  MODE	//Modes of operation
 // TODO: Add any action type here
 enum ActionType // The actions supported
 {
-	ADD_START, //Add start statement
+	ADD_Start, //Add Start statement
 	ADD_END,   //Add end statement
 	ADD_VALUE_ASSIGN, //Add value assignment statement
 	ADD_VAR_ASSIGN,	  //Add variable assignment statement
@@ -55,7 +55,7 @@ enum DesignMenuItem //The items of the design menu --> THE ORDER MATTERS
 {
 	//Note: Items are ordered here as they appear in menu
 	//If you change the menu items order, change the order here too
-	ITM_START,
+	ITM_Start,
 	ITM_END,
 	ITM_VALUE_ASSIGN,//simple assignment statement
 	ITM_VAR_ASSIGN,

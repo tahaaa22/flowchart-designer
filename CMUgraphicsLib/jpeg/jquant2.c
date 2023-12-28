@@ -214,7 +214,7 @@ typedef my_cquantizer * my_cquantize_ptr;
 /*
  * Prescan some rows of pixels.
  * In this module the prescan simply updates the histogram, which has been
- * initialized to zeroes by start_pass.
+ * initialized to zeroes by Start_pass.
  * An output_buf parameter is required by the method signature, but no data
  * is actually output (in fact the buffer controller is probably passing a
  * NULL pointer).
@@ -579,7 +579,7 @@ select_colors (j_decompress_ptr cinfo, int desired_colors)
  * closest to the cell's center.  This may not be quite the closest entry to
  * the actual input color, but it's almost as good.  A zero in the cache
  * indicates we haven't found the nearest color for that cell yet; the array
- * is cleared to zeroes before starting the mapping pass.  When we find the
+ * is cleared to zeroes before Starting the mapping pass.  When we find the
  * nearest color for a cell, its colormap index plus one is recorded in the
  * cache for future use.  The pass2 scanning routines call fill_inverse_cmap
  * when they need to use an unfilled entry in the cache.
@@ -1170,7 +1170,7 @@ finish_pass2 (j_decompress_ptr cinfo)
  */
 
 METHODDEF(void)
-start_pass_2_quant (j_decompress_ptr cinfo, boolean is_pre_scan)
+Start_pass_2_quant (j_decompress_ptr cinfo, boolean is_pre_scan)
 {
   my_cquantize_ptr cquantize = (my_cquantize_ptr) cinfo->cquantize;
   hist3d histogram = cquantize->histogram;
@@ -1256,7 +1256,7 @@ jinit_2pass_quantizer (j_decompress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				SIZEOF(my_cquantizer));
   cinfo->cquantize = (struct jpeg_color_quantizer *) cquantize;
-  cquantize->pub.start_pass = start_pass_2_quant;
+  cquantize->pub.Start_pass = Start_pass_2_quant;
   cquantize->pub.new_color_map = new_color_map_2_quant;
   cquantize->fserrors = NULL;	/* flag optional arrays not allocated */
   cquantize->error_limiter = NULL;

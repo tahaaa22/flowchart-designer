@@ -36,6 +36,15 @@ void VariableAssign::setRHS(double R)
 	UpdateStatementText();
 }
 
+bool VariableAssign::isClicked(Point p)
+{
+	if (p.y <= LeftCorner.y + UI.ASSGN_HI && p.y >= LeftCorner.y && p.x <= LeftCorner.x + UI.ASSGN_WDTH && p.x >= LeftCorner.x)
+	{
+		return true;
+	}
+
+	return false;
+}
 
 void VariableAssign::Draw(Output* pOut) const
 {
@@ -52,4 +61,13 @@ void VariableAssign::UpdateStatementText()
 	ostringstream T;
 	T << LHS << " = " << RHS;
 	Text = T.str();
+}
+Point VariableAssign::getInlet()
+{
+	return Inlet;
+}
+
+Point VariableAssign::getOutlet()
+{
+	return Outlet;
 }

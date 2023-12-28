@@ -17,7 +17,7 @@ private:
 
 	                        //Note: We don't need to keep track with input connectors
 	                        //      Whenever we want to iterate on all statements of the flowchart
-	                        //      we will begin with start statement then its output connector
+	                        //      we will begin with Start statement then its output connector
 	                        //      then the connector's destination statement and so on (follow the connectors)
 
 	Point Inlet;	//A point where connections enters this statement 
@@ -38,7 +38,6 @@ public:
 	void SetID(int ID);
 	virtual bool isClicked(Point p);
 	virtual void Draw(Output* pOut) const;
-
 };
 
 #endif

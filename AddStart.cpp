@@ -12,7 +12,7 @@ void AddStart::ReadActionParameters()
 	Input* pIn = pManager->GetInput();
 	Output* pOut = pManager->GetOutput();
 	pOut->ClearStatusBar();
-	pOut->PrintMessage("start Statement: Click to add the statement");
+	pOut->PrintMessage("Start Statement: Click to add the statement");
 
 	pIn->GetPointClicked(Position);
 	pOut->ClearStatusBar();

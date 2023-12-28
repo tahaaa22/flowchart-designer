@@ -9,7 +9,7 @@
  * of the JPEG library.  These are the "standard" API routines that are
  * used in the normal full-decompression case.  They are not used by a
  * transcoding-only application.  Note that if an application links in
- * jpeg_start_decompress, it will end up linking in the entire decompressor.
+ * jpeg_Start_decompress, it will end up linking in the entire decompressor.
  * We thus must separate this file from jdapimin.c to avoid linking the
  * whole decompression library into a transcoder.
  */
@@ -36,13 +36,13 @@ LOCAL(boolean) output_pass_setup JPP((j_decompress_ptr cinfo));
 
 GLOBAL(boolean)
 
-jpeg_start_decompress (j_decompress_ptr cinfo)
+jpeg_Start_decompress (j_decompress_ptr cinfo)
 {
   if (cinfo->global_state == DSTATE_READY) {
     /* First call: initialize master control, select active modules */
     jinit_master_decompress(cinfo);
     if (cinfo->buffered_image) {
-      /* No more work here; expecting jpeg_start_output next */
+      /* No more work here; expecting jpeg_Start_output next */
       cinfo->global_state = DSTATE_BUFIMAGE;
       return TRUE;
     }
@@ -86,7 +86,7 @@ jpeg_start_decompress (j_decompress_ptr cinfo)
 
 /*
  * Set up for an output pass, and perform any dummy pass(es) needed.
- * Common subroutine for jpeg_start_decompress and jpeg_start_output.
+ * Common subroutine for jpeg_Start_decompress and jpeg_Start_output.
  * Entry: global_state = DSTATE_PRESCAN only if previously suspended.
  * Exit: If done, returns TRUE and sets global_state for proper output mode.
  *       If suspended, returns FALSE and sets global_state = DSTATE_PRESCAN.
@@ -226,7 +226,7 @@ jpeg_read_raw_data (j_decompress_ptr cinfo, JSAMPIMAGE data,
  */
 
 GLOBAL(boolean)
-jpeg_start_output (j_decompress_ptr cinfo, int scan_number)
+jpeg_Start_output (j_decompress_ptr cinfo, int scan_number)
 {
   if (cinfo->global_state != DSTATE_BUFIMAGE &&
       cinfo->global_state != DSTATE_PRESCAN)

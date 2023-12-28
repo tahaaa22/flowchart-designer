@@ -65,6 +65,7 @@ public:
 	void UpdateInterface() const;	//Redraws all the drawing window
 	void deletestate(Statement* state);
 	void deletecon(Connector* con);
+	void SaveAll(ofstream& out);
 };
 
 #endif

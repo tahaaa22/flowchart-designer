@@ -29,7 +29,7 @@ int jpegload(const char *cpFileName, unsigned short *uspWidth, unsigned short *u
   jpeg_create_decompress(&jdsInfo);
   jpeg_stdio_src(&jdsInfo, fInput);
   jpeg_read_header(&jdsInfo, TRUE);
-  jpeg_start_decompress(&jdsInfo);
+  jpeg_Start_decompress(&jdsInfo);
 
 
   *uspWidth = (unsigned short) jdsInfo.output_width;

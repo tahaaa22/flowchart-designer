@@ -66,7 +66,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new AddRead(this);
 			break;
 
-		case ADD_START:
+		case ADD_Start:
 			pAct = new AddStart(this);
 			break; 
 
@@ -82,7 +82,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case ADD_CONDITION:
-		
+			pAct = new AddConditional(this);
+
+			break;
+
+		case ADD_CONNECTOR:
+			pAct = new AddnewConnector(this);
+			break;
 
 		case SELECT:
 			pAct = new Select(this);

@@ -15,20 +15,35 @@ void Start::SetText(const string& L) {
 void Start::Draw(Output* pOut) const {
 	pOut->DrawStart(LeftCorner, UI.ASSGN_WDTH, UI.ASSGN_HI, Text, Selected);
 }
+bool Start::isClicked(Point p)
+{
+	float radiusX = UI.ASSGN_WDTH / 2.0f;
+	float radiusY = UI.ASSGN_HI / 2.0f;
+	float centerX = LeftCorner.x + radiusX;
+	float centerY = LeftCorner.y + radiusY;
+
+	// Check if the mouse is inside the bounding box
+	if (p.x < LeftCorner.x || p.x > LeftCorner.x + UI.ASSGN_WDTH || p.y < LeftCorner.y || p.y > LeftCorner.y + UI.ASSGN_HI)
+	{
+		return false;
+	}
+
+	// Check if the mouse is inside the ellipse equation
+	float normalizedX = (p.x - centerX) / radiusX;
+	float normalizedY = (p.y - centerY) / radiusY;
+	return (normalizedX * normalizedX + normalizedY * normalizedY) <= 1.0f;
+}
+
+
 void Start::UpdateStatementText()
 {
 	ostringstream T;
 	T << text;
 	Text = T.str();
 }
-bool Start::isClicked(Point p) {
-//	if (p.y <= LeftCorner.y + UI.ASSGN_HI && p.y >= LeftCorner.y && p.x <= left.x + UI.ASSGN_WDTH && p.x >= Left.x)
-//	{
-	//	return true;
-	//}
 
-//	return false;
-	int radx = UI.ASSGN_WDTH / 2;
-	int rady = UI.ASSGN_HI / 2;
-	int cen = radx + rady;
+
+Point Start::getOutlet()
+{
+	return Outlet;
 }

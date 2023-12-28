@@ -177,8 +177,8 @@ format_message (j_common_ptr cinfo, char * buffer)
 
 
 /*
- * Reset error state variables at start of a new image.
- * This is called during compression startup to reset trace/error
+ * Reset error state variables at Start of a new image.
+ * This is called during compression Startup to reset trace/error
  * processing to default state, without losing any application-specific
  * method pointers.  An application might possibly want to override
  * this method if it has additional error processing state.
