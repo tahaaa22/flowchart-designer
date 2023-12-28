@@ -12,6 +12,7 @@ class Start : public Statement
 
 	public:
 		Start(Point Lcorner, string TEXT = "START");
+		virtual bool isClicked(Point p);
 		void SetText(const string & L);
 		virtual void Draw(Output * pOut) const;
 };
