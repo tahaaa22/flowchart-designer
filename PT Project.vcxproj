@@ -289,6 +289,7 @@
     <ClCompile Include="Load.cpp" />
     <ClCompile Include="Read.cpp" />
     <ClCompile Include="Save.cpp" />
+    <ClCompile Include="Select.cpp" />
     <ClCompile Include="Statements\ValueAssign.cpp" />
     <ClCompile Include="Statements\Statement.cpp" />
     <ClCompile Include="main.cpp">
