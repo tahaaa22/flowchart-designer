@@ -15,5 +15,7 @@ class Start : public Statement
 		virtual bool isClicked(Point p);
 		void SetText(const string & L);
 		virtual void Draw(Output * pOut) const;
+		void SetID(int ID);
+		bool isClicked(Point p);
 };
 

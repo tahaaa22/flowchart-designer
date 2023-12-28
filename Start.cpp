@@ -41,5 +41,14 @@ void Start::UpdateStatementText()
 	T << text;
 	Text = T.str();
 }
+bool Start::isClicked(Point p) {
+//	if (p.y <= LeftCorner.y + UI.ASSGN_HI && p.y >= LeftCorner.y && p.x <= left.x + UI.ASSGN_WDTH && p.x >= Left.x)
+//	{
+	//	return true;
+	//}
 
-	
+//	return false;
+	int radx = UI.ASSGN_WDTH / 2;
+	int rady = UI.ASSGN_HI / 2;
+	int cen = radx + rady;
+}

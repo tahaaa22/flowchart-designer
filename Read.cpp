@@ -19,6 +19,9 @@ void Read::SetText(const string& L) {
 void Read::Draw(Output* pOut) const {
 	pOut->DrawPol(LeftCorner, UI.ASSGN_WDTH, UI.ASSGN_HI, Text, Selected);
 }
+void Read::SetID(int Id) {
+	ID = Id++;
+}
 void Read::UpdateStatementText()
 {
 	ostringstream T;

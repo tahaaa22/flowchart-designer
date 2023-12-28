@@ -16,6 +16,9 @@ void End::SetText(const string& L) {
 void End::Draw(Output* pOut) const {
 	pOut->DrawEnd(LeftCorner, UI.ASSGN_WDTH, UI.ASSGN_HI, Text, Selected);
 }
+void End ::SetID(int Id) {
+	ID = Id++;
+}
 void End::UpdateStatementText()
 {
 	ostringstream T;

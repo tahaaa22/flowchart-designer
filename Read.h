@@ -15,6 +15,7 @@ private:
 		Read(Point Lcorner, string TEXT = "Read X");
 		void SetText(const string& L);
 		virtual void Draw(Output* pOut) const;
+		void SetID(int ID);
 
 };
 

@@ -15,7 +15,7 @@ class Writee : public Statement
 		Writee(Point Lcorner, string TEXT = "WRITE X");
 		void SetText(const string& L);
 		virtual void Draw(Output* pOut) const;
-
+		void SetID(int ID);
 	};
 
 
