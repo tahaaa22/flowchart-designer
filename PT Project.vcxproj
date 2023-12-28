@@ -279,6 +279,7 @@
     </ClCompile>
     <ClCompile Include="Conditional.cpp" />
     <ClCompile Include="Connector.cpp" />
+    <ClCompile Include="Copy.cpp" />
     <ClCompile Include="End.cpp" />
     <ClCompile Include="Exit.cpp" />
     <ClCompile Include="GUI\Input.cpp" />
@@ -324,6 +325,7 @@
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="Conditional.h" />
     <ClInclude Include="Connector.h" />
+    <ClInclude Include="Copy.h" />
     <ClInclude Include="DEFS.h" />
     <ClInclude Include="End.h" />
     <ClInclude Include="Exit.h" />
