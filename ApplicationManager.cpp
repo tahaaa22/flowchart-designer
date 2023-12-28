@@ -11,7 +11,8 @@
 #include "GUI\Input.h"
 #include "GUI\Output.h"
 
-
+#include <iostream>
+using namespace std;
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -44,6 +45,18 @@ ActionType ApplicationManager::GetUserAction() const
 {
 	//Ask the input to get the action from the user.
 	return pIn->GetUserAction();		
+}
+
+void ApplicationManager::SaveAll(ofstream& out)
+{
+	out << StatCount;
+	for (int i = 0; i < StatCount; i++) 
+	{
+		StatList[i]->Save(out);
+		cout << endl;
+	}
+
+
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Creates an action and executes it
@@ -246,10 +259,6 @@ void ApplicationManager::deletecon(Connector* con)
 		}
 
 	}
-}
-void ApplicationManager::deletecon(Connector* con)
-{
-
 }
 //Destructor
 ApplicationManager::~ApplicationManager()

@@ -5,6 +5,7 @@
 #include "Select.h"
 #include "Statements\Statement.h"
 #include "AddConnector.h"
+#include <fstream>
 
 class Input;
 class Output;
