@@ -13,7 +13,7 @@ protected:
 	int ID = 0;			//Each Statement has an ID --> must be unique
 	string Text;	//Statement text (e.g.  "X = 5" OR "salary > 3000" and so on)
 	bool Selected;	//true if the statement is selected on the folwchart
-
+	bool isconnected;
 
 	virtual void UpdateStatementText() = 0;	//is called when any part of the stat. is edited	
 
@@ -21,6 +21,8 @@ protected:
 
 public:
 	Statement();
+	void setisconnected(bool s);
+	bool getisconnected();
 	void SetSelected(bool s);
 	bool IsSelected() const;
 	virtual void Draw(Output* pOut) const  = 0 ;	//Draw the statement

@@ -32,9 +32,11 @@ void AddnewConnector::Execute()
 
 	Statement* srcstat= pManager->GetStatement(Position1);
 	Statement* endstat = pManager->GetStatement(Position2);
-
-
+	srcstat->setisconnected(true);
+	endstat->setisconnected(true);
 	Connector* pConn = new Connector(srcstat, endstat);
+	pConn->setDstStat(endstat);
+	pConn->setSrcStat(srcstat);
 	pManager->AddConnector(pConn); // Adds the created statement to application manger's statement list
 }
 

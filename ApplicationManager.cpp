@@ -257,6 +257,31 @@ void ApplicationManager::deletestate(Statement* state)
 
     }
 }
+
+void ApplicationManager::deletestat_conn(Statement* state)
+{
+	for (int i = 0; i < StatCount; i++)
+	{
+		if (StatList[i] == state) {
+			StatList[i] = StatList[StatCount - 1];
+			StatList[StatCount - 1] = nullptr;
+			StatCount--;
+
+		}
+
+	}
+	for (int i = 0; i < ConnCount; i++)
+	{
+		if (ConnList[i]->getSrcStat() == state || ConnList[i]->getDstStat() == state) 
+		{
+			ConnList[i] = ConnList[ConnCount - 1];
+			ConnList[ConnCount - 1] = nullptr;
+			ConnCount--;
+			
+		}
+
+	}
+}
 void ApplicationManager::deletecon(Connector* con)
 {
 	for (int i = 0; i < ConnCount; i++)

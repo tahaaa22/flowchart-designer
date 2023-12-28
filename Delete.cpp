@@ -9,13 +9,14 @@ void Delete::ReadActionParameters()
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	Point s;
-	Point c;
 	pOut->ClearStatusBar();
-	pOut->PrintMessage("select the statement to delete");
+	pOut->PrintMessage("deleting current selected item");
+	pOut->ClearStatusBar();
+	/*pOut->PrintMessage("select the statement to delete");
 	pIn->GetPointClicked(s);
-	pIn->GetPointClicked(c);
 	pstate = pManager->GetStatement(s);
-	pconn = pManager->GetConnector(c);
+	if (!pstate)
+	pconn = pManager->GetConnector(s);*/
 }
 
 void Delete::Execute()
@@ -23,11 +24,24 @@ void Delete::Execute()
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
+	pstate = pManager->GetSelectedStatement();
+	if(!pstate)
+		pconn = pManager->GetSelectedConnector();
+
 	if (pstate != NULL)
 	{
-		pManager->deletestate(pstate);
-		pManager->GetOutput()->PrintMessage("Statement Deleted");
+		
+		if (pstate->getisconnected())
+		{
+			pManager->deletestat_conn(pstate);
+			pManager->GetOutput()->PrintMessage("Statement Deleted");
 
+		}
+		else
+		{
+			pManager->deletestate(pstate);
+			pManager->GetOutput()->PrintMessage("Statement Deleted");
+		}
 	}
 	if (pconn != NULL)
 	{

@@ -13,3 +13,11 @@ void Statement::SetSelected(bool s)
 bool Statement::IsSelected() const
 {	return Selected; }
 
+void Statement::setisconnected(bool connected)
+{
+	isconnected = connected;
+}
+bool Statement::getisconnected()
+{
+	return isconnected;
+}

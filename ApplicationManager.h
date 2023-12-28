@@ -59,7 +59,7 @@ public:
 
 	Statement *GetClipboard() const;	         //Returns the Clipboard
 	void SetClipboard(Statement *pStat);         //Set the Clipboard
-
+	void deletestat_conn(Statement* state);
 	// == Interface Management Functions ==
 	Input *GetInput() const;        //Return pointer to the input
 	Output *GetOutput() const;      //Return pointer to the output
