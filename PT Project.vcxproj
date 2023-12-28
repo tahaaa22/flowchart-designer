@@ -300,7 +300,8 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="Switch.cpp" />
+    <ClCompile Include="Switch_design.cpp" />
+    <ClCompile Include="Switch_sim.cpp" />
     <ClCompile Include="VariableAssign.cpp" />
     <ClCompile Include="Writee.cpp" />
   </ItemGroup>
@@ -356,7 +357,8 @@
     <ClInclude Include="Start.h" />
     <ClInclude Include="Statements\ValueAssign.h" />
     <ClInclude Include="Statements\Statement.h" />
-    <ClInclude Include="Switch.h" />
+    <ClInclude Include="Switch_design.h" />
+    <ClInclude Include="Switch_sim.h" />
     <ClInclude Include="VariableAssign.h" />
     <ClInclude Include="Writee.h" />
   </ItemGroup>

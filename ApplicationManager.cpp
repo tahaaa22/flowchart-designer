@@ -13,6 +13,8 @@
 #include "Delete.h"
 #include "Copy.h"
 #include "Paste.h"
+#include "Switch_design.h"
+#include "Switch_sim.h"
 #include <iostream>
 using namespace std;
 
@@ -54,7 +56,7 @@ void ApplicationManager::SaveAll(ofstream& out)
 	out << StatCount;
 	for (int i = 0; i < StatCount; i++) 
 	{
-		StatList[i]->Save(out);
+		//StatList[i]->Save(out);
 		cout << endl;
 	}
 
@@ -121,6 +123,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case PASTE:
 			pAct = new Paste(this);
 			break;
+
+
+		case SWITCH_DSN_MODE:	//Switch to Design mode
+				pAct = new Switch_design(this);
+				break;
+		case SWITCH_SIM_MODE:	//Switch to simulatiom mode
+				pAct = new Switch_sim(this);
+				break;
+
 
 		case EXIT:
 			///create Exit Action here

@@ -1,12 +1,13 @@
 #pragma once
 #include "Actions/Action.h"
-class Exit : public Action
+class Switch_design : public Action
 {
 private:
 	Point Position;
 public:
-	Exit(ApplicationManager* pAppManager);
+	Switch_design(ApplicationManager* pAppManager);
 	virtual void ReadActionParameters();
 	virtual void Execute();
+
 
 };
