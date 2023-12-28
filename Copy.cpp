@@ -3,21 +3,11 @@
 Copy::Copy(ApplicationManager* pAppManager) :Action(pAppManager)
 {}
 
-void Copy::ReadActionParameters()
-{
-	Output* pOut = pManager->GetOutput();
-	Input* pIn = pManager->GetInput();
-	Point s;
+void Copy::ReadActionParameters() {
 
-	pOut->PrintMessage("copied current selected item");
-
-	
 }
 
- void Copy::Execute()
-{
-	 Output* pOut = pManager->GetOutput();
-	 ReadActionParameters();
+void Copy::Execute() {
 	Statement* statptr = pManager->GetSelectedStatement();
 	pManager->SetClipboard(statptr);
 }

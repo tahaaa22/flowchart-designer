@@ -69,3 +69,4 @@ Point OperatorAssign::getOutlet()
 {
 	return Outlet;
 }
+

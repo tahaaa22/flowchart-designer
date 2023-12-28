@@ -1,5 +1,6 @@
 #include "End.h"
 #include <sstream>
+#include <fstream>
 
 
 End::End(Point Lcorner, string TEXT) {
@@ -57,5 +58,10 @@ void End::UpdateStatementText()
 Point End::getInlet()
 {
 	return Inlet;
+}
+
+
+void End::Save(ofstream& OutFile) {
+	OutFile << "END " << ID << " " << centerX << " " << LeftCorner.y;
 }
 

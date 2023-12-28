@@ -1,5 +1,6 @@
 #include "Writee.h"
 #include <sstream>
+#include <fstream>
 Writee::Writee(Point Lcorner, string TEXT ) {
 	text = TEXT;
 	UpdateStatementText();
@@ -45,4 +46,8 @@ Point Writee::getInlet()
 Point Writee::getOutlet()
 {
 	return Outlet;
+}
+
+void Writee::Save(ofstream& OutFile) {
+	OutFile << "WRITE " << ID << " " << LeftCorner.x << " " << LeftCorner.y << " " << text;
 }

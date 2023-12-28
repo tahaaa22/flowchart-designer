@@ -1,6 +1,7 @@
 #include "VariableAssign.h"
 
 #include <sstream>
+#include <fstream>
 
 using namespace std;
 
@@ -70,4 +71,7 @@ Point VariableAssign::getInlet()
 Point VariableAssign::getOutlet()
 {
 	return Outlet;
+}
+void VariableAssign::Save(ofstream& OutFile) {
+	OutFile << "VAR_ASSIGN " << ID << " " << LeftCorner.x << " " << LeftCorner.y << " " << LHS << " " << RHS;
 }

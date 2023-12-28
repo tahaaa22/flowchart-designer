@@ -1,6 +1,6 @@
 #include "ValueAssign.h"
 #include <sstream>
-
+#include <fstream>
 using namespace std;
 
 ValueAssign::ValueAssign(Point Lcorner, string LeftHS, double RightHS)
@@ -72,4 +72,7 @@ void ValueAssign::UpdateStatementText()
 	ostringstream T;
 	T<<LHS<<" = "<<RHS;	
 	Text = T.str();	 
+}
+void ValueAssign::Save(ofstream& OutFile) {
+	OutFile << "VAL_ASSIGN " << ID << " " << LeftCorner.x << " " << LeftCorner.y << " " << LHS << " " << RHS;
 }

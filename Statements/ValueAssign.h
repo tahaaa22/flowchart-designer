@@ -38,6 +38,7 @@ public:
 	void SetID(int ID);
 	virtual bool isClicked(Point p);
 	virtual void Draw(Output* pOut) const;
+	void Save(ofstream& OutFile);
 };
 
 #endif

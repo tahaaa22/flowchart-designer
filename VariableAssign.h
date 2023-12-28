@@ -35,4 +35,5 @@ public:
 	bool isClicked(Point p);
 	Point getInlet();
 	Point getOutlet();
+	void Save(ofstream& OutFile);
 }; 

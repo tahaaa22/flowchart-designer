@@ -1,5 +1,6 @@
 #include "Read.h"
 #include <sstream>
+#include <fstream>
 Read::Read(Point Lcorner, string TEXT) {
 	text = TEXT;
 	UpdateStatementText();
@@ -45,4 +46,7 @@ Point Read::getInlet()
 Point Read::getOutlet()
 {
 	return Outlet;
+}
+void Read::Save(ofstream& OutFile) {
+	OutFile << "READ " << ID << " " << LeftCorner.x << " " << LeftCorner.y << " " << text;
 }

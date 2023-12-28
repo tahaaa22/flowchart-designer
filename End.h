@@ -16,6 +16,7 @@
 		virtual void Draw(Output* pOut) const;
 		bool isClicked(Point p);
 		Point getInlet();
+		void Save(ofstream& OutFile);
 	};
 
 

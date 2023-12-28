@@ -15,6 +15,10 @@
 #include "Paste.h"
 #include <iostream>
 using namespace std;
+#include "Save.h"
+#include <iostream>
+#include <fstream>
+using namespace std;
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -120,6 +124,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case PASTE:
 			pAct = new Paste(this);
+			break;
+
+
+
+		case SAVE:
+			pAct = new Save(this);
+
 			break;
 
 		case EXIT:
@@ -315,3 +326,13 @@ ApplicationManager::~ApplicationManager()
 	delete pOut;
 	
 }
+
+void ApplicationManager::SaveAll(ofstream& out) {
+	out << StatCount;
+	for (int i = 0; i < StatCount; i++) {
+		StatList[i]->Save(out);
+		cout << endl;
+	}
+
+}
+
