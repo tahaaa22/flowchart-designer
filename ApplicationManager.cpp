@@ -82,7 +82,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case ADD_CONDITION:
-			///create AddCondition Action here
+			pAct = new AddConditional(this);
 
 			break;
 

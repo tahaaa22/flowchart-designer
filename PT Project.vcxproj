@@ -289,6 +289,7 @@
     <ClCompile Include="HelperFn.cpp" />
     <ClCompile Include="Load.cpp" />
     <ClCompile Include="OperatorAssign.cpp" />
+    <ClCompile Include="Paste.cpp" />
     <ClCompile Include="Read.cpp" />
     <ClCompile Include="Save.cpp" />
     <ClCompile Include="Select.cpp" />
@@ -348,6 +349,7 @@
     <ClInclude Include="HelperFn.h" />
     <ClInclude Include="Load.h" />
     <ClInclude Include="OperatorAssign.h" />
+    <ClInclude Include="Paste.h" />
     <ClInclude Include="Read.h" />
     <ClInclude Include="Save.h" />
     <ClInclude Include="Select.h" />
