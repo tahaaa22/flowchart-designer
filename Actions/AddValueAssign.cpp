@@ -22,7 +22,7 @@ void AddValueAssign::ReadActionParameters()
 	pIn->GetPointClicked(Position);
 	pOut->ClearStatusBar();
 
-	pOut->PrintMessage("enter a value for left hand side ");
+	pOut->PrintMessage("enter a variable for left hand side ");
 	LHS = pIn->GetValue(pOut);
 	pOut->ClearStatusBar();
 
@@ -45,7 +45,8 @@ void AddValueAssign::Execute()
 	Corner.y = Position.y;
 
 	ValueAssign* pAssign = new ValueAssign(Corner, "", 0);
-
+	pAssign->setLHS(LHS);
+	pAssign->setRHS(RHS);
 
 	pManager->AddStatement(pAssign);
 

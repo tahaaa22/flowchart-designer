@@ -14,8 +14,9 @@ void AddRead::ReadActionParameters()
 	Output* pOut = pManager->GetOutput();
 
 	pOut->PrintMessage("Read Statement: Click to add the statement");
-
 	pIn->GetPointClicked(Position);
+	pOut->PrintMessage("enter the text");
+	text = pIn->GetString(pOut);
 	pOut->ClearStatusBar();
 }
 void AddRead::Execute()
@@ -29,6 +30,7 @@ void AddRead::Execute()
 	Corner.y = Position.y;
 
 	Read* pRead = new Read(Corner, "Read r");
+	pRead->SetText(text);
 	//TODO: should set the LHS and RHS of pAssign statement
 	//      with the data members set and validated before in ReadActionParameters()
 
