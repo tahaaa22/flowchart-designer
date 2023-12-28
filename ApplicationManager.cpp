@@ -11,6 +11,8 @@
 #include "GUI\Input.h"
 #include "GUI\Output.h"
 #include "Delete.h"
+#include "Copy.h"
+#include "Paste.h"
 #include <iostream>
 using namespace std;
 
@@ -109,7 +111,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case SELECT:
 			pAct = new Select(this);
+			break;
 
+		case COPY:
+			pAct = new Copy(this);
+			break;
+
+
+		case PASTE:
+			pAct = new Paste(this);
 			break;
 
 		case EXIT:

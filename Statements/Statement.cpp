@@ -7,6 +7,16 @@ Statement::Statement()
 	Selected = false;		
 }
 
+void Statement::setleftcorner(Point p)
+{
+	LeftCorner = p;
+}
+
+Point Statement::getleftcorner()
+{
+	return LeftCorner;
+}
+
 void Statement::SetSelected(bool s)
 {	Selected = s; }
 
