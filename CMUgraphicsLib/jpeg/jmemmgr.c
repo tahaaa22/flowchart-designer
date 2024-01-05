@@ -51,7 +51,7 @@ extern char * getenv JPP((const char * name));
 
 
 /*
- * Many machines require storage alignment: longs must start on 4-byte
+ * Many machines require storage alignment: longs must Start on 4-byte
  * boundaries, doubles on 8-byte boundaries, etc.  On such machines, malloc()
  * always returns pointers that are multiples of the worst-case alignment
  * requirement, and we had better do so too.
@@ -154,7 +154,7 @@ struct jvirt_sarray_control {
   JDIMENSION maxaccess;		/* max rows accessed by access_virt_sarray */
   JDIMENSION rows_in_mem;	/* height of memory buffer */
   JDIMENSION rowsperchunk;	/* allocation chunk size in mem_buffer */
-  JDIMENSION cur_start_row;	/* first logical row # in the buffer */
+  JDIMENSION cur_Start_row;	/* first logical row # in the buffer */
   JDIMENSION first_undef_row;	/* row # of first uninitialized row */
   boolean pre_zero;		/* pre-zero mode requested? */
   boolean dirty;		/* do current buffer contents need written? */
@@ -170,7 +170,7 @@ struct jvirt_barray_control {
   JDIMENSION maxaccess;		/* max rows accessed by access_virt_barray */
   JDIMENSION rows_in_mem;	/* height of memory buffer */
   JDIMENSION rowsperchunk;	/* allocation chunk size in mem_buffer */
-  JDIMENSION cur_start_row;	/* first logical row # in the buffer */
+  JDIMENSION cur_Start_row;	/* first logical row # in the buffer */
   JDIMENSION first_undef_row;	/* row # of first uninitialized row */
   boolean pre_zero;		/* pre-zero mode requested? */
   boolean dirty;		/* do current buffer contents need written? */
@@ -510,7 +510,7 @@ alloc_barray (j_common_ptr cinfo, int pool_id,
  * any newly accessed rows, if pre-zeroing was requested.
  *
  * In current usage, the access requests are usually for nonoverlapping
- * strips; that is, successive access start_row numbers differ by exactly
+ * strips; that is, successive access Start_row numbers differ by exactly
  * num_rows = maxaccess.  This means we can get good performance with simple
  * buffer dump/reload logic, by making the in-memory buffer be a multiple
  * of the access height; then there will never be accesses across bufferload
@@ -654,7 +654,7 @@ realize_virt_arrays (j_common_ptr cinfo)
       sptr->mem_buffer = alloc_sarray(cinfo, JPOOL_IMAGE,
 				      sptr->samplesperrow, sptr->rows_in_mem);
       sptr->rowsperchunk = mem->last_rowsperchunk;
-      sptr->cur_start_row = 0;
+      sptr->cur_Start_row = 0;
       sptr->first_undef_row = 0;
       sptr->dirty = FALSE;
     }
@@ -678,7 +678,7 @@ realize_virt_arrays (j_common_ptr cinfo)
       bptr->mem_buffer = alloc_barray(cinfo, JPOOL_IMAGE,
 				      bptr->blocksperrow, bptr->rows_in_mem);
       bptr->rowsperchunk = mem->last_rowsperchunk;
-      bptr->cur_start_row = 0;
+      bptr->cur_Start_row = 0;
       bptr->first_undef_row = 0;
       bptr->dirty = FALSE;
     }
@@ -693,13 +693,13 @@ do_sarray_io (j_common_ptr cinfo, jvirt_sarray_ptr ptr, boolean writing)
   long bytesperrow, file_offset, byte_count, rows, thisrow, i;
 
   bytesperrow = (long) (ptr->samplesperrow * SIZEOF(JSAMPLE));
-  file_offset = (long) (ptr->cur_start_row * bytesperrow);
+  file_offset = (long) (ptr->cur_Start_row * bytesperrow);
   /* Loop to read or write each allocation chunk in mem_buffer */
   for (i = 0; i < (long) ptr->rows_in_mem; i += (long) ptr->rowsperchunk) {
     /* One chunk, but check for short chunk at end of buffer */
     rows = MIN((long) ptr->rowsperchunk, (long) ptr->rows_in_mem - i);
     /* Transfer no more than is currently defined */
-    thisrow = (long) ptr->cur_start_row + i;
+    thisrow = (long) ptr->cur_Start_row + i;
     rows = MIN(rows, (long) ptr->first_undef_row - thisrow);
     /* Transfer no more than fits in file */
     rows = MIN(rows, (long) ptr->rows_in_array - thisrow);
@@ -726,13 +726,13 @@ do_barray_io (j_common_ptr cinfo, jvirt_barray_ptr ptr, boolean writing)
   long bytesperrow, file_offset, byte_count, rows, thisrow, i;
 
   bytesperrow = (long) (ptr->blocksperrow * SIZEOF(JBLOCK));
-  file_offset = (long) (ptr->cur_start_row * bytesperrow);
+  file_offset = (long) (ptr->cur_Start_row * bytesperrow);
   /* Loop to read or write each allocation chunk in mem_buffer */
   for (i = 0; i < (long) ptr->rows_in_mem; i += (long) ptr->rowsperchunk) {
     /* One chunk, but check for short chunk at end of buffer */
     rows = MIN((long) ptr->rowsperchunk, (long) ptr->rows_in_mem - i);
     /* Transfer no more than is currently defined */
-    thisrow = (long) ptr->cur_start_row + i;
+    thisrow = (long) ptr->cur_Start_row + i;
     rows = MIN(rows, (long) ptr->first_undef_row - thisrow);
     /* Transfer no more than fits in file */
     rows = MIN(rows, (long) ptr->rows_in_array - thisrow);
@@ -754,13 +754,13 @@ do_barray_io (j_common_ptr cinfo, jvirt_barray_ptr ptr, boolean writing)
 
 METHODDEF(JSAMPARRAY)
 access_virt_sarray (j_common_ptr cinfo, jvirt_sarray_ptr ptr,
-		    JDIMENSION start_row, JDIMENSION num_rows,
+		    JDIMENSION Start_row, JDIMENSION num_rows,
 		    boolean writable)
-/* Access the part of a virtual sample array starting at start_row */
+/* Access the part of a virtual sample array Starting at Start_row */
 /* and extending for num_rows rows.  writable is true if  */
 /* caller intends to modify the accessed area. */
 {
-  JDIMENSION end_row = start_row + num_rows;
+  JDIMENSION end_row = Start_row + num_rows;
   JDIMENSION undef_row;
 
   /* debugging check */
@@ -769,8 +769,8 @@ access_virt_sarray (j_common_ptr cinfo, jvirt_sarray_ptr ptr,
     ERREXIT(cinfo, JERR_BAD_VIRTUAL_ACCESS);
 
   /* Make the desired part of the virtual array accessible */
-  if (start_row < ptr->cur_start_row ||
-      end_row > ptr->cur_start_row+ptr->rows_in_mem) {
+  if (Start_row < ptr->cur_Start_row ||
+      end_row > ptr->cur_Start_row+ptr->rows_in_mem) {
     if (! ptr->b_s_open)
       ERREXIT(cinfo, JERR_VIRTUAL_BUG);
     /* Flush old buffer contents if necessary */
@@ -780,13 +780,13 @@ access_virt_sarray (j_common_ptr cinfo, jvirt_sarray_ptr ptr,
     }
     /* Decide what part of virtual array to access.
      * Algorithm: if target address > current window, assume forward scan,
-     * load starting at target address.  If target address < current window,
+     * load Starting at target address.  If target address < current window,
      * assume backward scan, load so that target area is top of window.
      * Note that when switching from forward write to forward read, will have
-     * start_row = 0, so the limiting case applies and we load from 0 anyway.
+     * Start_row = 0, so the limiting case applies and we load from 0 anyway.
      */
-    if (start_row > ptr->cur_start_row) {
-      ptr->cur_start_row = start_row;
+    if (Start_row > ptr->cur_Start_row) {
+      ptr->cur_Start_row = Start_row;
     } else {
       /* use long arithmetic here to avoid overflow & unsigned problems */
       long ltemp;
@@ -794,7 +794,7 @@ access_virt_sarray (j_common_ptr cinfo, jvirt_sarray_ptr ptr,
       ltemp = (long) end_row - (long) ptr->rows_in_mem;
       if (ltemp < 0)
 	ltemp = 0;		/* don't fall off front end of file */
-      ptr->cur_start_row = (JDIMENSION) ltemp;
+      ptr->cur_Start_row = (JDIMENSION) ltemp;
     }
     /* Read in the selected part of the array.
      * During the initial write pass, we will do no actual read
@@ -807,10 +807,10 @@ access_virt_sarray (j_common_ptr cinfo, jvirt_sarray_ptr ptr,
    * that the caller is about to access, not the entire in-memory array.
    */
   if (ptr->first_undef_row < end_row) {
-    if (ptr->first_undef_row < start_row) {
+    if (ptr->first_undef_row < Start_row) {
       if (writable)		/* writer skipped over a section of array */
 	ERREXIT(cinfo, JERR_BAD_VIRTUAL_ACCESS);
-      undef_row = start_row;	/* but reader is allowed to read ahead */
+      undef_row = Start_row;	/* but reader is allowed to read ahead */
     } else {
       undef_row = ptr->first_undef_row;
     }
@@ -818,8 +818,8 @@ access_virt_sarray (j_common_ptr cinfo, jvirt_sarray_ptr ptr,
       ptr->first_undef_row = end_row;
     if (ptr->pre_zero) {
       size_t bytesperrow = (size_t) ptr->samplesperrow * SIZEOF(JSAMPLE);
-      undef_row -= ptr->cur_start_row; /* make indexes relative to buffer */
-      end_row -= ptr->cur_start_row;
+      undef_row -= ptr->cur_Start_row; /* make indexes relative to buffer */
+      end_row -= ptr->cur_Start_row;
       while (undef_row < end_row) {
 	jzero_far((void FAR *) ptr->mem_buffer[undef_row], bytesperrow);
 	undef_row++;
@@ -833,19 +833,19 @@ access_virt_sarray (j_common_ptr cinfo, jvirt_sarray_ptr ptr,
   if (writable)
     ptr->dirty = TRUE;
   /* Return address of proper part of the buffer */
-  return ptr->mem_buffer + (start_row - ptr->cur_start_row);
+  return ptr->mem_buffer + (Start_row - ptr->cur_Start_row);
 }
 
 
 METHODDEF(JBLOCKARRAY)
 access_virt_barray (j_common_ptr cinfo, jvirt_barray_ptr ptr,
-		    JDIMENSION start_row, JDIMENSION num_rows,
+		    JDIMENSION Start_row, JDIMENSION num_rows,
 		    boolean writable)
-/* Access the part of a virtual block array starting at start_row */
+/* Access the part of a virtual block array Starting at Start_row */
 /* and extending for num_rows rows.  writable is true if  */
 /* caller intends to modify the accessed area. */
 {
-  JDIMENSION end_row = start_row + num_rows;
+  JDIMENSION end_row = Start_row + num_rows;
   JDIMENSION undef_row;
 
   /* debugging check */
@@ -854,8 +854,8 @@ access_virt_barray (j_common_ptr cinfo, jvirt_barray_ptr ptr,
     ERREXIT(cinfo, JERR_BAD_VIRTUAL_ACCESS);
 
   /* Make the desired part of the virtual array accessible */
-  if (start_row < ptr->cur_start_row ||
-      end_row > ptr->cur_start_row+ptr->rows_in_mem) {
+  if (Start_row < ptr->cur_Start_row ||
+      end_row > ptr->cur_Start_row+ptr->rows_in_mem) {
     if (! ptr->b_s_open)
       ERREXIT(cinfo, JERR_VIRTUAL_BUG);
     /* Flush old buffer contents if necessary */
@@ -865,13 +865,13 @@ access_virt_barray (j_common_ptr cinfo, jvirt_barray_ptr ptr,
     }
     /* Decide what part of virtual array to access.
      * Algorithm: if target address > current window, assume forward scan,
-     * load starting at target address.  If target address < current window,
+     * load Starting at target address.  If target address < current window,
      * assume backward scan, load so that target area is top of window.
      * Note that when switching from forward write to forward read, will have
-     * start_row = 0, so the limiting case applies and we load from 0 anyway.
+     * Start_row = 0, so the limiting case applies and we load from 0 anyway.
      */
-    if (start_row > ptr->cur_start_row) {
-      ptr->cur_start_row = start_row;
+    if (Start_row > ptr->cur_Start_row) {
+      ptr->cur_Start_row = Start_row;
     } else {
       /* use long arithmetic here to avoid overflow & unsigned problems */
       long ltemp;
@@ -879,7 +879,7 @@ access_virt_barray (j_common_ptr cinfo, jvirt_barray_ptr ptr,
       ltemp = (long) end_row - (long) ptr->rows_in_mem;
       if (ltemp < 0)
 	ltemp = 0;		/* don't fall off front end of file */
-      ptr->cur_start_row = (JDIMENSION) ltemp;
+      ptr->cur_Start_row = (JDIMENSION) ltemp;
     }
     /* Read in the selected part of the array.
      * During the initial write pass, we will do no actual read
@@ -892,10 +892,10 @@ access_virt_barray (j_common_ptr cinfo, jvirt_barray_ptr ptr,
    * that the caller is about to access, not the entire in-memory array.
    */
   if (ptr->first_undef_row < end_row) {
-    if (ptr->first_undef_row < start_row) {
+    if (ptr->first_undef_row < Start_row) {
       if (writable)		/* writer skipped over a section of array */
 	ERREXIT(cinfo, JERR_BAD_VIRTUAL_ACCESS);
-      undef_row = start_row;	/* but reader is allowed to read ahead */
+      undef_row = Start_row;	/* but reader is allowed to read ahead */
     } else {
       undef_row = ptr->first_undef_row;
     }
@@ -903,8 +903,8 @@ access_virt_barray (j_common_ptr cinfo, jvirt_barray_ptr ptr,
       ptr->first_undef_row = end_row;
     if (ptr->pre_zero) {
       size_t bytesperrow = (size_t) ptr->blocksperrow * SIZEOF(JBLOCK);
-      undef_row -= ptr->cur_start_row; /* make indexes relative to buffer */
-      end_row -= ptr->cur_start_row;
+      undef_row -= ptr->cur_Start_row; /* make indexes relative to buffer */
+      end_row -= ptr->cur_Start_row;
       while (undef_row < end_row) {
 	jzero_far((void FAR *) ptr->mem_buffer[undef_row], bytesperrow);
 	undef_row++;
@@ -918,7 +918,7 @@ access_virt_barray (j_common_ptr cinfo, jvirt_barray_ptr ptr,
   if (writable)
     ptr->dirty = TRUE;
   /* Return address of proper part of the buffer */
-  return ptr->mem_buffer + (start_row - ptr->cur_start_row);
+  return ptr->mem_buffer + (Start_row - ptr->cur_Start_row);
 }
 
 

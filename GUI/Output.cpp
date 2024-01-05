@@ -7,7 +7,7 @@ Output::Output()
 	UI.width = 1200;
 	UI.height = 620;
 	UI.wx = 15;
-	UI.wy =15;
+	UI.wy = 15;
 
 	UI.AppMode = DESIGN;	//Design Mode is the default mode
 
@@ -27,8 +27,8 @@ Output::Output()
 	pWind = CreateWind(UI.width, UI.height, UI.wx, UI.wy);
 	//Change the title
 	pWind->ChangeTitle("Programming Techniques Project");
-	
-	pWind->SetPen(RED,3);
+
+	pWind->SetPen(RED, 3);
 	CreateDesignToolBar();
 	CreateStatusBar();
 	ClearDrawArea();
@@ -53,24 +53,24 @@ window* Output::CreateWind(int wd, int h, int x, int y)
 //////////////////////////////////////////////////////////////////////////////////////////
 void Output::CreateStatusBar()
 {
-	pWind->DrawLine(0, UI.height-UI.StatusBarHeight, UI.width, UI.height-UI.StatusBarHeight);
+	pWind->DrawLine(0, UI.height - UI.StatusBarHeight, UI.width, UI.height - UI.StatusBarHeight);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 //TODO: Complete this function
 void Output::CreateDesignToolBar() //Draws the Design Menu
 {
 	UI.AppMode = DESIGN;	//Design Mode
-	
+
 	//fill the tool bar 
-		
+
 	//You can draw the tool bar icons in any way you want.
 	//Below is one possible way
-	
+
 	//First prepare List of images for each menu item
 	//To control the order of these images in the menu, 
 	//reoder them in Defs.h ==> enum DrawMenuItem
 	string MenuItemImages[DSN_ITM_CNT];
-	MenuItemImages[ITM_START] = "images\\oval.jpg";
+	MenuItemImages[ITM_Start] = "images\\oval.jpg";
 	MenuItemImages[ITM_END] = "images\\ovalE.jpg";
 	MenuItemImages[ITM_VALUE_ASSIGN] = "images\\Assign.jpg";
 	MenuItemImages[ITM_VAR_ASSIGN] = "images\\variable.jpg";
@@ -78,7 +78,7 @@ void Output::CreateDesignToolBar() //Draws the Design Menu
 	MenuItemImages[ITM_COND] = "images\\Condition.jpg";
 	MenuItemImages[ITM_READ] = "images\\Read.jpg";
 	MenuItemImages[ITM_WRITE] = "images\\write.jpg";
-	MenuItemImages[ITM_CONNECTOR] = "images\\arrow.jpg"; 
+	MenuItemImages[ITM_CONNECTOR] = "images\\arrow.jpg";
 	MenuItemImages[ITM_SELECT] = "images\\select.jpg";
 	MenuItemImages[ITM_SAVE] = "images\\save 1.jpg";
 	MenuItemImages[ITM_CUT] = "images\\cut.jpg";
@@ -93,19 +93,19 @@ void Output::CreateDesignToolBar() //Draws the Design Menu
 
 
 	//Draw menu item one image at a time
-	for(int i=0; i<DSN_ITM_CNT; i++)
-		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+	for (int i = 0; i < DSN_ITM_CNT; i++)
+		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
 
 	//Draw a line under the toolbar
 	pWind->SetPen(RED, 2);
-	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);	
+	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 //TODO: Complete this function
 void Output::CreateSimulationToolBar() //Draws the Simulation Menu
 {
-	
+
 	UI.AppMode = SIMULATION;	//Simulation Mode
 	string Images[SIM_ITM_CNT];
 	Images[ITM_VALIDATE] = "images\\validate.jpg";
@@ -117,7 +117,7 @@ void Output::CreateSimulationToolBar() //Draws the Simulation Menu
 	Images[ITM_WHITE4] = "images\\WHITE2.jpg";
 	Images[ITM_WHITE5] = "images\\WHITE2.jpg";
 	Images[ITM_WHITE6] = "images\\WHITE2.jpg";
-	Images[ITM_WHITE7] = "images\\WHITE2.jpg"; 
+	Images[ITM_WHITE7] = "images\\WHITE2.jpg";
 	Images[ITM_WHITE8] = "images\\WHITE2.jpg";
 	Images[ITM_WHITE9] = "images\\WHITE2.jpg";
 	Images[ITM_WHITE10] = "images\\WHITE2.jpg";
@@ -164,10 +164,10 @@ void Output::ClearOutputBar()
 void Output::PrintMessage(string msg)	//Prints a message on status bar
 {
 	ClearStatusBar();	//First clear the status bar
-	
+
 	pWind->SetPen(UI.MsgColor, 50);
-	pWind->SetFont(20, BOLD , BY_NAME, "Arial");   
-	pWind->DrawString(10, UI.height - (int) (UI.StatusBarHeight/1.5), msg);
+	pWind->SetFont(20, BOLD, BY_NAME, "Arial");
+	pWind->DrawString(10, UI.height - (int)(UI.StatusBarHeight / 1.5), msg);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 void Output::DrawString(const int iX, const int iY, const string Text)
@@ -188,18 +188,18 @@ void Output::DrawDouble(const int iX, const int iY, const double dNumber) {
 //Draw assignment statement and write the "Text" on it
 void Output::DrawAssign(Point Left, int width, int height, string Text, bool Selected)
 {
-	if(Selected)	//if stat is selected, it should be highlighted
-		pWind->SetPen(UI.HighlightColor,3);	//use highlighting color
+	if (Selected)	//if stat is selected, it should be highlighted
+		pWind->SetPen(UI.HighlightColor, 3);	//use highlighting color
 	else
-		pWind->SetPen(UI.DrawColor,3);	//use normal color
+		pWind->SetPen(UI.DrawColor, 3);	//use normal color
 
 	//Draw the statement block rectangle
 	pWind->DrawRectangle(Left.x, Left.y, Left.x + width, Left.y + height);
-	
-		
+
+
 	//Write statement text
 	pWind->SetPen(BLACK, 2);
-	pWind->DrawString(Left.x+width/4, Left.y + height/4, Text);
+	pWind->DrawString(Left.x + width / 4, Left.y + height / 4, Text);
 }
 void Output::DrawStart(Point left, int width, int height, string Text, bool selected)
 {
@@ -256,39 +256,39 @@ void Output::DrawPol(Point left, int width, int height, string text, bool select
 //		Decide the parameters that should be passed to each of them
 
 //TODO: Add DrawConnector function
-void Output::Drawconnector(Point start, Point Mid, Point end, bool selected) {
+void Output::Drawconnector(Point Start, Point end, bool selected) {
 
 	if (selected)
 		pWind->SetPen(UI.HighlightColor, 3);
 	else
 		pWind->SetPen(UI.DrawColor, 3);
-	pWind->DrawLine(start.x, start.y, Mid.x, Mid.y);
-	pWind->DrawLine(Mid.x, Mid .y, end.x, end.y);
+	pWind->DrawLine(Start.x, Start.y, (Start.x+50), Start.y);
+	pWind->DrawLine((Start.x + 50), Start.y, end.x, end.y);
 	pWind->DrawTriangle(end.x - 4, end.y, end.x + 4, end.y, end.x, end.y + 4);
 }
-void Output::Drawconnectors(Point start, Point end, bool selected) {
+void Output::Drawconnectors(Point Start, Point end, bool selected) {
 
 	if (selected)
 		pWind->SetPen(UI.HighlightColor, 3);
 	else
-		pWind->SetPen(UI.DrawColor, 3); 
-	if (start.x == end.x) {
-		pWind->DrawLine(start.x, start.y, end.x, end.y);
+		pWind->SetPen(UI.DrawColor, 3);
+	if (Start.x == end.x) {
+		pWind->DrawLine(Start.x, Start.y, end.x, end.y);
 		pWind->DrawTriangle(end.x - 4, end.y, end.x + 4, end.y, end.x, end.y + 4);
 	}
-	else  if (start.x < end.x) {
-		pWind->DrawLine(start.x, start.y, end.x, end.y);
+	else  if (Start.x < end.x) {
+		pWind->DrawLine(Start.x, Start.y, end.x, end.y);
 		pWind->DrawTriangle(end.x, end.y - 4, end.x, end.y + 4, end.x + 4, end.y);
 	}
-	else if (start.x > end.x) {
-		pWind->DrawLine(start.x, start.y, end.x, end.y);
+	else if (Start.x > end.x) {
+		pWind->DrawLine(Start.x, Start.y, end.x, end.y);
 		pWind->DrawTriangle(end.x, end.y - 4, end.x, end.y + 4, end.x - 4, end.y);
 	}
-	else if (start.x != end.x && start.y != end.y) {
+	else if (Start.x != end.x && Start.y != end.y) {
 
 	}
-	
-	
+
+
 	pWind->SetPen(BLACK, 2);
 }
 

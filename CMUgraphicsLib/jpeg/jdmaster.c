@@ -234,7 +234,7 @@ jpeg_calc_output_dimensions (j_decompress_ptr cinfo)
  * Negative inputs select values from the upper half of the table after
  * masking.
  *
- * We can save some space by overlapping the start of the post-IDCT table
+ * We can save some space by overlapping the Start of the post-IDCT table
  * with the simpler range limiting table.  The post-IDCT table begins at
  * sample_range_limit + CENTERJSAMPLE.
  *
@@ -259,7 +259,7 @@ prepare_range_limit_table (j_decompress_ptr cinfo)
   /* Main part of "simple" table: limit[x] = x */
   for (i = 0; i <= MAXJSAMPLE; i++)
     table[i] = (JSAMPLE) i;
-  table += CENTERJSAMPLE;	/* Point to where post-IDCT table starts */
+  table += CENTERJSAMPLE;	/* Point to where post-IDCT table Starts */
   /* End of simple table, rest of first half of post-IDCT table */
   for (i = CENTERJSAMPLE; i < 2*(MAXJSAMPLE+1); i++)
     table[i] = MAXJSAMPLE;
@@ -273,7 +273,7 @@ prepare_range_limit_table (j_decompress_ptr cinfo)
 
 /*
  * Master selection of decompression modules.
- * This is done once at jpeg_start_decompress time.  We determine
+ * This is done once at jpeg_Start_decompress time.  We determine
  * which modules will be used and give them appropriate initialization calls.
  * We also initialize the decompressor input side to begin consuming data.
  *
@@ -349,7 +349,7 @@ master_selection (j_decompress_ptr cinfo)
 #endif
     }
     /* If both quantizers are initialized, the 2-pass one is left active;
-     * this is necessary for starting with quantization to an external map.
+     * this is necessary for Starting with quantization to an external map.
      */
   }
 
@@ -394,10 +394,10 @@ master_selection (j_decompress_ptr cinfo)
   (*cinfo->mem->realize_virt_arrays) ((j_common_ptr) cinfo);
 
   /* Initialize input side of decompressor to consume first scan. */
-  (*cinfo->inputctl->start_input_pass) (cinfo);
+  (*cinfo->inputctl->Start_input_pass) (cinfo);
 
 #ifdef D_MULTISCAN_FILES_SUPPORTED
-  /* If jpeg_start_decompress will read the whole file, initialize
+  /* If jpeg_Start_decompress will read the whole file, initialize
    * progress monitoring appropriately.  The input step is counted
    * as one pass.
    */
@@ -427,7 +427,7 @@ master_selection (j_decompress_ptr cinfo)
  * Per-pass setup.
  * This is called at the beginning of each output pass.  We determine which
  * modules will be active during this pass and give them appropriate
- * start_pass calls.  We also set is_dummy_pass to indicate whether this
+ * Start_pass calls.  We also set is_dummy_pass to indicate whether this
  * is a "real" output pass or a dummy pass for color quantization.
  * (In the latter case, jdapi.c will crank the pass to completion.)
  */
@@ -441,9 +441,9 @@ prepare_for_output_pass (j_decompress_ptr cinfo)
 #ifdef QUANT_2PASS_SUPPORTED
     /* Final pass of 2-pass quantization */
     master->pub.is_dummy_pass = FALSE;
-    (*cinfo->cquantize->start_pass) (cinfo, FALSE);
-    (*cinfo->post->start_pass) (cinfo, JBUF_CRANK_DEST);
-    (*cinfo->main->start_pass) (cinfo, JBUF_CRANK_DEST);
+    (*cinfo->cquantize->Start_pass) (cinfo, FALSE);
+    (*cinfo->post->Start_pass) (cinfo, JBUF_CRANK_DEST);
+    (*cinfo->main->Start_pass) (cinfo, JBUF_CRANK_DEST);
 #else
     ERREXIT(cinfo, JERR_NOT_COMPILED);
 #endif /* QUANT_2PASS_SUPPORTED */
@@ -459,17 +459,17 @@ prepare_for_output_pass (j_decompress_ptr cinfo)
 	ERREXIT(cinfo, JERR_MODE_CHANGE);
       }
     }
-    (*cinfo->idct->start_pass) (cinfo);
-    (*cinfo->coef->start_output_pass) (cinfo);
+    (*cinfo->idct->Start_pass) (cinfo);
+    (*cinfo->coef->Start_output_pass) (cinfo);
     if (! cinfo->raw_data_out) {
       if (! master->using_merged_upsample)
-	(*cinfo->cconvert->start_pass) (cinfo);
-      (*cinfo->upsample->start_pass) (cinfo);
+	(*cinfo->cconvert->Start_pass) (cinfo);
+      (*cinfo->upsample->Start_pass) (cinfo);
       if (cinfo->quantize_colors)
-	(*cinfo->cquantize->start_pass) (cinfo, master->pub.is_dummy_pass);
-      (*cinfo->post->start_pass) (cinfo,
+	(*cinfo->cquantize->Start_pass) (cinfo, master->pub.is_dummy_pass);
+      (*cinfo->post->Start_pass) (cinfo,
 	    (master->pub.is_dummy_pass ? JBUF_SAVE_AND_PASS : JBUF_PASS_THRU));
-      (*cinfo->main->start_pass) (cinfo, JBUF_PASS_THRU);
+      (*cinfo->main->Start_pass) (cinfo, JBUF_PASS_THRU);
     }
   }
 
@@ -534,7 +534,7 @@ jpeg_new_colormap (j_decompress_ptr cinfo)
 
 /*
  * Initialize master decompression control and select active modules.
- * This is performed at the start of jpeg_start_decompress.
+ * This is performed at the Start of jpeg_Start_decompress.
  */
 
 GLOBAL(void)

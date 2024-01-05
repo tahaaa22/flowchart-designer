@@ -73,7 +73,7 @@ string Input::GetVariable(Output* pO) const
 	/*variable name*/
 	string varname;
 	char key;
-	bool valid2 =false;
+	bool valid2 = false;
 	while (1)
 	{
 		pWind->WaitKeyPress(key);
@@ -95,7 +95,7 @@ string Input::GetVariable(Output* pO) const
 			varname += key;
 			valid2 = IsVariable(varname);
 		}
-		if(!valid2)
+		if (!valid2)
 			varname.resize(varname.size() - 1);
 
 		if (pO)
@@ -125,7 +125,7 @@ string Input::GetArithOperator(Output* pO) const
 		}
 		if (Op == '+' || Op == '-' || Op == '*' || Op == '/')
 		{
-			
+
 			stOp += Op;
 		}
 		if (pO && (stOp.size() >= 1))
@@ -146,7 +146,7 @@ string Input::GetCompOperator(Output* pO) const
 	while (1)
 	{
 		pWind->WaitKeyPress(compOp);
-		
+
 		if (compOp == 27)	//ESCAPE key is pressed 
 		{
 			return "";	//returns nothing as user has cancelled comparison operator 
@@ -163,23 +163,23 @@ string Input::GetCompOperator(Output* pO) const
 					pO->PrintMessage(wholeop); // Display the current variable name 
 					return wholeop;
 				}
-				
+
 			}
 			else if ((wholeop == "=" && nextkey == '=') || (wholeop == "<" && nextkey == '=') || (wholeop == ">" && nextkey == '=') || (wholeop == "!" && nextkey == '='))
 			{
 				wholeop += nextkey;
 				// Return valid comparison operator 
 			}
-			
+
 		}
-		
+
 		if (pO && (wholeop.size() >= 1))
 		{
 			pO->PrintMessage(wholeop); // Display the current variable name 
 			return wholeop;
 		}
-			
-		
+
+
 	}
 }
 
@@ -197,13 +197,13 @@ double Input::GetValue(Output* pO) const	// Reads a double value from the user
 	string b = GetString(pO);
 	if (IsValue(b))
 	{
-		D=std::stod(b);
+		D = std::stod(b);
 
 	}
 
-	
+
 	//Read a double value from the user
-	
+
 	return D;
 
 }
@@ -250,7 +250,7 @@ ActionType Input::GetUserAction() const
 
 			{
 
-			case ITM_START: return ADD_START;
+			case ITM_Start: return ADD_Start;
 
 			case ITM_END: return ADD_END;
 
@@ -347,7 +347,7 @@ ActionType Input::GetUserAction() const
 
 			case ITM_SWITCH_DSN_MODE: return SWITCH_DSN_MODE;
 			case ITM_EXIT1: return EXIT;
-				
+
 
 			}
 

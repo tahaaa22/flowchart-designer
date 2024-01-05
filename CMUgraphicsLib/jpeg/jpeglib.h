@@ -131,7 +131,7 @@ typedef struct {
   
   /* Remaining fields should be treated as private by applications. */
   
-  /* These values are computed during compression or decompression startup: */
+  /* These values are computed during compression or decompression Startup: */
   /* Component's size in DCT blocks.
    * Any dummy blocks added to complete an MCU are not counted; therefore
    * these values do not depend on whether a scan is interleaved or not.
@@ -159,7 +159,7 @@ typedef struct {
    */
   boolean component_needed;	/* do we need the value of this component? */
 
-  /* These values are computed before starting a scan of the component. */
+  /* These values are computed before Starting a scan of the component. */
   /* The decompressor output side may not use these variables. */
   int MCU_width;		/* number of blocks per MCU, horizontally */
   int MCU_height;		/* number of blocks per MCU, vertically */
@@ -259,7 +259,7 @@ struct jpeg_compress_struct {
   struct jpeg_destination_mgr * dest;
 
   /* Description of source image --- these fields must be filled in by
-   * outer application before starting compression.  in_color_space must
+   * outer application before Starting compression.  in_color_space must
    * be correct before you can even call jpeg_set_defaults().
    */
 
@@ -271,7 +271,7 @@ struct jpeg_compress_struct {
   double input_gamma;		/* image gamma of input image */
 
   /* Compression parameters --- these fields must be set before calling
-   * jpeg_start_compress().  We recommend calling jpeg_set_defaults() to
+   * jpeg_Start_compress().  We recommend calling jpeg_set_defaults() to
    * initialize everything to reasonable defaults, then changing anything
    * the application specifically wants to change.  That way you won't get
    * burnt when new parameters are added.  Also note that there are several
@@ -311,13 +311,13 @@ struct jpeg_compress_struct {
   int smoothing_factor;		/* 1..100, or 0 for no input smoothing */
   J_DCT_METHOD dct_method;	/* DCT algorithm selector */
 
-  /* The restart interval can be specified in absolute MCUs by setting
-   * restart_interval, or in MCU rows by setting restart_in_rows
-   * (in which case the correct restart_interval will be figured
+  /* The reStart interval can be specified in absolute MCUs by setting
+   * reStart_interval, or in MCU rows by setting reStart_in_rows
+   * (in which case the correct reStart_interval will be figured
    * for each scan).
    */
-  unsigned int restart_interval; /* MCUs per restart, or 0 for no restart */
-  int restart_in_rows;		/* if > 0, MCU rows per restart interval */
+  unsigned int reStart_interval; /* MCUs per reStart, or 0 for no reStart */
+  int reStart_in_rows;		/* if > 0, MCU rows per reStart interval */
 
   /* Parameters controlling emission of special markers. */
 
@@ -343,7 +343,7 @@ struct jpeg_compress_struct {
    */
 
   /*
-   * These fields are computed during compression startup
+   * These fields are computed during compression Startup
    */
   boolean progressive_mode;	/* TRUE if scan script uses progressive mode */
   int max_h_samp_factor;	/* largest h_samp_factor */
@@ -406,7 +406,7 @@ struct jpeg_decompress_struct {
   J_COLOR_SPACE jpeg_color_space; /* colorspace of JPEG image */
 
   /* Decompression processing parameters --- these fields must be set before
-   * calling jpeg_start_decompress().  Note that jpeg_read_header() initializes
+   * calling jpeg_Start_decompress().  Note that jpeg_read_header() initializes
    * them to default values.
    */
 
@@ -434,9 +434,9 @@ struct jpeg_decompress_struct {
   boolean enable_2pass_quant;	/* enable future use of 2-pass quantizer */
 
   /* Description of actual output image that will be returned to application.
-   * These fields are computed by jpeg_start_decompress().
+   * These fields are computed by jpeg_Start_decompress().
    * You can also use jpeg_calc_output_dimensions() to determine these values
-   * in advance of calling jpeg_start_decompress().
+   * in advance of calling jpeg_Start_decompress().
    */
 
   JDIMENSION output_width;	/* scaled image width */
@@ -454,8 +454,8 @@ struct jpeg_decompress_struct {
 
   /* When quantizing colors, the output colormap is described by these fields.
    * The application can supply a colormap by setting colormap non-NULL before
-   * calling jpeg_start_decompress; otherwise a colormap is created during
-   * jpeg_start_decompress or jpeg_start_output.
+   * calling jpeg_Start_decompress; otherwise a colormap is created during
+   * jpeg_Start_decompress or jpeg_Start_output.
    * The map has out_color_components rows and actual_number_of_colors columns.
    */
   int actual_number_of_colors;	/* number of entries in use */
@@ -525,7 +525,7 @@ struct jpeg_decompress_struct {
   UINT8 arith_dc_U[NUM_ARITH_TBLS]; /* U values for DC arith-coding tables */
   UINT8 arith_ac_K[NUM_ARITH_TBLS]; /* Kx values for AC arith-coding tables */
 
-  unsigned int restart_interval; /* MCUs per restart interval, or 0 for no restart */
+  unsigned int reStart_interval; /* MCUs per reStart interval, or 0 for no reStart */
 
   /* These fields record data obtained from optional markers recognized by
    * the JPEG library.
@@ -545,7 +545,7 @@ struct jpeg_decompress_struct {
    */
 
   /*
-   * These fields are computed during decompression startup
+   * These fields are computed during decompression Startup
    */
   int max_h_samp_factor;	/* largest h_samp_factor */
   int max_v_samp_factor;	/* largest v_samp_factor */
@@ -625,7 +625,7 @@ struct jpeg_error_mgr {
   /* Format a message string for the most recent JPEG error or message */
   JMETHOD(void, format_message, (j_common_ptr cinfo, char * buffer));
 #define JMSG_LENGTH_MAX  200	/* recommended size of format_message buffer */
-  /* Reset error state variables at start of a new image */
+  /* Reset error state variables at Start of a new image */
   JMETHOD(void, reset_error_mgr, (j_common_ptr cinfo));
   
   /* The message ID code and any parameters are saved here.
@@ -704,7 +704,7 @@ struct jpeg_source_mgr {
   JMETHOD(void, init_source, (j_decompress_ptr cinfo));
   JMETHOD(boolean, fill_input_buffer, (j_decompress_ptr cinfo));
   JMETHOD(void, skip_input_data, (j_decompress_ptr cinfo, long num_bytes));
-  JMETHOD(boolean, resync_to_restart, (j_decompress_ptr cinfo, int desired));
+  JMETHOD(boolean, resync_to_reStart, (j_decompress_ptr cinfo, int desired));
   JMETHOD(void, term_source, (j_decompress_ptr cinfo));
 };
 
@@ -755,12 +755,12 @@ struct jpeg_memory_mgr {
   JMETHOD(void, realize_virt_arrays, (j_common_ptr cinfo));
   JMETHOD(JSAMPARRAY, access_virt_sarray, (j_common_ptr cinfo,
 					   jvirt_sarray_ptr ptr,
-					   JDIMENSION start_row,
+					   JDIMENSION Start_row,
 					   JDIMENSION num_rows,
 					   boolean writable));
   JMETHOD(JBLOCKARRAY, access_virt_barray, (j_common_ptr cinfo,
 					    jvirt_barray_ptr ptr,
-					    JDIMENSION start_row,
+					    JDIMENSION Start_row,
 					    JDIMENSION num_rows,
 					    boolean writable));
   JMETHOD(void, free_pool, (j_common_ptr cinfo, int pool_id));
@@ -819,19 +819,19 @@ typedef JMETHOD(boolean, jpeg_marker_parser_method, (j_decompress_ptr cinfo));
 #define jpeg_suppress_tables	jSuppressTables
 #define jpeg_alloc_quant_table	jAlcQTable
 #define jpeg_alloc_huff_table	jAlcHTable
-#define jpeg_start_compress	jStrtCompress
+#define jpeg_Start_compress	jStrtCompress
 #define jpeg_write_scanlines	jWrtScanlines
 #define jpeg_finish_compress	jFinCompress
 #define jpeg_write_raw_data	jWrtRawData
 #define jpeg_write_marker	jWrtMarker
 #define jpeg_write_tables	jWrtTables
 #define jpeg_read_header	jReadHeader
-#define jpeg_start_decompress	jStrtDecompress
+#define jpeg_Start_decompress	jStrtDecompress
 #define jpeg_read_scanlines	jReadScanlines
 #define jpeg_finish_decompress	jFinDecompress
 #define jpeg_read_raw_data	jReadRawData
 #define jpeg_has_multiple_scans	jHasMultScn
-#define jpeg_start_output	jStrtOutput
+#define jpeg_Start_output	jStrtOutput
 #define jpeg_finish_output	jFinOutput
 #define jpeg_input_complete	jInComplete
 #define jpeg_new_colormap	jNewCMap
@@ -845,7 +845,7 @@ typedef JMETHOD(boolean, jpeg_marker_parser_method, (j_decompress_ptr cinfo));
 #define jpeg_abort_decompress	jAbrtDecompress
 #define jpeg_abort		jAbort
 #define jpeg_destroy		jDestroy
-#define jpeg_resync_to_restart	jResyncRestart
+#define jpeg_resync_to_reStart	jResyncReStart
 #endif /* NEED_SHORT_EXTERNAL_NAMES */
 
 
@@ -902,7 +902,7 @@ EXTERN(JQUANT_TBL *) jpeg_alloc_quant_table JPP((j_common_ptr cinfo));
 EXTERN(JHUFF_TBL *) jpeg_alloc_huff_table JPP((j_common_ptr cinfo));
 
 /* Main entry points for compression */
-EXTERN(void) jpeg_start_compress JPP((j_compress_ptr cinfo,
+EXTERN(void) jpeg_Start_compress JPP((j_compress_ptr cinfo,
 				      boolean write_all_tables));
 EXTERN(JDIMENSION) jpeg_write_scanlines JPP((j_compress_ptr cinfo,
 					     JSAMPARRAY scanlines,
@@ -922,7 +922,7 @@ EXTERN(void) jpeg_write_marker
 /* Alternate compression function: just write an abbreviated table file */
 EXTERN(void) jpeg_write_tables JPP((j_compress_ptr cinfo));
 
-/* Decompression startup: read start of JPEG datastream to see what's there */
+/* Decompression Startup: read Start of JPEG datastream to see what's there */
 EXTERN(int) jpeg_read_header JPP((j_decompress_ptr cinfo,
 				  boolean require_image));
 /* Return value is one of: */
@@ -936,7 +936,7 @@ EXTERN(int) jpeg_read_header JPP((j_decompress_ptr cinfo,
  */
 
 /* Main entry points for decompression */
-EXTERN(boolean) jpeg_start_decompress JPP((j_decompress_ptr cinfo));
+EXTERN(boolean) jpeg_Start_decompress JPP((j_decompress_ptr cinfo));
 EXTERN(JDIMENSION) jpeg_read_scanlines JPP((j_decompress_ptr cinfo,
 					    JSAMPARRAY scanlines,
 					    JDIMENSION max_lines));
@@ -949,7 +949,7 @@ EXTERN(JDIMENSION) jpeg_read_raw_data JPP((j_decompress_ptr cinfo,
 
 /* Additional entry points for buffered-image mode. */
 EXTERN(boolean) jpeg_has_multiple_scans JPP((j_decompress_ptr cinfo));
-EXTERN(boolean) jpeg_start_output JPP((j_decompress_ptr cinfo,
+EXTERN(boolean) jpeg_Start_output JPP((j_decompress_ptr cinfo,
 				       int scan_number));
 EXTERN(boolean) jpeg_finish_output JPP((j_decompress_ptr cinfo));
 EXTERN(boolean) jpeg_input_complete JPP((j_decompress_ptr cinfo));
@@ -957,7 +957,7 @@ EXTERN(void) jpeg_new_colormap JPP((j_decompress_ptr cinfo));
 EXTERN(int) jpeg_consume_input JPP((j_decompress_ptr cinfo));
 /* Return value is one of: */
 /* #define JPEG_SUSPENDED	0    Suspended due to lack of input data */
-#define JPEG_REACHED_SOS	1 /* Reached start of new scan */
+#define JPEG_REACHED_SOS	1 /* Reached Start of new scan */
 #define JPEG_REACHED_EOI	2 /* Reached end of image */
 #define JPEG_ROW_COMPLETED	3 /* Completed one iMCU row */
 #define JPEG_SCAN_COMPLETED	4 /* Completed last iMCU row of a scan */
@@ -992,8 +992,8 @@ EXTERN(void) jpeg_abort_decompress JPP((j_decompress_ptr cinfo));
 EXTERN(void) jpeg_abort JPP((j_common_ptr cinfo));
 EXTERN(void) jpeg_destroy JPP((j_common_ptr cinfo));
 
-/* Default restart-marker-resync procedure for use by data source modules */
-EXTERN(boolean) jpeg_resync_to_restart JPP((j_decompress_ptr cinfo,
+/* Default reStart-marker-resync procedure for use by data source modules */
+EXTERN(boolean) jpeg_resync_to_reStart JPP((j_decompress_ptr cinfo,
 					    int desired));
 
 

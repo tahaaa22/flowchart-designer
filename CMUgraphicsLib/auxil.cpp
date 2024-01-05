@@ -13,7 +13,7 @@ void Pause(const unsigned long ulTime) {
 	Sleep(ulTime);
 }
 
-// Return the number of milliseconds since Windows was started
+// Return the number of milliseconds since Windows was Started
 unsigned long CurrentTime() {
 	return timeGetTime();
 }

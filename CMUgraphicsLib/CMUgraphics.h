@@ -277,16 +277,16 @@ class window {
     // over DEGREES. Valid drawstyles are FRAME, FILLED, and INVERTED
 	void DrawArc(const int iX1, const int iY1, const int iX2, const int iY2, double dStartAngle, double dEndAngle, const drawstyle dsStyle = FRAME, const angletype atInfo = DEGREES);
 
-    // Draws a Bezier curve.  The start and end points are specified by (iX1, iY1) and (iX4, iY4). 
+    // Draws a Bezier curve.  The Start and end points are specified by (iX1, iY1) and (iX4, iY4). 
     // (iX2,iY2) and (iX3, iY3) specify control points that affect the shape of the curve.
     // The only valid drawstyle currently is FRAME
 	void DrawBezier(const int iX1, const int iY1, const int iX2, const int iY2, const int iX3, const int iY3, const int iX4, const int iY4, const drawstyle dsStyle = FRAME);
 
-    // Draws a string starting at the location given by (iX, iY) using the font set by SetFont(..)
+    // Draws a string Starting at the location given by (iX, iY) using the font set by SetFont(..)
 	void DrawString(const int iX, const int iY, const char* cpText);
 	void DrawString(const int iX, const int iY, const string strText);
 
-    // Draws an integer or double starting at the location given by (iX, iY) using the font set by SetFont(..)
+    // Draws an integer or double Starting at the location given by (iX, iY) using the font set by SetFont(..)
 	void DrawInteger(const int iX, const int iY, const long lNumber);
 	void DrawDouble(const int iX, const int iY, const double dNumber);
 
@@ -315,7 +315,7 @@ class window {
     double GetGreen(const int iX, const int iY);
     double GetBlue(const int iX, const int iY);
     
-    // Grabs a section of the section of the screen starting at (iX, iY) iWidth wide and iHeight tall
+    // Grabs a section of the section of the screen Starting at (iX, iY) iWidth wide and iHeight tall
     // and stores it in an image object 
 	void StoreImage(image *imgThis, const unsigned usX, const unsigned short usY, const unsigned short usWidth, const unsigned short usHeight);
 	void StoreImage(image &imgThis, const unsigned usX, const unsigned short usY, const unsigned short usWidth, const unsigned short usHeight);

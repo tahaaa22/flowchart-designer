@@ -5,12 +5,12 @@
 
 class Output	//The application manager should have a pointer to this class
 {
-private:	
+private:
 	window* pWind;	//Pointer to the Graphics Window
 public:
-	Output();	
+	Output();
 
-	window* CreateWind(int, int, int , int);
+	window* CreateWind(int, int, int, int);
 	Input* CreateInput(); //Creates a pointer to the Input object	
 
 	void CreateStatusBar(); //Creates status bar
@@ -26,7 +26,7 @@ public:
 	void DrawString(const int, const int, const string);  //Writes a string in the specified location
 	void DrawDouble(const int iX, const int iY, const double dNumber);
 	// -- Statements Drawing Functions
-	void DrawAssign(Point Left, int width, int height, string Text, bool Selected=false);
+	void DrawAssign(Point Left, int width, int height, string Text, bool Selected = false);
 	void DrawStart(Point left, int width, int height, string Text, bool selected = false);
 	void DrawEnd(Point left, int width, int height, string Text, bool selected = false);
 	void DrawRoh(Point left, int width, int height, string text, bool selected = false);
@@ -34,8 +34,8 @@ public:
 	//TODO: Add similar functions for drawing all other statements.
 	//		e.g. DrawCondtionalStat(......), DrawStart(......), DrawEnd(.......), ...etc
 	//		Decide the parameters that should be passed to each of them
-	void Drawconnectors(Point start,Point end,  bool selected = false);
-	void Drawconnector(Point start, Point end,Point Mid, bool selected = false);
+	void Drawconnectors(Point Start, Point end, bool selected = false);
+	void Drawconnector(Point Start, Point end, bool selected = false);
 
 	//TODO: Add DrawConnector function
 

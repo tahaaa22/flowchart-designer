@@ -9,7 +9,7 @@
  *
  * Much of the complexity here has to do with supporting input suspension.
  * If the data source module demands suspension, we want to be able to back
- * up to the start of the current MCU.  To do this, we copy state variables
+ * up to the Start of the current MCU.  To do this, we copy state variables
  * into local working storage, and update them back to the permanent
  * storage only upon successful completion of an MCU.
  */
@@ -56,14 +56,14 @@ typedef struct {
 typedef struct {
   struct jpeg_entropy_decoder pub; /* public fields */
 
-  /* These fields are loaded into local variables at start of each MCU.
+  /* These fields are loaded into local variables at Start of each MCU.
    * In case of suspension, we exit WITHOUT updating them.
    */
-  bitread_perm_state bitstate;	/* Bit buffer at start of MCU */
-  savable_state saved;		/* Other state at start of MCU */
+  bitread_perm_state bitstate;	/* Bit buffer at Start of MCU */
+  savable_state saved;		/* Other state at Start of MCU */
 
   /* These fields are NOT loaded into local working state. */
-  unsigned int restarts_to_go;	/* MCUs left in this restart interval */
+  unsigned int reStarts_to_go;	/* MCUs left in this reStart interval */
 
   /* Pointers to derived tables (these workspaces have image lifespan) */
   d_derived_tbl * derived_tbls[NUM_HUFF_TBLS];
@@ -89,7 +89,7 @@ METHODDEF(boolean) decode_mcu_AC_refine JPP((j_decompress_ptr cinfo,
  */
 
 METHODDEF(void)
-start_pass_phuff_decoder (j_decompress_ptr cinfo)
+Start_pass_phuff_decoder (j_decompress_ptr cinfo)
 {
   phuff_entropy_ptr entropy = (phuff_entropy_ptr) cinfo->entropy;
   boolean is_DC_band, bad;
@@ -188,8 +188,8 @@ start_pass_phuff_decoder (j_decompress_ptr cinfo)
   /* Initialize private state variables */
   entropy->saved.EOBRUN = 0;
 
-  /* Initialize restart counter */
-  entropy->restarts_to_go = cinfo->restart_interval;
+  /* Initialize reStart counter */
+  entropy->reStarts_to_go = cinfo->reStart_interval;
 }
 
 
@@ -220,12 +220,12 @@ static const int extend_offset[16] = /* entry n is (-1 << n) + 1 */
 
 
 /*
- * Check for a restart marker & resynchronize decoder.
+ * Check for a reStart marker & resynchronize decoder.
  * Returns FALSE if must suspend.
  */
 
 LOCAL(boolean)
-process_restart (j_decompress_ptr cinfo)
+process_reStart (j_decompress_ptr cinfo)
 {
   phuff_entropy_ptr entropy = (phuff_entropy_ptr) cinfo->entropy;
   int ci;
@@ -236,7 +236,7 @@ process_restart (j_decompress_ptr cinfo)
   entropy->bitstate.bits_left = 0;
 
   /* Advance past the RSTn marker */
-  if (! (*cinfo->marker->read_restart_marker) (cinfo))
+  if (! (*cinfo->marker->read_reStart_marker) (cinfo))
     return FALSE;
 
   /* Re-initialize DC predictions to 0 */
@@ -245,8 +245,8 @@ process_restart (j_decompress_ptr cinfo)
   /* Re-init EOB run count, too */
   entropy->saved.EOBRUN = 0;
 
-  /* Reset restart counter */
-  entropy->restarts_to_go = cinfo->restart_interval;
+  /* Reset reStart counter */
+  entropy->reStarts_to_go = cinfo->reStart_interval;
 
   /* Next segment can get another out-of-data warning */
   entropy->bitstate.printed_eod = FALSE;
@@ -290,10 +290,10 @@ decode_mcu_DC_first (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
   d_derived_tbl * tbl;
   jpeg_component_info * compptr;
 
-  /* Process restart marker if needed; may have to suspend */
-  if (cinfo->restart_interval) {
-    if (entropy->restarts_to_go == 0)
-      if (! process_restart(cinfo))
+  /* Process reStart marker if needed; may have to suspend */
+  if (cinfo->reStart_interval) {
+    if (entropy->reStarts_to_go == 0)
+      if (! process_reStart(cinfo))
 	return FALSE;
   }
 
@@ -330,8 +330,8 @@ decode_mcu_DC_first (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
   BITREAD_SAVE_STATE(cinfo,entropy->bitstate);
   ASSIGN_STATE(entropy->saved, state);
 
-  /* Account for restart interval (no-op if not using restarts) */
-  entropy->restarts_to_go--;
+  /* Account for reStart interval (no-op if not using reStarts) */
+  entropy->reStarts_to_go--;
 
   return TRUE;
 }
@@ -354,10 +354,10 @@ decode_mcu_AC_first (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
   BITREAD_STATE_VARS;
   d_derived_tbl * tbl;
 
-  /* Process restart marker if needed; may have to suspend */
-  if (cinfo->restart_interval) {
-    if (entropy->restarts_to_go == 0)
-      if (! process_restart(cinfo))
+  /* Process reStart marker if needed; may have to suspend */
+  if (cinfo->reStart_interval) {
+    if (entropy->reStarts_to_go == 0)
+      if (! process_reStart(cinfo))
 	return FALSE;
   }
 
@@ -408,8 +408,8 @@ decode_mcu_AC_first (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
   /* Completed MCU, so update state */
   entropy->saved.EOBRUN = EOBRUN; /* only part of saved state we care about */
 
-  /* Account for restart interval (no-op if not using restarts) */
-  entropy->restarts_to_go--;
+  /* Account for reStart interval (no-op if not using reStarts) */
+  entropy->reStarts_to_go--;
 
   return TRUE;
 }
@@ -430,10 +430,10 @@ decode_mcu_DC_refine (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
   JBLOCKROW block;
   BITREAD_STATE_VARS;
 
-  /* Process restart marker if needed; may have to suspend */
-  if (cinfo->restart_interval) {
-    if (entropy->restarts_to_go == 0)
-      if (! process_restart(cinfo))
+  /* Process reStart marker if needed; may have to suspend */
+  if (cinfo->reStart_interval) {
+    if (entropy->reStarts_to_go == 0)
+      if (! process_reStart(cinfo))
 	return FALSE;
   }
 
@@ -455,8 +455,8 @@ decode_mcu_DC_refine (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
   /* Completed MCU, so update state */
   BITREAD_SAVE_STATE(cinfo,entropy->bitstate);
 
-  /* Account for restart interval (no-op if not using restarts) */
-  entropy->restarts_to_go--;
+  /* Account for reStart interval (no-op if not using reStarts) */
+  entropy->reStarts_to_go--;
 
   return TRUE;
 }
@@ -482,10 +482,10 @@ decode_mcu_AC_refine (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
   int num_newnz;
   int newnz_pos[DCTSIZE2];
 
-  /* Process restart marker if needed; may have to suspend */
-  if (cinfo->restart_interval) {
-    if (entropy->restarts_to_go == 0)
-      if (! process_restart(cinfo))
+  /* Process reStart marker if needed; may have to suspend */
+  if (cinfo->reStart_interval) {
+    if (entropy->reStarts_to_go == 0)
+      if (! process_reStart(cinfo))
 	return FALSE;
   }
 
@@ -505,7 +505,7 @@ decode_mcu_AC_refine (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
    */
   num_newnz = 0;
 
-  /* initialize coefficient loop counter to start of band */
+  /* initialize coefficient loop counter to Start of band */
   k = cinfo->Ss;
 
   if (EOBRUN == 0) {
@@ -593,8 +593,8 @@ decode_mcu_AC_refine (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
   BITREAD_SAVE_STATE(cinfo,entropy->bitstate);
   entropy->saved.EOBRUN = EOBRUN; /* only part of saved state we care about */
 
-  /* Account for restart interval (no-op if not using restarts) */
-  entropy->restarts_to_go--;
+  /* Account for reStart interval (no-op if not using reStarts) */
+  entropy->reStarts_to_go--;
 
   return TRUE;
 
@@ -622,7 +622,7 @@ jinit_phuff_decoder (j_decompress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
 				SIZEOF(phuff_entropy_decoder));
   cinfo->entropy = (struct jpeg_entropy_decoder *) entropy;
-  entropy->pub.start_pass = start_pass_phuff_decoder;
+  entropy->pub.Start_pass = Start_pass_phuff_decoder;
 
   /* Mark derived tables unallocated */
   for (i = 0; i < NUM_HUFF_TBLS; i++) {

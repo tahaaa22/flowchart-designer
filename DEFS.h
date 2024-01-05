@@ -12,7 +12,7 @@ enum  MODE	//Modes of operation
 // TODO: Add any action type here
 enum ActionType // The actions supported
 {
-	ADD_START, //Add start statement
+	ADD_Start, //Add Start statement
 	ADD_END,   //Add end statement
 	ADD_VALUE_ASSIGN, //Add value assignment statement
 	ADD_VAR_ASSIGN,	  //Add variable assignment statement
@@ -22,7 +22,7 @@ enum ActionType // The actions supported
 	ADD_WRITE, //Addd write statemetn
 
 	ADD_CONNECTOR, //Add a connector between two statements
-	
+
 	SELECT,		//Select a statement, a connector
 	EDIT_STAT,	//Edit a statement
 
@@ -55,7 +55,7 @@ enum DesignMenuItem //The items of the design menu --> THE ORDER MATTERS
 {
 	//Note: Items are ordered here as they appear in menu
 	//If you change the menu items order, change the order here too
-	ITM_START,
+	ITM_Start,
 	ITM_END,
 	ITM_VALUE_ASSIGN,//simple assignment statement
 	ITM_VAR_ASSIGN,
@@ -75,11 +75,11 @@ enum DesignMenuItem //The items of the design menu --> THE ORDER MATTERS
 	ITM_SWITCH_SIM_MODE,
 
 	ITM_EXIT,		//Exit
-	
+
 	//TODO: Add more items names here
-	
+
 	DSN_ITM_CNT		//no. of design menu items ==> This should be the last line in this enum
-	
+
 };
 
 // TODO: you should add more items if needed
@@ -105,11 +105,11 @@ enum SimMenuItem //The items of the simulation menu
 	ITM_WHITE14,
 	ITM_WHITE15,
 	ITM_EXIT1,
-	
+
 	//TODO:Add more items names here
-	
+
 	SIM_ITM_CNT		//no. of simulation menu items ==> This should be the last line in this enum
-	
+
 };
 
 

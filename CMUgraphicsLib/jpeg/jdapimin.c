@@ -73,7 +73,7 @@ jpeg_CreateDecompress (j_decompress_ptr cinfo, int version, size_t structsize)
   jinit_input_controller(cinfo);
 
   /* OK, I'm ready */
-  cinfo->global_state = DSTATE_START;
+  cinfo->global_state = DSTATE_Start;
 }
 
 
@@ -222,14 +222,14 @@ default_decompress_parms (j_decompress_ptr cinfo)
 
 
 /*
- * Decompression startup: read start of JPEG datastream to see what's there.
+ * Decompression Startup: read Start of JPEG datastream to see what's there.
  * Need only initialize JPEG object and supply a data source before calling.
  *
- * This routine will read as far as the first SOS marker (ie, actual start of
+ * This routine will read as far as the first SOS marker (ie, actual Start of
  * compressed data), and will save all tables and parameters in the JPEG
  * object.  It will also initialize the decompression parameters to default
  * values, and finally return JPEG_HEADER_OK.  On return, the application may
- * adjust the decompression parameters and then call jpeg_start_decompress.
+ * adjust the decompression parameters and then call jpeg_Start_decompress.
  * (Or, if the application only wanted to determine the image parameters,
  * the data need not be decompressed.  In that case, call jpeg_abort or
  * jpeg_destroy to release any temporary space.)
@@ -253,7 +253,7 @@ jpeg_read_header (j_decompress_ptr cinfo, boolean require_image)
 {
   int retcode;
 
-  if (cinfo->global_state != DSTATE_START &&
+  if (cinfo->global_state != DSTATE_Start &&
       cinfo->global_state != DSTATE_INHEADER)
     ERREXIT1(cinfo, JERR_BAD_STATE, cinfo->global_state);
 
@@ -266,11 +266,11 @@ jpeg_read_header (j_decompress_ptr cinfo, boolean require_image)
   case JPEG_REACHED_EOI:
     if (require_image)		/* Complain if application wanted an image */
       ERREXIT(cinfo, JERR_NO_IMAGE);
-    /* Reset to start state; it would be safer to require the application to
+    /* Reset to Start state; it would be safer to require the application to
      * call jpeg_abort, but we can't change it now for compatibility reasons.
      * A side effect is to free any temporary memory (there shouldn't be any).
      */
-    jpeg_abort((j_common_ptr) cinfo); /* sets state = DSTATE_START */
+    jpeg_abort((j_common_ptr) cinfo); /* sets state = DSTATE_Start */
     retcode = JPEG_HEADER_TABLES_ONLY;
     break;
   case JPEG_SUSPENDED:
@@ -289,7 +289,7 @@ jpeg_read_header (j_decompress_ptr cinfo, boolean require_image)
  *
  * This routine is essentially a state machine that handles a couple
  * of critical state-transition actions, namely initial setup and
- * transition from header scanning to ready-for-start_decompress.
+ * transition from header scanning to ready-for-Start_decompress.
  * All the actual input is done via the input controller's consume_input
  * method.
  */
@@ -301,7 +301,7 @@ jpeg_consume_input (j_decompress_ptr cinfo)
 
   /* NB: every possible DSTATE value should be listed in this switch */
   switch (cinfo->global_state) {
-  case DSTATE_START:
+  case DSTATE_Start:
     /* Start-of-datastream actions: reset appropriate modules */
     (*cinfo->inputctl->reset_input_controller) (cinfo);
     /* Initialize application's data source module */
@@ -313,12 +313,12 @@ jpeg_consume_input (j_decompress_ptr cinfo)
     if (retcode == JPEG_REACHED_SOS) { /* Found SOS, prepare to decompress */
       /* Set up default parameters based on header data */
       default_decompress_parms(cinfo);
-      /* Set global state: ready for start_decompress */
+      /* Set global state: ready for Start_decompress */
       cinfo->global_state = DSTATE_READY;
     }
     break;
   case DSTATE_READY:
-    /* Can't advance past first SOS until start_decompress is called */
+    /* Can't advance past first SOS until Start_decompress is called */
     retcode = JPEG_REACHED_SOS;
     break;
   case DSTATE_PRELOAD:
@@ -345,7 +345,7 @@ GLOBAL(boolean)
 jpeg_input_complete (j_decompress_ptr cinfo)
 {
   /* Check for valid jpeg object */
-  if (cinfo->global_state < DSTATE_START ||
+  if (cinfo->global_state < DSTATE_Start ||
       cinfo->global_state > DSTATE_STOPPING)
     ERREXIT1(cinfo, JERR_BAD_STATE, cinfo->global_state);
   return cinfo->inputctl->eoi_reached;
