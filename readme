@@ -14,7 +14,7 @@ This project is a C++ implementation of a Flowchart Designer and Simulator using
 
 - **Execution Simulation**: Allows users to simulate the execution of the flowchart, providing a step-by-step solution to the given problem.
 
-- **Conversion to C++ Code **: Provides an additional feature to convert the designed flowchart into a C++ code file.
+- **Conversion to C++ Code (Bonus)**: Provides an additional feature to convert the designed flowchart into a C++ code file.
 
 ## Requirements
 
@@ -33,13 +33,13 @@ This project is a C++ implementation of a Flowchart Designer and Simulator using
 2. **Build the Project**: Use your preferred C++ compiler to build the project. Ensure that you link the CMUgraphicsLib library.
 
    ```bash
-   g++ -o main main.cpp -lcmu_graphics
+   g++ -o flowchart_simulator flowchart_simulator.cpp -lcmu_graphics
    ```
 
 3. **Run the Application**: Execute the compiled application.
 
    ```bash
-   ./main
+   ./flowchart_simulator
    ```
 
 ## Usage
@@ -48,9 +48,12 @@ This project is a C++ implementation of a Flowchart Designer and Simulator using
 
 2. **Simulate Execution**: Simulate the execution of the flowchart to visualize the step-by-step solution.
 
-3. **Conversion to C++ Code **: If desired, use the bonus feature to convert the designed flowchart into a C++ code file.
+3. **Conversion to C++ Code (Bonus)**: If desired, use the bonus feature to convert the designed flowchart into a C++ code file.
 
 ## Contributing
 
 Feel free to contribute to the development of this project by submitting pull requests or reporting issues. Your feedback and contributions are highly appreciated.
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
