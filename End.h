@@ -1,6 +1,5 @@
 #pragma once
-#include "Statement.h"
-
+#include "Statements/Statement.h"
 	class End : public Statement
 	{
 	private:
