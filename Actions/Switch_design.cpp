@@ -1,4 +1,4 @@
-#include ".\Actions\Switch_design.h"
+#include "Switch_design.h"
 #include "ApplicationManager.h"
 #include "Actions/Action.h"
 

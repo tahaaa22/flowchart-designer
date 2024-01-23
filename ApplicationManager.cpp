@@ -13,7 +13,7 @@
 #include "Delete.h"
 #include "Copy.h"
 #include "Paste.h"
-#include "Switch_design.h"
+#include "Actions/Switch_design.h"
 #include "Switch_sim.h"
 #include <iostream>
 using namespace std;
